@@ -1,0 +1,30 @@
+{
+  "gameTitle": "Welcome to the Moon",
+  "home": {
+    "title": "Welcome to the Moon Solo Helper",
+    "play1": "Play <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> against ASTRA, the Solo opponent.",
+    "play2": "This is a card flipper application dedicated to the solo mode of the game.",
+    "feedback": "Discussion and Feedback:"
+  },
+  "action": {
+    "playGame": "Play Game",
+    "startGame": "Start Game",
+    "next": "Next",
+    "nextRound": "Next Round",
+    "abortGame": "Abort Game",
+    "abortGameConfirm": "Aborting the running game - are you sure?",
+    "endGame": "End Game",
+    "endGameConfirm": "End this game and return to home screen - are you sure?",
+    "cancel": "Cancel",
+    "backToHome": "Back to Home",
+    "back": "Back",
+    "close": "Close"
+  },
+  "footer": {
+    "credits": "Credits"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "Refresh Application",
+    "notice": "The application was updated - do you want to refresh to use the latest version?"
+  }
+}
