@@ -317,7 +317,7 @@ const cards : Card[] = [
   {
     id: 40,
     cardType: CardType.STARSHIP,
-    action: Action.PLANNING,
+    action: Action.PLANT,
     value: 9,
     sprite: 'starship',
     spriteIndex: 38
