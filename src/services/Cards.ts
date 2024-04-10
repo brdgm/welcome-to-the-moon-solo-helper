@@ -5,7 +5,7 @@ import Action from './enum/Action'
 import SpecialValue from './enum/SpecialValue'
 
 /**
- * Starship cards.
+ * Starship and ASTRA effect cards.
  */
 const cards : Card[] = [
 
