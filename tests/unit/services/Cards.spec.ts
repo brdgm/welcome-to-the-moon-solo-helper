@@ -51,4 +51,13 @@ describe('services/Cards', () => {
   it('astra-effect-cards', () => {
     expect(Cards.getByType(CardType.ASTRA_EFFECT).length).eq(3)
   })
+
+  it('spriteIndex', () => {
+    // ensure all cards have a unique sprite index
+    const indexes = new Set<string>()
+    Object.values(CardType).forEach(cardType => 
+      Cards.getByType(cardType).forEach(card => indexes.add(`${card.sprite}-${card.spriteIndex}`))
+    )
+    expect(indexes.size).eq(63+9+3)
+  })
 })
