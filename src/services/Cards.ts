@@ -2,7 +2,7 @@ import findMandatory from 'brdgm-commons/src/util/map/findMandatory'
 import Card from './Card'
 
 /**
- * Ship cards.
+ * Starship cards.
  */
 const cards : Card[] = [
   {
