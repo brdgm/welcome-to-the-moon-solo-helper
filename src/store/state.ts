@@ -39,4 +39,11 @@ export interface Setup {
 
 export interface Turn {
   turn: number
+  cardDeck: CardDeckPersistence
+}
+export interface CardDeckPersistence {
+  pile: number[]
+  current: number[]
+  discard: number[]
+  bot: number[]
 }
