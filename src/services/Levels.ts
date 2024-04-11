@@ -9,6 +9,7 @@ const levels : Level[] = [
 
   {
     level: 1,
+    name: 'Katherine',
     actions: [
       { action: Action.ROBOT,     points: 2 },
       { action: Action.ENERGY,    points: 3 },
@@ -20,6 +21,7 @@ const levels : Level[] = [
   },
   {
     level: 2,
+    name: 'Alexei',
     actions: [
       { action: Action.ROBOT,     points: 2 },
       { action: Action.ENERGY,    points: 3 },
@@ -31,6 +33,7 @@ const levels : Level[] = [
   },
   {
     level: 3,
+    name: 'Margaret',
     actions: [
       { action: Action.ROBOT,     points: 5 },
       { action: Action.ENERGY,    points: 4 },
@@ -42,6 +45,7 @@ const levels : Level[] = [
   },
   {
     level: 4,
+    name: 'Franklin',
     actions: [
       { action: Action.ROBOT,     points: 2 },
       { action: Action.ENERGY,    points: 6 },
@@ -53,6 +57,7 @@ const levels : Level[] = [
   },
   {
     level: 5,
+    name: 'Sergei',
     actions: [
       { action: Action.ROBOT,     points: 4 },
       { action: Action.ENERGY,    points: 4 },
@@ -64,6 +69,7 @@ const levels : Level[] = [
   },
   {
     level: 6,
+    name: 'Stephanie',
     actions: [
       { action: Action.ROBOT,     points: 6 },
       { action: Action.ENERGY,    points: 2 },
@@ -75,6 +81,7 @@ const levels : Level[] = [
   },
   {
     level: 7,
+    name: 'Thomas',
     actions: [
       { action: Action.ROBOT,     points: 5 },
       { action: Action.ENERGY,    points: 4 },
@@ -86,6 +93,7 @@ const levels : Level[] = [
   },
   {
     level: 8,
+    name: 'Peggy',
     actions: [
       { action: Action.ROBOT,     points: 5 },
       { action: Action.ENERGY,    points: 3 },

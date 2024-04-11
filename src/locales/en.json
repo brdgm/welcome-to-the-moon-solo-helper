@@ -6,6 +6,28 @@
     "play2": "This is a card flipper application dedicated to the solo mode of the game.",
     "feedback": "Discussion and Feedback:"
   },
+  "setup": {
+    "title": "Setup Game",
+    "missionSelection": {
+      "title": "Mission"
+    },
+    "difficultyLevel": {
+      "title": "ASTRA Level",
+      "easy": "Easy",
+      "hard": "Hard",
+      "level": "Level {level} - {name}"
+    }
+  },
+  "mission": {
+    "1": "#1 The Launch",
+    "2": "#2 The Journey",
+    "3": "#3 The Colony",
+    "4": "#4 The Mine",
+    "5": "#5 The Dome",
+    "6": "#6 The Virus",
+    "7": "#7 The Escape",
+    "8": "#8 The Battle"
+  },
   "action": {
     "playGame": "Play Game",
     "startGame": "Start Game",

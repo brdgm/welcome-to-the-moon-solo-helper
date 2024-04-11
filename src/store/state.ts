@@ -7,6 +7,8 @@ export const useStateStore = defineStore(`${name}.state`, {
       language: 'en',
       baseFontSize: 1.0,
       setup: {
+        mission: 1,
+        level: 1
       },
       turns: []
     } as State
@@ -30,6 +32,8 @@ export interface State {
   turns: Turn[]
 }
 export interface Setup {
+  mission: number
+  level: number
   debugMode?: boolean
 }
 
