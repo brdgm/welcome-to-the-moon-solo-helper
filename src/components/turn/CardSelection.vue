@@ -20,12 +20,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Card from '@/services/Card'
 import getCardPermutations from '@/util/getCardPermutations'
 import CardDisplay from '../structure/CardDisplay.vue'
-import { PropType } from 'vue'
 
 export default defineComponent({
   name: 'CardSelection',
