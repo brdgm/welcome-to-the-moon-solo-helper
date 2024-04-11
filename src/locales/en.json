@@ -18,6 +18,9 @@
       "level": "Level {level} - {name}"
     }
   },
+  "turn": {
+    "title": "Turn {turn}"
+  },
   "mission": {
     "1": "#1 The Launch",
     "2": "#2 The Journey",

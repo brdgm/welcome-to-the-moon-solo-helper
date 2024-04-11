@@ -34,7 +34,6 @@ export default defineComponent({
   methods: {
     startGame() : void {
       this.state.resetGame()
-
       this.$router.push('/turn/1')
     }
   }

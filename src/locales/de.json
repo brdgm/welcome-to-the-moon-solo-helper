@@ -18,6 +18,9 @@
       "level": "Level {level} - {name}"
     }
   },
+  "turn": {
+    "title": "Runde {turn}"
+  },
   "mission": {
     "1": "#1 Der Start",
     "2": "#2 Der Flug",
