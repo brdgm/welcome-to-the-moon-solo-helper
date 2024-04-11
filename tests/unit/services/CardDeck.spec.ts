@@ -35,6 +35,7 @@ describe('services/CardDeck', () => {
     expect(deck.currentCards.map(item => item.id)).to.eql([1,2,3])
     expect(deck.currentEffects.map(item => item.id)).to.eql([])
     deck.giveToBot(deck.currentCards[1])
+    expect(deck.exhaustCount).to.eq(0)
 
     expect(deck.canDraw).to.true
     deck.draw()
@@ -53,11 +54,17 @@ describe('services/CardDeck', () => {
     deck.draw()
     expect(deck.currentCards.length).to.eql(3)
     deck.giveToBot(deck.currentCards[0])
+    expect(deck.exhaustCount).to.eq(1)
 
     expect(deck.canDraw).to.true
     deck.draw()
     expect(deck.currentCards.length).to.eql(3)
     deck.giveToBot(deck.currentCards[0])
+
+    if (deck.pile.length > 0) {
+      // there may be effect cards left in pile
+      deck.draw()
+    }
 
     expect(deck.canDraw).to.false
   })
