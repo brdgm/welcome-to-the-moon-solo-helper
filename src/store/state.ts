@@ -16,6 +16,7 @@ export const useStateStore = defineStore(`${name}.state`, {
   actions: {
     resetGame() {
       this.turns = []
+      this.setup.initialCardDeck = undefined
     },
     storeTurn(turn : Turn) {
       this.turns = this.turns.filter(item => item.turn < turn.turn)
@@ -34,6 +35,7 @@ export interface State {
 export interface Setup {
   mission: number
   level: number
+  initialCardDeck?: CardDeckPersistence
   debugMode?: boolean
 }
 

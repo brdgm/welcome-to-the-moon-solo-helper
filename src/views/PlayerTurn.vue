@@ -1,6 +1,8 @@
 <template>
   <h1>{{t('turn.title', {turn})}}</h1>
 
+  <CardSelection :currentCards="[...navigationState.cardDeck.currentCards]"/>
+
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}
   </button>
@@ -15,11 +17,13 @@ import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import { useStateStore } from '@/store/state'
 import NavigationState from '@/util/NavigationState'
+import CardSelection from '@/components/turn/CardSelection.vue'
 
 export default defineComponent({
   name: 'PlayerTurn',
   components: {
-    FooterButtons
+    FooterButtons,
+    CardSelection
   },
   setup() {
     const { t } = useI18n()
@@ -27,7 +31,7 @@ export default defineComponent({
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
     const turn = navigationState.turn
-    return { t, state, turn }
+    return { t, state, navigationState, turn }
   },
   computed: {
     backButtonRouteTo() : string|undefined {

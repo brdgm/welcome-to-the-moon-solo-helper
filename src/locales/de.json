@@ -19,7 +19,8 @@
     }
   },
   "turn": {
-    "title": "Runde {turn}"
+    "title": "Runde {turn}",
+    "select": "Wählen"
   },
   "mission": {
     "1": "#1 Der Start",

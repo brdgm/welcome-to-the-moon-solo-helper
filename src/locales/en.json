@@ -19,7 +19,8 @@
     }
   },
   "turn": {
-    "title": "Turn {turn}"
+    "title": "Turn {turn}",
+    "select": "Select"
   },
   "mission": {
     "1": "#1 The Launch",

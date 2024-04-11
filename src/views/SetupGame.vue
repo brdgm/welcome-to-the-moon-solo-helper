@@ -18,6 +18,7 @@ import { useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import DifficultyLevel from '@/components/setup/DifficultyLevel.vue'
 import MissionSelection from '@/components/setup/MissionSelection.vue'
+import CardDeck from '@/services/CardDeck'
 
 export default defineComponent({
   name: 'SetupGame',
@@ -34,6 +35,7 @@ export default defineComponent({
   methods: {
     startGame() : void {
       this.state.resetGame()
+      this.state.setup.initialCardDeck = CardDeck.new().toPersistence()
       this.$router.push('/turn/1')
     }
   }
