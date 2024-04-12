@@ -2,13 +2,13 @@
   <div class="sidebar">
     <table>
       <tbody>
-        <tr v-for="action of actions" :key="action">
-          <td><AppIcon type="action" :name="action" class="action"/></td>
-          <td class="fw-bold" :class="{lowest:isLowest(action),highest:isHighest(action)}">{{getActionPoints(action)}}</td>
+        <tr v-for="actionScore of score.actionScores" :key="actionScore.action">
+          <td><AppIcon type="action" :name="actionScore.action" class="action"/></td>
+          <td class="fw-bold" :class="{lowest:actionScore.lowest,highest:actionScore.highest}">{{actionScore.points}}</td>
           <td>x</td>
-          <td>{{getActionCards(action)}}</td>
+          <td>{{actionScore.count}}</td>
           <td>=</td>
-          <td>{{getActionPoints(action) * getActionCards(action)}}</td>
+          <td>{{actionScore.total}}</td>
         </tr>
         <tr>
           <td></td>
@@ -16,16 +16,16 @@
           <td></td>
           <td></td>
           <td>+</td>
-          <td>{{mission.fixedPoints}}</td>
+          <td>{{score.fixedPoints}}</td>
         </tr>
         <tr>
           <td colspan="2">
-            L{{level.level}}
+            L{{score.level}}
           </td>
           <td>x</td>
-          <td>{{mission.levelMultiplier}}</td>
+          <td>{{score.levelMultiplier}}</td>
           <td>=</td>
-          <td>{{level.level * mission.levelMultiplier}}</td>
+          <td>{{score.levelPoints}}</td>
         </tr>
         <tr>
           <td></td>
@@ -33,7 +33,7 @@
           <td></td>
           <td></td>
           <td>=</td>
-          <td class="fw-bold">{{total}}</td>
+          <td class="fw-bold">{{score.totalPoints}}</td>
         </tr>
       </tbody>
     </table>
@@ -41,13 +41,11 @@
 </template>
 
 <script lang="ts">
-import Action from '@/services/enum/Action'
 import NavigationState from '@/util/NavigationState'
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
-import Level from '@/services/Level'
-import Mission from '@/services/Mission'
+import ScoreCalculator from '@/services/ScoreCalculator'
 
 export default defineComponent({
   name: 'SideBar',
@@ -65,37 +63,9 @@ export default defineComponent({
     }
   },
   computed: {
-    actions() : Action[] {
-      return [Action.ROBOT,Action.ENERGY,Action.PLANT,Action.WATER,Action.ASTRONAUT,Action.PLANNING]
-    },
-    mission() : Mission {
-      return this.navigationState.mission
-    },
-    level() : Level {
-      return this.navigationState.level
-    },
-    total() : number {
-      return this.actions.reduce((acc,action) => acc + this.getActionPoints(action) * this.getActionCards(action), 0)
-          + this.mission.fixedPoints
-          + this.level.level * this.mission.levelMultiplier
-    }
-  },
-  methods: {
-    getActionPoints(action: Action) : number {
-      return this.level.actions.find(item => item.action == action)?.points ?? 0
-    },
-    getActionCards(action: Action) : number {
-      return this.navigationState.cardDeck.bot.filter(item => item.action == action || item.action.includes(action)).length
-    },
-    isLowest(action: Action) : boolean {
-      const points = this.getActionPoints(action)
-      return this.level.actions.filter(item => item.points < points).length == 0
-          && this.level.actions.filter(item => item.points == points).length == 1
-    },
-    isHighest(action: Action) : boolean {
-      const points = this.getActionPoints(action)
-      return this.level.actions.filter(item => item.points > points).length == 0      
-          && this.level.actions.filter(item => item.points == points).length == 1
+    score() : ScoreCalculator {
+      return new ScoreCalculator(this.navigationState.mission, this.navigationState.level,
+          this.navigationState.cardDeck.bot)
     }
   }
 })
