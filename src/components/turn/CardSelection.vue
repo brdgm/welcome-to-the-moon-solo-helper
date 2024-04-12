@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="permutation" v-for="(cards,index) of permutations" :key="index">
+    <div class="permutation" v-for="(cards,index) of permutations" :key="index" @click="pickCard(cards[2])">
       <div class="selection">
         <CardDisplay class="card" :card="cards[0]" back/>
         <CardDisplay class="card" :card="cards[1]" front/>
-        <button class="btn btn-primary pickButton">
+        <button class="btn btn-primary pickButton" @click="pickCard(cards[2])">
           {{t('turn.select')}}
         </button>
       </div>
@@ -31,6 +31,9 @@ export default defineComponent({
   components: {
     CardDisplay
   },
+  emits: {
+    botCardSelected: (_card: Card) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
+  },
   setup() {
     const { t } = useI18n()
     return { t }
@@ -44,6 +47,11 @@ export default defineComponent({
   computed: {
     permutations() : Card[][] {
       return getCardPermutations(this.currentCards)
+    }
+  },
+  methods: {
+    pickCard(card: Card) {
+      this.$emit('botCardSelected', card)
     }
   }
 })

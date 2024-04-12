@@ -20,7 +20,9 @@
   },
   "turn": {
     "title": "Runde {turn}",
-    "select": "Wählen"
+    "select": "Wählen",
+    "applyEffect": "Führe ASTRA-Effekt {value} aus",
+    "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\"."
   },
   "mission": {
     "1": "#1 Der Start",

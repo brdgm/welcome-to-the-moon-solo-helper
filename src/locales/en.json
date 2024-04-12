@@ -20,7 +20,9 @@
   },
   "turn": {
     "title": "Turn {turn}",
-    "select": "Select"
+    "select": "Select",
+    "applyEffect": "Apply ASTRA effect {value}",
+    "accomplishMission": "Flip mission card {value} to accomplished side"
   },
   "mission": {
     "1": "#1 The Launch",

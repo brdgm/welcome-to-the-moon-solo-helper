@@ -1,11 +1,14 @@
 <template>
   <h1>{{t('turn.title', {turn})}}</h1>
 
-  <CardSelection :currentCards="[...navigationState.cardDeck.currentCards]"/>
+  <template v-if="cardDeck.currentEffects.length > 0">
+    <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="cardDeck.exhaustCount"/>
+    <hr/>
+  </template>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
-    {{t('action.next')}}
-  </button>
+  <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="giveCardToBot"/>
+
+  <DebugInfo :navigationState="navigationState"/>
 
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" :endGameButtonType="turn > 1 ? 'endGame' : 'abortGame'"/>
 </template>
@@ -15,15 +18,21 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
-import { useStateStore } from '@/store/state'
+import { Turn, useStateStore } from '@/store/state'
 import NavigationState from '@/util/NavigationState'
 import CardSelection from '@/components/turn/CardSelection.vue'
+import DebugInfo from '@/components/turn/DebugInfo.vue'
+import Card from '@/services/Card'
+import CardDeck from '@/services/CardDeck'
+import CardEffects from '@/components/turn/CardEffects.vue'
 
 export default defineComponent({
   name: 'PlayerTurn',
   components: {
     FooterButtons,
-    CardSelection
+    CardSelection,
+    CardEffects,
+    DebugInfo
   },
   setup() {
     const { t } = useI18n()
@@ -41,10 +50,22 @@ export default defineComponent({
       else {
         return undefined
       }
+    },
+    cardDeck() : CardDeck {
+      return this.navigationState.cardDeck
     }
   },
   methods: {
+    giveCardToBot(card : Card) : void {
+      this.cardDeck.giveToBot(card)
+      this.next()
+    },
     next() : void {
+      const turn : Turn = {
+        turn: this.turn,
+        cardDeck: this.cardDeck.toPersistence()
+      }
+      this.state.storeTurn(turn)
       this.$router.push(`/turn/${this.turn+1}`)
     }
   }
