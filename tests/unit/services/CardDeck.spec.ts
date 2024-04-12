@@ -27,7 +27,8 @@ describe('services/CardDeck', () => {
       pile: [1,2,3,4,112,5,113,6,7,8,9],
       current: [],
       discard: [],
-      bot: []
+      bot: [],
+      exhaustCount: 0
     })
 
     expect(deck.canDraw).to.true
@@ -60,11 +61,6 @@ describe('services/CardDeck', () => {
     deck.draw()
     expect(deck.currentCards.length).to.eql(3)
     deck.giveToBot(deck.currentCards[0])
-
-    if (deck.pile.length > 0) {
-      // there may be effect cards left in pile
-      deck.draw()
-    }
 
     expect(deck.canDraw).to.false
   })

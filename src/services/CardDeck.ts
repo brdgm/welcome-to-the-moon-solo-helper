@@ -10,13 +10,14 @@ export default class CardDeck {
   private _current : Card[]
   private _discard : Card[]
   private _bot : Card[]
-  private _exhaustCount : number = 0
+  private _exhaustCount : number
 
-  public constructor(pile : Card[], current: Card[], discard : Card[], bot : Card[]) {
+  public constructor(pile : Card[], current: Card[], discard : Card[], bot : Card[], exhaustCount : number) {
     this._pile = pile
     this._current = current
     this._discard = discard
     this._bot = bot
+    this._exhaustCount = exhaustCount
   }
 
   public get pile() : readonly Card[] {
@@ -41,14 +42,22 @@ export default class CardDeck {
 
   public get exhaustCount() : number {
     return this._exhaustCount
-  }  
+  }
+
+  public get remainingTurns() : number {
+    let turns = this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3
+    if (this._exhaustCount == 0) {
+      turns += 14
+    }
+    return turns
+  }
 
   /**
    * The deck is reshuffled once, but if then the deck is empty again no further card can be drawn and the game ends.
    * @returns true if cards can be drawn
    */
   public get canDraw() : boolean {
-    return this._pile.length > 0 || this._exhaustCount == 0
+    return this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length > 0 || this._exhaustCount == 0
   }
 
   /**
@@ -60,6 +69,12 @@ export default class CardDeck {
       this._discard.push(...this._current)
       this._current = []
     }
+    while (this.currentCards.length < 3) {
+      this.drawSingleCard()
+    }
+  }
+
+  private drawSingleCard() : undefined {
     if (this._pile.length == 0) {
       if (!this.canDraw) {
         throw new Error('No more cards to draw')
@@ -68,11 +83,9 @@ export default class CardDeck {
       this._discard = []
       this._exhaustCount++
     }
-    while (this._pile.length > 0 && this.currentCards.length < 3) {
-      const card = this._pile.shift()
-      if (card) {
-        this._current.push(card)
-      }
+    const card = this._pile.shift()
+    if (card) {
+      this._current.push(card)
     }
   }
 
@@ -96,6 +109,7 @@ export default class CardDeck {
       current: this._current.map(card => card.id),
       discard: this._discard.map(card => card.id),
       bot: this._bot.map(card => card.id),
+      exhaustCount: this._exhaustCount
     }
   }
 
@@ -115,7 +129,7 @@ export default class CardDeck {
     part3 = shuffle(part3)
     // create new deck from all three parts
     pile = [...part1, ...part2, ...part3]
-    return new CardDeck(pile, [], [], [])
+    return new CardDeck(pile, [], [], [], 0)
   }
 
   /**
@@ -126,7 +140,8 @@ export default class CardDeck {
       persistence.pile.map(Cards.get),
       persistence.current.map(Cards.get),
       persistence.discard.map(Cards.get),
-      persistence.bot.map(Cards.get)
+      persistence.bot.map(Cards.get),
+      persistence.exhaustCount
     )
   }
 

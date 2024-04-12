@@ -2,10 +2,11 @@
   <div class="mt-4" v-if="state.setup.debugMode">
     <hr/>
     <ul class="debug">
-      <li>pile: {{getCardsInfo(navigationState.cardDeck.pile)}}</li>
-      <li>current: {{getCardsInfo(navigationState.cardDeck.currentCards)}}, {{getCardsInfo(navigationState.cardDeck.currentEffects)}}</li>
-      <li>bot: {{getCardsInfo(navigationState.cardDeck.bot)}}</li>
-      <li>discard: {{getCardsInfo(navigationState.cardDeck.discard)}}</li>
+      <li>pile: {{getCardsInfo(cardDeck.pile)}}</li>
+      <li>current: {{getCardsInfo(cardDeck.currentCards)}}, {{getCardsInfo(cardDeck.currentEffects)}}</li>
+      <li>bot: {{getCardsInfo(cardDeck.bot)}}</li>
+      <li>discard: {{getCardsInfo(cardDeck.discard)}}</li>
+      <li>exhaustCount: {{cardDeck.exhaustCount}}, remainingTurns: {{cardDeck.remainingTurns}}</li>
     </ul>
   </div>
 </template>
@@ -16,6 +17,7 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useStateStore } from '@/store/state'
 import Card from '@/services/Card'
+import CardDeck from '@/services/CardDeck'
 
 export default defineComponent({
   name: 'DebugInfo',
@@ -28,6 +30,11 @@ export default defineComponent({
     navigationState: {
       type: NavigationState,
       required: true
+    }
+  },
+  computed: {
+    cardDeck() : CardDeck {
+      return this.navigationState.cardDeck
     }
   },
   methods: {

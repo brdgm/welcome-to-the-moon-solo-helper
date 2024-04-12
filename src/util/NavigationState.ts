@@ -13,12 +13,15 @@ export default class NavigationState {
   readonly level: Level
   readonly turn : number
   readonly cardDeck : CardDeck
+  readonly exhaustCount : number
 
   public constructor(route : RouteLocation, state : State) {
     this.mission = Missions.get(state.setup.mission)
     this.level = Levels.get(state.setup.level)
     this.turn = getIntRouteParam(route, 'turn')
     this.cardDeck = getCardDeck(this.turn - 1, state)
+    // store exhaust count before drawing cards, in case only effect cards are left in pile
+    this.exhaustCount = this.cardDeck.exhaustCount
     // draw cards
     if (this.cardDeck.canDraw) {
       this.cardDeck.draw()

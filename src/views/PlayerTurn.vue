@@ -2,7 +2,7 @@
   <h1>{{t('turn.title', {turn})}}</h1>
 
   <template v-if="cardDeck.currentEffects.length > 0">
-    <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="cardDeck.exhaustCount"/>
+    <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
     <hr/>
   </template>
 
