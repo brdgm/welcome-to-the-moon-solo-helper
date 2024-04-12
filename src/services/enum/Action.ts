@@ -3,9 +3,9 @@
  */
 enum Action {
   ROBOT = 'robot',
-  WATER = 'water',
-  PLANT = 'plant',
   ENERGY = 'energy',
+  PLANT = 'plant',
+  WATER = 'water',
   ASTRONAUT = 'astronaut',
   PLANNING = 'planning',
   JOKER = 'joker',

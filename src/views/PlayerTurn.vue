@@ -1,4 +1,5 @@
 <template>
+  <SideBar :navigationState="navigationState"/>  
   <h1>{{t('turn.title', {turn})}}</h1>
 
   <template v-if="cardDeck.currentEffects.length > 0">
@@ -25,6 +26,7 @@ import DebugInfo from '@/components/turn/DebugInfo.vue'
 import Card from '@/services/Card'
 import CardDeck from '@/services/CardDeck'
 import CardEffects from '@/components/turn/CardEffects.vue'
+import SideBar from '@/components/turn/SideBar.vue'
 
 export default defineComponent({
   name: 'PlayerTurn',
@@ -32,6 +34,7 @@ export default defineComponent({
     FooterButtons,
     CardSelection,
     CardEffects,
+    SideBar,
     DebugInfo
   },
   setup() {
