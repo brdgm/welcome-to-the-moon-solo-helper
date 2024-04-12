@@ -47,7 +47,9 @@ export default class CardDeck {
   public get remainingTurns() : number {
     let turns = this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3
     if (this._exhaustCount == 0) {
-      turns += 14
+      turns += (((this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3) * 2)
+           + ((this._current.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3) * 2)
+           + this._discard.filter(card => card.cardType != CardType.ASTRA_EFFECT).length) / 3
     }
     return turns
   }

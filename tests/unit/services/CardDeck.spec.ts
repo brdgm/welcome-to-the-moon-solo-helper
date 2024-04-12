@@ -32,6 +32,7 @@ describe('services/CardDeck', () => {
     })
 
     expect(deck.canDraw).to.true
+    expect(deck.remainingTurns).to.eq(5)
     deck.draw()
     expect(deck.currentCards.map(item => item.id)).to.eql([1,2,3])
     expect(deck.currentEffects.map(item => item.id)).to.eql([])
@@ -39,12 +40,14 @@ describe('services/CardDeck', () => {
     expect(deck.exhaustCount).to.eq(0)
 
     expect(deck.canDraw).to.true
+    expect(deck.remainingTurns).to.eq(4)
     deck.draw()
     expect(deck.currentCards.map(item => item.id)).to.eql([4,5,6])
     expect(deck.currentEffects.map(item => item.id)).to.eql([112,113])
     deck.giveToBot(deck.currentCards[0])
 
     expect(deck.canDraw).to.true
+    expect(deck.remainingTurns).to.eq(3)
     deck.draw()
     expect(deck.currentCards.map(item => item.id)).to.eql([7,8,9])
     expect(deck.currentEffects.map(item => item.id)).to.eql([])
@@ -52,16 +55,19 @@ describe('services/CardDeck', () => {
     expect(deck.bot.map(item => item.id)).to.eql([2,4,9])
 
     expect(deck.canDraw).to.true
+    expect(deck.remainingTurns).to.eq(2)
     deck.draw()
     expect(deck.currentCards.length).to.eql(3)
     deck.giveToBot(deck.currentCards[0])
     expect(deck.exhaustCount).to.eq(1)
 
     expect(deck.canDraw).to.true
+    expect(deck.remainingTurns).to.eq(1)
     deck.draw()
     expect(deck.currentCards.length).to.eql(3)
     deck.giveToBot(deck.currentCards[0])
 
     expect(deck.canDraw).to.false
+    expect(deck.remainingTurns).to.eq(0)
   })
 })
