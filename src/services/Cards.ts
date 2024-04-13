@@ -615,6 +615,96 @@ const cards : Card[] = [
     spriteIndex: 68
   },
 
+  // ### CAMPAIGN EVENT CARDS ###
+  {
+    id: 158,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 6
+  },
+  {
+    id: 159,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 7
+  },
+  {
+    id: 160,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 8
+  },
+  {
+    id: 161,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 9
+  },
+  {
+    id: 162,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 10
+  },
+  {
+    id: 163,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 11
+  },
+  {
+    id: 164,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 12
+  },
+  {
+    id: 165,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 13
+  },
+  {
+    id: 166,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 14
+  },
+  {
+    id: 167,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 15
+  },
+  {
+    id: 168,
+    cardType: CardType.CAMPAIGN_EVENT,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'campaign',
+    spriteIndex: 16
+  },
+
 ]
 
 const cardsMap = new Map<number,Card>()

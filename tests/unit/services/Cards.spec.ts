@@ -58,6 +58,6 @@ describe('services/Cards', () => {
     Object.values(CardType).forEach(cardType => 
       Cards.getByType(cardType).forEach(card => indexes.add(`${card.sprite}-${card.spriteIndex}`))
     )
-    expect(indexes.size).eq(63+9+3)
+    expect(indexes.size).eq(63+9+3+11)
   })
 })

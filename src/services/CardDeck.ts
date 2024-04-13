@@ -27,11 +27,11 @@ export default class CardDeck {
   }
 
   public get currentCards() : readonly Card[] {
-    return this._current.filter(card => card.cardType != CardType.ASTRA_EFFECT)
+    return this._current.filter(isStarship)
   }
 
   public get currentEffects() : readonly Card[] {
-    return this._current.filter(card => card.cardType == CardType.ASTRA_EFFECT)
+    return this._current.filter(isEffectEvent)
   }
 
   public get discard() : readonly Card[] {
@@ -51,11 +51,11 @@ export default class CardDeck {
   }
 
   public get remainingTurns() : number {
-    let turns = this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3
+    let turns = this._pile.filter(isStarship).length / 3
     if (this._exhaustCount == 0) {
-      turns += (((this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3) * 2)
-           + ((this._current.filter(card => card.cardType != CardType.ASTRA_EFFECT).length / 3) * 2)
-           + this._discard.filter(card => card.cardType != CardType.ASTRA_EFFECT).length) / 3
+      turns += (((this._pile.filter(isStarship).length / 3) * 2)
+           + ((this._current.filter(isStarship).length / 3) * 2)
+           + this._discard.filter(isStarship).length) / 3
     }
     return turns
   }
@@ -65,7 +65,7 @@ export default class CardDeck {
    * @returns true if cards can be drawn
    */
   public get canDraw() : boolean {
-    return this._pile.filter(card => card.cardType != CardType.ASTRA_EFFECT).length > 0 || this._exhaustCount == 0
+    return this._pile.filter(isStarship).length > 0 || this._exhaustCount == 0
   }
 
   /**
@@ -166,4 +166,12 @@ export default class CardDeck {
     )
   }
 
+}
+
+function isEffectEvent(card: Card) : boolean {
+  return card.cardType == CardType.ASTRA_EFFECT || card.cardType == CardType.CAMPAIGN_EVENT
+}
+
+function isStarship(card: Card) : boolean {
+  return card.cardType == CardType.STARSHIP || card.cardType == CardType.STARSHIP_CAMPAIGN
 }
