@@ -25,6 +25,7 @@
     "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
     "mission1Launch": "START!",
     "turnsLeft": "Runden:",
+    "cardsLeft": "Karten:",
     "gameOver": {
       "title": "Spielende",
       "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."

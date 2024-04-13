@@ -24,7 +24,8 @@
     "applyEffect": "Apply ASTRA effect {value}",
     "accomplishMission": "Flip mission card {value} to accomplished side",
     "mission1Launch": "LAUNCH!",
-    "turnsLeft": "Turns left:",
+    "turnsLeft": "Turns:",
+    "cardsLeft": "Cards:",
     "gameOver": {
       "title": "Game over",
       "info": "Game over - tally up your points."

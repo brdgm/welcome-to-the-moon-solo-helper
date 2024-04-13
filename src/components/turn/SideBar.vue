@@ -67,6 +67,12 @@
             {{t('turn.turnsLeft')}} {{navigationState.cardDeck.remainingTurns}}
           </td>
         </tr>
+        <tr>
+          <td colspan="6" class="small">
+            {{t('turn.cardsLeft')}} {{navigationState.cardDeck.pile.length}}
+            <AppIcon name="shuffle" extension="svg" class="shuffle" v-if="navigationState.cardDeck.exhaustCount > 0"/>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -114,7 +120,7 @@ export default defineComponent({
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 10px;
-  width: 120px;
+  width: 125px;
   margin-right: -12px;
   margin-left: 2px;
   margin-bottom: 20px;
@@ -140,5 +146,9 @@ table {
 .checkbox {
   width: 0.7rem;
   margin-right: 0.1rem;
+}
+.shuffle {
+  width: 1.2rem;
+  margin-top: -0.1rem;
 }
 </style>
