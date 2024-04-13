@@ -15,14 +15,14 @@ export default class ScoreCalculator {
   ]
 
   private readonly MISSION1_LEVEL_OFFSET : number[] = [
-    0,
+    0, /* level 1 ... */
     3,
     2,
     2,
     2,
     2,
     2,
-    2
+    2  /* ... level 8 */
   ]
 
   public readonly actionScores: ActionScore[]
@@ -42,8 +42,8 @@ export default class ScoreCalculator {
         points: points,
         count: count,
         total: total,
-        lowest: isSingleLowest(level, action),
-        highest: isSingleHighest(level, action)
+        lowest: isLowest(level, action),
+        highest: isHighest(level, action)
       }
     })
     this.fixedPoints = mission.fixedPoints
@@ -74,14 +74,14 @@ function getActionCards(cards: readonly Card[], action: Action) : number {
   return cards.filter(item => item.action == action || item.action.includes(action)).length
 }
 
-function isSingleLowest(level: Level, action: Action) : boolean {
+function isLowest(level: Level, action: Action) : boolean {
   const points = getActionPoints(level, action)
   return level.actions.filter(item => item.points < points).length == 0
-      && level.actions.filter(item => item.points == points).length == 1
+      && level.actions.filter(item => item.points == points).length <= 3
 }
 
-function isSingleHighest(level: Level, action: Action) : boolean {
+function isHighest(level: Level, action: Action) : boolean {
   const points = getActionPoints(level, action)
   return level.actions.filter(item => item.points > points).length == 0      
-      && level.actions.filter(item => item.points == points).length == 1
+      && level.actions.filter(item => item.points == points).length <= 3
 }
