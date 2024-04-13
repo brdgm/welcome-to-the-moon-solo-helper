@@ -24,6 +24,7 @@ import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Card from '@/services/Card'
 import getCardPermutations from '@/util/getCardPermutations'
+import sortCardPermutations from '@/util/sortCardPermutations'
 import CardDisplay from '../structure/CardDisplay.vue'
 
 export default defineComponent({
@@ -46,7 +47,7 @@ export default defineComponent({
   },
   computed: {
     permutations() : Card[][] {
-      return getCardPermutations(this.currentCards)
+      return sortCardPermutations(getCardPermutations(this.currentCards))
     }
   },
   methods: {
