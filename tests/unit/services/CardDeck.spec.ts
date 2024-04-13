@@ -28,6 +28,7 @@ describe('services/CardDeck', () => {
       current: [],
       discard: [],
       bot: [],
+      removed: [],
       exhaustCount: 0
     })
 
@@ -44,7 +45,8 @@ describe('services/CardDeck', () => {
     deck.draw()
     expect(deck.currentCards.map(item => item.id)).to.eql([4,5,6])
     expect(deck.currentEffects.map(item => item.id)).to.eql([112,113])
-    deck.giveToBot(deck.currentCards[0])
+    deck.removeCardFromGame(deck.currentCards[0])
+    expect(deck.removed.map(item => item.id)).to.eql([4])
 
     expect(deck.canDraw).to.true
     expect(deck.remainingTurns).to.eq(3)
@@ -52,7 +54,7 @@ describe('services/CardDeck', () => {
     expect(deck.currentCards.map(item => item.id)).to.eql([7,8,9])
     expect(deck.currentEffects.map(item => item.id)).to.eql([])
     deck.giveToBot(deck.currentCards[2])
-    expect(deck.bot.map(item => item.id)).to.eql([2,4,9])
+    expect(deck.bot.map(item => item.id)).to.eql([2,9])
 
     expect(deck.canDraw).to.true
     expect(deck.remainingTurns).to.eq(2)

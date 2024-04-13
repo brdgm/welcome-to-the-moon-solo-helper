@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="permutation" v-for="(cards,index) of permutations" :key="index" @click="pickCard(cards[2])">
-      <div class="selection">
+    <div class="permutation" v-for="(cards,index) of permutations" :key="index">
+      <div class="selection" @click="pickCard(cards[2])">
         <CardDisplay class="card" :card="cards[0]" back/>
         <CardDisplay class="card" :card="cards[1]" front/>
         <button class="btn btn-primary pickButton" @click="pickCard(cards[2])">
@@ -9,12 +9,19 @@
         </button>
       </div>
       <div class="bot">
-        <CardDisplay class="card" :card="cards[2]" back/>
+        <CardDisplay class="card" :class="{disabled:removeCard}" :card="cards[2]" back/>
         <svg class="cross-out" version="1.1" viewBox="0 0 449.998 449.998">
           <polygon style="fill:#a00;" points="449.974,34.855 415.191,0 225.007,190.184 34.839,0 0.024,34.839 190.192,224.999 
             0.024,415.159 34.839,449.998 225.007,259.797 415.191,449.998 449.974,415.143 259.83,224.999"/>
         </svg>
       </div>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" :value="true" v-model="removeCard">
+        <AppIcon name="solo-bonus" class="soloBonus"/>
+        Use Solo Bonus
+      </label>
     </div>
   </div>
 </template>
@@ -26,14 +33,16 @@ import Card from '@/services/Card'
 import getCardPermutations from '@/util/getCardPermutations'
 import sortCardPermutations from '@/util/sortCardPermutations'
 import CardDisplay from '../structure/CardDisplay.vue'
+import AppIcon from '../structure/AppIcon.vue'
 
 export default defineComponent({
   name: 'CardSelection',
   components: {
-    CardDisplay
+    CardDisplay,
+    AppIcon
   },
   emits: {
-    botCardSelected: (_card: Card) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
+    botCardSelected: (_card: Card, _remove: boolean) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
   },
   setup() {
     const { t } = useI18n()
@@ -45,6 +54,11 @@ export default defineComponent({
       required: true
     }
   },
+  data() {
+    return {
+      removeCard: false
+    }
+  },
   computed: {
     permutations() : Card[][] {
       return sortCardPermutations(getCardPermutations(this.currentCards))
@@ -52,7 +66,7 @@ export default defineComponent({
   },
   methods: {
     pickCard(card: Card) {
-      this.$emit('botCardSelected', card)
+      this.$emit('botCardSelected', card, this.removeCard)
     }
   }
 })
@@ -70,6 +84,9 @@ export default defineComponent({
   .card {
     width: 100px;
     margin-right:3px;
+    &.disabled {
+      filter: grayscale(1); opacity: 0.5;
+    }
     @media (max-width: 600px) {
       width: 50px;
     }
@@ -110,5 +127,8 @@ export default defineComponent({
       }
     }
   }
+}
+.soloBonus {
+  width: 1.5rem;
 }
 </style>

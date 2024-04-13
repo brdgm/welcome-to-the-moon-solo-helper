@@ -6,6 +6,7 @@
       <li>current: {{getCardsInfo(cardDeck.currentCards)}}, {{getCardsInfo(cardDeck.currentEffects)}}</li>
       <li>bot: {{getCardsInfo(cardDeck.bot)}}</li>
       <li>discard: {{getCardsInfo(cardDeck.discard)}}</li>
+      <li>removed: {{getCardsInfo(cardDeck.removed)}}</li>
       <li>exhaustCount: {{cardDeck.exhaustCount}}, remainingTurns: {{cardDeck.remainingTurns}}</li>
     </ul>
   </div>

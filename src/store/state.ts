@@ -48,5 +48,6 @@ export interface CardDeckPersistence {
   current: number[]
   discard: number[]
   bot: number[]
+  removed: number[]
   exhaustCount: number
 }

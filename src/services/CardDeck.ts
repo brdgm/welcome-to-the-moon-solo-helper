@@ -10,13 +10,15 @@ export default class CardDeck {
   private _current : Card[]
   private _discard : Card[]
   private _bot : Card[]
+  private _removed : Card[]
   private _exhaustCount : number
 
-  public constructor(pile : Card[], current: Card[], discard : Card[], bot : Card[], exhaustCount : number) {
+  public constructor(pile: Card[], current: Card[], discard: Card[], bot: Card[], removed: Card[], exhaustCount: number) {
     this._pile = pile
     this._current = current
     this._discard = discard
     this._bot = bot
+    this._removed = removed
     this._exhaustCount = exhaustCount
   }
 
@@ -38,6 +40,10 @@ export default class CardDeck {
 
   public get bot() : readonly Card[] {
     return this._bot
+  }
+
+  public get removed() : readonly Card[] {
+    return this._removed
   }
 
   public get exhaustCount() : number {
@@ -103,6 +109,17 @@ export default class CardDeck {
   }
 
   /**
+   * Removed one of the current cards from the game, and puts the rest into discard pile.
+   * @param card Selected card
+   */
+  public removeCardFromGame(card : Card) {
+    const otherCards = this._current.filter(item => item.id != card.id)
+    this._removed.push(card)
+    this._discard.push(...otherCards)
+    this._current = []
+  }
+
+  /**
    * Gets persistence view of card deck.
    */
   public toPersistence() : CardDeckPersistence {
@@ -111,6 +128,7 @@ export default class CardDeck {
       current: this._current.map(card => card.id),
       discard: this._discard.map(card => card.id),
       bot: this._bot.map(card => card.id),
+      removed: this._removed.map(card => card.id),
       exhaustCount: this._exhaustCount
     }
   }
@@ -131,7 +149,7 @@ export default class CardDeck {
     part3 = shuffle(part3)
     // create new deck from all three parts
     pile = [...part1, ...part2, ...part3]
-    return new CardDeck(pile, [], [], [], 0)
+    return new CardDeck(pile, [], [], [], [], 0)
   }
 
   /**
@@ -143,6 +161,7 @@ export default class CardDeck {
       persistence.current.map(Cards.get),
       persistence.discard.map(Cards.get),
       persistence.bot.map(Cards.get),
+      persistence.removed.map(Cards.get),
       persistence.exhaustCount
     )
   }

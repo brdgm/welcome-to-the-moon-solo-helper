@@ -11,7 +11,7 @@
       <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
       <hr/>
     </template>
-    <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="giveCardToBot"/>
+    <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="botCardSelected"/>
   </template>
 
   <DebugInfo :navigationState="navigationState"/>
@@ -64,8 +64,13 @@ export default defineComponent({
     }
   },
   methods: {
-    giveCardToBot(card : Card) : void {
-      this.cardDeck.giveToBot(card)
+    botCardSelected(card : Card, remove: boolean) : void {
+      if (remove) {
+        this.cardDeck.removeCardFromGame(card)
+      }
+      else {
+        this.cardDeck.giveToBot(card)
+      }
       this.next()
     },
     next() : void {
