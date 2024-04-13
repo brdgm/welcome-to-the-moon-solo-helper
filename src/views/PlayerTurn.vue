@@ -2,11 +2,11 @@
   <SideBar :navigationState="navigationState"/>  
 
   <template v-if="cardDeck.currentCards.length == 0">
-    <h1>{{t('turn.gameOver.title')}}</h1>
+    <h1>{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.gameOver.title')}}</h1>
     <p class="mt-4 mb-5" v-html="t('turn.gameOver.info')"></p>
   </template>
   <template v-else>
-    <h1>{{t('turn.title', {turn})}}</h1>
+    <h1 class="mb-3">{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.title', {turn})}}</h1>
     <template v-if="cardDeck.currentEffects.length > 0">
       <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
       <hr/>
