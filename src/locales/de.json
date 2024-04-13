@@ -1,0 +1,64 @@
+{
+  "gameTitle": "Welcome to the Moon",
+  "home": {
+    "title": "Welcome to the Moon Solo Helper",
+    "play1": "Spiele <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> gegen ASTRA, den Solo-Gegner.",
+    "play2": "Diese Applikation ersetzt den Raumschiff-Kartenstapel und zählt die Punkte von ASTRA zusammen.",
+    "feedback": "Discussion and Feedback:"
+  },
+  "setup": {
+    "title": "Spielaufbau",
+    "missionSelection": {
+      "title": "Mission"
+    },
+    "difficultyLevel": {
+      "title": "ASTRA Level",
+      "easy": "Leicht",
+      "hard": "Schwer",
+      "level": "Level {level} - {name}"
+    }
+  },
+  "turn": {
+    "title": "Runde {turn}",
+    "select": "Wählen",
+    "applyEffect": "Führe ASTRA-Effekt {value} aus",
+    "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
+    "mission1Launch": "START!",
+    "turnsLeft": "Runden:",
+    "gameOver": {
+      "title": "Spielende",
+      "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
+    }
+  },
+  "mission": {
+    "1": "#1 Der Start",
+    "2": "#2 Der Flug",
+    "3": "#3 Die Siedlung",
+    "4": "#4 Die Mine",
+    "5": "#5 Die Kuppel",
+    "6": "#6 Das Virus",
+    "7": "#7 Die Flucht",
+    "8": "#8 Der Konflikt"
+  },
+  "action": {
+    "playGame": "Spielen",
+    "startGame": "Spiel starten",
+    "next": "Weiter",
+    "nextRound": "Nächste Runde",
+    "abortGame": "Spiel abbrechen",
+    "abortGameConfirm": "Das aktuelle Spiel wird abgebrochen - bist du sicher?",
+    "endGame": "Spiel beenden",
+    "endGameConfirm": "Dieses Spiel wird beendet - bist du sicher?",
+    "cancel": "Abbrechen",
+    "backToHome": "Zurück zum Anfang",
+    "back": "Zurück",
+    "close": "Schließen"
+  },
+  "footer": {
+    "credits": "Credits"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "Applikation neu laden",
+    "notice": "Die Applikation wurde aktualisiert - möchtest du die Seite neu laden um die neueste Version zu nutzen?"
+  }
+}

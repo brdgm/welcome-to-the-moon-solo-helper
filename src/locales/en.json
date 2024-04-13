@@ -1,0 +1,64 @@
+{
+  "gameTitle": "Welcome to the Moon",
+  "home": {
+    "title": "Welcome to the Moon Solo Helper",
+    "play1": "Play <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> against ASTRA, the Solo opponent.",
+    "play2": "This application simulates the starship deck and counts ASTRAs points depending on mission and level.",
+    "feedback": "Discussion and Feedback:"
+  },
+  "setup": {
+    "title": "Setup Game",
+    "missionSelection": {
+      "title": "Mission"
+    },
+    "difficultyLevel": {
+      "title": "ASTRA Level",
+      "easy": "Easy",
+      "hard": "Hard",
+      "level": "Level {level} - {name}"
+    }
+  },
+  "turn": {
+    "title": "Turn {turn}",
+    "select": "Select",
+    "applyEffect": "Apply ASTRA effect {value}",
+    "accomplishMission": "Flip mission card {value} to accomplished side",
+    "mission1Launch": "LAUNCH!",
+    "turnsLeft": "Turns left:",
+    "gameOver": {
+      "title": "Game over",
+      "info": "Game over - tally up your points."
+    }
+  },
+  "mission": {
+    "1": "#1 The Launch",
+    "2": "#2 The Journey",
+    "3": "#3 The Colony",
+    "4": "#4 The Mine",
+    "5": "#5 The Dome",
+    "6": "#6 The Virus",
+    "7": "#7 The Escape",
+    "8": "#8 The Battle"
+  },
+  "action": {
+    "playGame": "Play Game",
+    "startGame": "Start Game",
+    "next": "Next",
+    "nextRound": "Next Round",
+    "abortGame": "Abort Game",
+    "abortGameConfirm": "Aborting the running game - are you sure?",
+    "endGame": "End Game",
+    "endGameConfirm": "End this game and return to home screen - are you sure?",
+    "cancel": "Cancel",
+    "backToHome": "Back to Home",
+    "back": "Back",
+    "close": "Close"
+  },
+  "footer": {
+    "credits": "Credits"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "Refresh Application",
+    "notice": "The application was updated - do you want to refresh to use the latest version?"
+  }
+}
