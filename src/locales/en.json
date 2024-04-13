@@ -3,7 +3,7 @@
   "home": {
     "title": "Welcome to the Moon Solo Helper",
     "play1": "Play <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> against ASTRA, the Solo opponent.",
-    "play2": "This is a card flipper application dedicated to the solo mode of the game.",
+    "play2": "This application simulates the starship deck and counts ASTRAs points depending on mission and level.",
     "feedback": "Discussion and Feedback:"
   },
   "setup": {

@@ -62,20 +62,35 @@ export default defineComponent({
   display: inline-block;
   margin-right: 30px;
   margin-bottom: 15px;
+  @media (max-width: 600px) {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
   .card {
     width: 100px;
     margin-right:3px;
+    @media (max-width: 600px) {
+      width: 50px;
+    }
   }
   .selection {
     display: inline-block;
     position: relative;
     margin-right: 20px;
+    @media (max-width: 600px) {
+      margin-right: 10px;
+    }
     .pickButton {
       position: absolute;
       z-index: 100;
       top: 110px;
       left: 50%;
       transform: translate(-50%, 0);
+      @media (max-width: 600px) {
+        top: 45px;
+        font-size: 12px;
+        padding: 6px;
+      }
     }
   }
   .bot {
@@ -87,6 +102,11 @@ export default defineComponent({
       left: 10px;
       top: 40px;
       width: 80px;
+      @media (max-width: 600px) {
+        left: 5px;
+        top: 20px;
+        width: 40px;
+      }
     }
   }
 }

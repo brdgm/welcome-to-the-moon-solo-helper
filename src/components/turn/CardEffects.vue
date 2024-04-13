@@ -1,5 +1,5 @@
 <template>
-  <div v-for="card of currentEffects" :key="card.id" class="mt-2 d-flex">
+  <div v-for="card of currentEffects" :key="card.id" class="mt-2 d-sm-flex">
     <CardDisplay class="card" :card="card" front/>
     <ul class="mt-3">
       <li v-html="t('turn.applyEffect', {value:card.value})"></li>
@@ -40,5 +40,13 @@ export default defineComponent({
 .card {
   width: 100px;
   margin-right:3px;
+  @media (max-width: 600px) {
+    width: 50px;
+  }
+}
+ul {
+  @media (max-width: 600px) {
+    font-size: small;
+  }
 }
 </style>
