@@ -1,13 +1,18 @@
 <template>
   <SideBar :navigationState="navigationState"/>  
-  <h1>{{t('turn.title', {turn})}}</h1>
 
-  <template v-if="cardDeck.currentEffects.length > 0">
-    <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
-    <hr/>
+  <template v-if="cardDeck.currentCards.length == 0">
+    <h1>{{t('turn.gameOver.title')}}</h1>
+    <p class="mt-4 mb-5" v-html="t('turn.gameOver.info')"></p>
   </template>
-
-  <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="giveCardToBot"/>
+  <template v-else>
+    <h1>{{t('turn.title', {turn})}}</h1>
+    <template v-if="cardDeck.currentEffects.length > 0">
+      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
+      <hr/>
+    </template>
+    <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="giveCardToBot"/>
+  </template>
 
   <DebugInfo :navigationState="navigationState"/>
 

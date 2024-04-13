@@ -2,38 +2,70 @@
   <div class="sidebar">
     <table>
       <tbody>
-        <tr v-for="actionScore of score.actionScores" :key="actionScore.action">
-          <td><AppIcon type="action" :name="actionScore.action" class="action"/></td>
-          <td class="fw-bold" :class="{lowest:actionScore.lowest,highest:actionScore.highest}">{{actionScore.points}}</td>
-          <td>x</td>
-          <td>{{actionScore.count}}</td>
-          <td>=</td>
-          <td>{{actionScore.total}}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>+</td>
-          <td>{{score.fixedPoints}}</td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            L{{score.level}}
+        <template v-if="mission == 1">
+          <tr v-for="actionScore of score.actionScores" :key="actionScore.action">
+            <td><AppIcon type="action" :name="actionScore.action" class="action"/></td>
+            <td class="fw-bold" :class="{lowest:actionScore.lowest,highest:actionScore.highest}">{{actionScore.points}}</td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <AppIcon v-for="(check,index) of score.mission1Dots" :key="index"
+                  type="checkbox" :name="check ? 'on' : 'off'" extension="svg" class="checkbox"/>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>=</td>
+            <td class="fw-bold">{{score.totalPoints}}</td>
+          </tr>
+          <tr v-if="score.totalPoints >= 150">
+            <td colspan="6" class="fw-bold text-danger pt-2">
+              {{t('turn.mission1Launch')}}
+            </td>
+          </tr>
+        </template>
+        <template v-else>
+          <tr v-for="actionScore of score.actionScores" :key="actionScore.action">
+            <td><AppIcon type="action" :name="actionScore.action" class="action"/></td>
+            <td class="fw-bold" :class="{lowest:actionScore.lowest,highest:actionScore.highest}">{{actionScore.points}}</td>
+            <td>x</td>
+            <td>{{actionScore.count}}</td>
+            <td>=</td>
+            <td>{{actionScore.total}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>+</td>
+            <td>{{score.fixedPoints}}</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              L{{score.level}}
+            </td>
+            <td>x</td>
+            <td>{{score.levelMultiplier}}</td>
+            <td>=</td>
+            <td>{{score.levelPoints}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>=</td>
+            <td class="fw-bold">{{score.totalPoints}}</td>
+          </tr>
+        </template>
+        <tr v-if="mission != 1 || score.totalPoints < 150">
+          <td colspan="6" class="small pt-2">
+            {{t('turn.turnsLeft')}} {{navigationState.cardDeck.remainingTurns}}
           </td>
-          <td>x</td>
-          <td>{{score.levelMultiplier}}</td>
-          <td>=</td>
-          <td>{{score.levelPoints}}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>=</td>
-          <td class="fw-bold">{{score.totalPoints}}</td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +95,9 @@ export default defineComponent({
     }
   },
   computed: {
+    mission() : number {
+      return this.navigationState.mission.mission
+    },
     score() : ScoreCalculator {
       return new ScoreCalculator(this.navigationState.mission, this.navigationState.level,
           this.navigationState.cardDeck.bot)
@@ -101,5 +136,9 @@ table {
 }
 .highest {
   color: #b00;
+}
+.checkbox {
+  width: 0.7rem;
+  margin-right: 0.1rem;
 }
 </style>

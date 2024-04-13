@@ -8,6 +8,7 @@ import { expect } from 'chai'
 describe('services/ScoreCalculator', () => {
   it('mission2-level3', () => {
     const score = new ScoreCalculator(Missions.get(2), Levels.get(3),
+      // ENERGY, ROBOT, PLANT, ROBOT
       [1,2,3,4].map(item => Cards.get(item)))
 
     const actionScores = score.actionScores
@@ -24,5 +25,13 @@ describe('services/ScoreCalculator', () => {
     expect(score.levelMultiplier).to.eq(1)
     expect(score.levelPoints).to.eq(3)
     expect(score.totalPoints).to.eq(24)
+  })
+
+  it('mission1-level7', () => {
+    const score = new ScoreCalculator(Missions.get(1), Levels.get(7),
+      // ENERGY, ROBOT, PLANT, ROBOT, ASTRONAUT, WATER, PLANNING, ASTRONAUT
+      [1,2,3,4,5,6,7,8].map(item => Cards.get(item)))
+
+    expect(score.totalPoints).to.eq(60)
   })
 })

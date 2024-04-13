@@ -22,7 +22,13 @@
     "title": "Runde {turn}",
     "select": "Wählen",
     "applyEffect": "Führe ASTRA-Effekt {value} aus",
-    "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\"."
+    "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
+    "mission1Launch": "START!",
+    "turnsLeft": "Runden:",
+    "gameOver": {
+      "title": "Spielende",
+      "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
+    }
   },
   "mission": {
     "1": "#1 Der Start",

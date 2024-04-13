@@ -22,7 +22,13 @@
     "title": "Turn {turn}",
     "select": "Select",
     "applyEffect": "Apply ASTRA effect {value}",
-    "accomplishMission": "Flip mission card {value} to accomplished side"
+    "accomplishMission": "Flip mission card {value} to accomplished side",
+    "mission1Launch": "LAUNCH!",
+    "turnsLeft": "Turns left:",
+    "gameOver": {
+      "title": "Game over",
+      "info": "Game over - tally up your points."
+    }
   },
   "mission": {
     "1": "#1 The Launch",
