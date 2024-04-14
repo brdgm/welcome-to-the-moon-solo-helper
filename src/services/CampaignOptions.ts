@@ -6,7 +6,7 @@ import Action from './enum/Action'
 /**
  * Campaign Options.
  */
-const CampaignOptions : CampaignOption[] = [
+const campaignOptions : CampaignOption[] = [
 
   // ### EVENT CAMPAIGN OPTIONS ###
   {
@@ -222,8 +222,8 @@ const CampaignOptions : CampaignOption[] = [
 
 ]
 
-const CampaignOptionsMap = new Map<string,CampaignOption>()
-CampaignOptions.forEach(CampaignOption => CampaignOptionsMap.set(CampaignOption.name, CampaignOption))
+const campaignOptionsMap = new Map<string,CampaignOption>()
+campaignOptions.forEach(campaignOption => campaignOptionsMap.set(campaignOption.name, campaignOption))
 
 export default {
 
@@ -233,7 +233,7 @@ export default {
    * @returns CampaignOption
    */
   get(name: string) : CampaignOption {
-    return findMandatory(CampaignOptionsMap, name)
+    return findMandatory(campaignOptionsMap, name)
   },
 
   /**
@@ -241,7 +241,7 @@ export default {
    * @returns CampaignOptions
    */
   getAll() : CampaignOption[] {
-    return CampaignOptions
+    return campaignOptions
   }
 
 }
