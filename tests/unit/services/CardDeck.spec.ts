@@ -37,8 +37,8 @@ describe('services/CardDeck', () => {
 
     // event
     expect(pile[pile.length-1].id).to.eq(165) // event bottom card
-    expect(pile.findIndex(card => card.id==163)).to.greaterThanOrEqual(41)
-    expect(pile.findIndex(card => card.id==164)).to.greaterThanOrEqual(41)
+    expect(pile.findIndex(card => card.id==163)).to.greaterThanOrEqual(40)
+    expect(pile.findIndex(card => card.id==164)).to.greaterThanOrEqual(40)
     // additional starship cards
     expect(pile.find(card => card.id==152)).to.not.undefined
     expect(pile.find(card => card.id==153)).to.not.undefined
@@ -54,7 +54,8 @@ describe('services/CardDeck', () => {
       discard: [],
       bot: [],
       removed: [],
-      exhaustCount: 0
+      exhaustCount: 0,
+      shuffleBackInPileOnce: []
     })
 
     expect(deck.canDraw).to.true
@@ -96,5 +97,29 @@ describe('services/CardDeck', () => {
 
     expect(deck.canDraw).to.false
     expect(deck.remainingTurns).to.eq(0)
+  })
+
+  it('drawEventCardsShuffleSomeBackInPile', () => {
+    const deck = CardDeck.fromPersistence({
+      pile: [1,163,2,3,4,164,112,5,113,6,7,8,9],
+      current: [],
+      discard: [],
+      bot: [],
+      removed: [],
+      exhaustCount: 0,
+      shuffleBackInPileOnce: [163]
+    })
+
+    // draw all cards and count how many times each event card was drawn
+    const drawn = new Map<number, number>()
+    while (deck.canDraw) {
+      deck.draw()
+      deck.currentEffects
+        .filter(card => card.cardType==CardType.CAMPAIGN_EVENT)
+        .forEach(card => drawn.set(card.id, (drawn.get(card.id) ?? 0) + 1))
+    }
+
+    expect(drawn.get(163)).to.eq(2)
+    expect(drawn.get(164)).to.eq(1)
   })
 })

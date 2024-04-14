@@ -9,6 +9,7 @@ export default interface CampaignOption {
   starshipCards?: number[]
   deckCards?: number[]
   deckBottomCards?: number[]
+  deckCardsShuffleBackInPileOnce?: number[]
   blockCardsValue?: number[]
   blockCardsAction?: BlockCardAction[]
 }

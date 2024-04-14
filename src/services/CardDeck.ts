@@ -14,14 +14,16 @@ export default class CardDeck {
   private _bot : Card[]
   private _removed : Card[]
   private _exhaustCount : number
+  private _shuffleBackInPileOnce: number[]
 
-  public constructor(pile: Card[], current: Card[], discard: Card[], bot: Card[], removed: Card[], exhaustCount: number) {
+  public constructor(pile: Card[], current: Card[], discard: Card[], bot: Card[], removed: Card[], exhaustCount: number, shuffleBackInPileOnce: number[]) {
     this._pile = pile
     this._current = current
     this._discard = discard
     this._bot = bot
     this._removed = removed
     this._exhaustCount = exhaustCount
+    this._shuffleBackInPileOnce = shuffleBackInPileOnce
   }
 
   public get pile() : readonly Card[] {
@@ -76,8 +78,7 @@ export default class CardDeck {
    */
   public draw() : undefined {
     if (this._current.length > 0) {
-      this._discard.push(...this._current)
-      this._current = []
+      this.discardCurrent()
     }
     while (this.currentCards.length < 3) {
       this.drawSingleCard()
@@ -104,10 +105,9 @@ export default class CardDeck {
    * @param card Selected card
    */
   public giveToBot(card : Card) {
-    const otherCards = this._current.filter(item => item.id != card.id)
+    this._current = this._current.filter(item => item.id != card.id)
     this._bot.push(card)
-    this._discard.push(...otherCards)
-    this._current = []
+    this.discardCurrent()
   }
 
   /**
@@ -115,9 +115,30 @@ export default class CardDeck {
    * @param card Selected card
    */
   public removeCardFromGame(card : Card) {
-    const otherCards = this._current.filter(item => item.id != card.id)
+    this._current = this._current.filter(item => item.id != card.id)
     this._removed.push(card)
-    this._discard.push(...otherCards)
+    this.discardCurrent()
+  }
+
+  /**
+   * Discard all current cards. Special handling for event cards: remove them from game,
+   * except some of them that are marked te be reshuffled back into the pile once.
+   */
+  private discardCurrent() {    
+    // separate event cards
+    const eventCards = this._current.filter(isEvent)
+    eventCards.forEach(card => {
+      if (this._shuffleBackInPileOnce.includes(card.id)) {
+        this._pile.push(card)
+        this._pile = shuffle(this._pile)
+        this._shuffleBackInPileOnce = this._shuffleBackInPileOnce.filter(id => id != card.id)
+      }
+      else {
+        this._removed.push(card)
+      }    
+    })
+    // discard all other cards
+    this._discard.push(...this._current.filter(card => !isEvent(card)))
     this._current = []
   }
 
@@ -131,7 +152,8 @@ export default class CardDeck {
       discard: this._discard.map(card => card.id),
       bot: this._bot.map(card => card.id),
       removed: this._removed.map(card => card.id),
-      exhaustCount: this._exhaustCount
+      exhaustCount: this._exhaustCount,
+      shuffleBackInPileOnce: [...this._shuffleBackInPileOnce]
     }
   }
 
@@ -161,7 +183,7 @@ export default class CardDeck {
     part3 = addCampaignEventCardsBottom(part3, campaignOptions)
     // create new deck from all three parts
     pile = [...part1, ...part2, ...part3]
-    return new CardDeck(pile, [], [], [], [], 0)
+    return new CardDeck(pile, [], [], [], [], 0, getCampaignEventCardsShuffleBackInPileOnce(campaignOptions))
   }
 
   /**
@@ -174,14 +196,23 @@ export default class CardDeck {
       persistence.discard.map(Cards.get),
       persistence.bot.map(Cards.get),
       persistence.removed.map(Cards.get),
-      persistence.exhaustCount
+      persistence.exhaustCount,
+      [...persistence.shuffleBackInPileOnce]
     )
   }
 
 }
 
 function isEffectEvent(card: Card) : boolean {
-  return card.cardType == CardType.ASTRA_EFFECT || card.cardType == CardType.CAMPAIGN_EVENT
+  return isEffect(card) || isEvent(card)
+}
+
+function isEffect(card: Card) : boolean {
+  return card.cardType == CardType.ASTRA_EFFECT
+}
+
+function isEvent(card: Card) : boolean {
+  return card.cardType == CardType.CAMPAIGN_EVENT
 }
 
 function isStarship(card: Card) : boolean {
@@ -229,7 +260,7 @@ function addCampaignStarshipCards(pile: Card[], campaignOptions: CampaignOption[
  */
 function addCampaignEventCards(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
   const result = pile
-  const eventOption =  campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
+  const eventOption = campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
   if (eventOption) {
     result.push(...eventOption.deckCards?.map(id => Cards.get(id)) || [])
   }
@@ -241,9 +272,20 @@ function addCampaignEventCards(pile: Card[], campaignOptions: CampaignOption[]) 
  */
 function addCampaignEventCardsBottom(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
   const result = pile
-  const eventOption =  campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
+  const eventOption = campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
   if (eventOption) {
     result.push(...eventOption.deckBottomCards?.map(id => Cards.get(id)) || [])
   }
   return result
+}
+
+/**
+ * Get event cards that should be shuffled back into the draw pile once when drawn.
+ */
+function getCampaignEventCardsShuffleBackInPileOnce(campaignOptions: CampaignOption[]) : number[] {
+  const eventOption = campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
+  if (eventOption) {
+    return eventOption.deckCardsShuffleBackInPileOnce || []
+  }
+  return []
 }

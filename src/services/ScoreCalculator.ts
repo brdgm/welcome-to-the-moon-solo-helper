@@ -127,7 +127,6 @@ function buildMission1Dots(level: Level, botCards : readonly Card[]) : boolean[]
   const cardPoints = SCORE_ACTIONS.reduce((total, action) => total
      + (getActionPoints(level, action) * getActionCards(botCards, level, action)), 0)
   markDots(dots, cardPoints)
-  console.log(initialDots + ' + ' + cardPoints + ' = ' + (initialDots+cardPoints))
   return dots
 }
 

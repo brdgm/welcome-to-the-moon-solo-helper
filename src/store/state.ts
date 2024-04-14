@@ -52,4 +52,5 @@ export interface CardDeckPersistence {
   bot: number[]
   removed: number[]
   exhaustCount: number
+  shuffleBackInPileOnce: number[]
 }

@@ -22,7 +22,8 @@ const campaignOptions : CampaignOption[] = [
     type: CampaignOptionType.EVENT_CARD,
     mission: 5,
     deckCards: [158],
-    deckBottomCards: [159]
+    deckBottomCards: [159],
+    deckCardsShuffleBackInPileOnce: [159]
   },
   {
     name: 'mission-5-event-160',
@@ -37,7 +38,8 @@ const campaignOptions : CampaignOption[] = [
     type: CampaignOptionType.EVENT_CARD,
     mission: 7,
     deckCards: [163,164],
-    deckBottomCards: [165]
+    deckBottomCards: [165],
+    deckCardsShuffleBackInPileOnce: [163,164]
   },
   {
     name: 'mission-4-event-167',
@@ -101,7 +103,8 @@ const campaignOptions : CampaignOption[] = [
     type: CampaignOptionType.EVENT_CARD,
     mission: 2,
     deckCards: [163],
-    deckBottomCards: [164]
+    deckBottomCards: [164],
+    deckCardsShuffleBackInPileOnce: [164]
   },
   {
     name: 'mission-7-event-160-161',
