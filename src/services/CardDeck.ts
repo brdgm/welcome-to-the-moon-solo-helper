@@ -129,8 +129,7 @@ export default class CardDeck {
     const eventCards = this._current.filter(isEvent)
     eventCards.forEach(card => {
       if (this._shuffleBackInPileOnce.includes(card.id)) {
-        this._pile.push(card)
-        this._pile = shuffle(this._pile)
+        this._discard.push(card)
         this._shuffleBackInPileOnce = this._shuffleBackInPileOnce.filter(id => id != card.id)
       }
       else {

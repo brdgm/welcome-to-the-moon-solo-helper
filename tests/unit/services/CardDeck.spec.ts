@@ -119,7 +119,8 @@ describe('services/CardDeck', () => {
         .forEach(card => drawn.set(card.id, (drawn.get(card.id) ?? 0) + 1))
     }
 
-    expect(drawn.get(163)).to.eq(2)
+    expect(drawn.get(163) == 2
+      || (drawn.get(163) == 1 && deck.pile.find(card => card.id==163) != undefined)).to.true
     expect(drawn.get(164)).to.eq(1)
   })
 })
