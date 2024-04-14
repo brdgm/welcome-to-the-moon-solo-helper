@@ -42,6 +42,7 @@
     "title": "Turn {turn}",
     "select": "Select",
     "applyEffect": "Apply ASTRA effect {value}",
+    "applyEvent": "Mission #{mission}: Go to chapter <b>&lt;{index}&gt;</b>",
     "accomplishMission": "Flip mission card {value} to accomplished side",
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",

@@ -19,6 +19,7 @@ import { useI18n } from 'vue-i18n'
 import { useStateStore } from '@/store/state'
 import Card from '@/services/Card'
 import CardDeck from '@/services/CardDeck'
+import CardType from '@/services/enum/CardType'
 
 export default defineComponent({
   name: 'DebugInfo',
@@ -40,7 +41,16 @@ export default defineComponent({
   },
   methods: {
     getCardsInfo(cards: readonly Card[]) : string {
-      return '[' + cards.map(card => `${card.action}/${card.value}`).join(', ') + ']'
+      return '[' + cards.map(card => this.getCardInfo(card)).join(', ') + ']'
+    },
+    getCardInfo(card: Card) : string {
+      if (card.cardType == CardType.ASTRA_EFFECT) {
+        return `ASTRA-${card.value}`
+      }
+      if (card.cardType == CardType.CAMPAIGN_EVENT) {
+        return `EVENT-${card.id}`
+      }
+      return `${card.action}/${card.value}`
     }
   }
 })

@@ -3,6 +3,8 @@ import Card from './Card'
 import Cards from './Cards'
 import { CardDeckPersistence } from '@/store/state'
 import CardType from './enum/CardType'
+import CampaignOption from './CampaignOption'
+import CampaignOptionType from './enum/CampaignOptionType'
 
 export default class CardDeck {
 
@@ -135,18 +137,28 @@ export default class CardDeck {
 
   /**
    * Creates a shuffled new card deck.
-   * @param modules Modules
+   * @param campaignOptions Campaign options to be applied
    */
-  public static new() : CardDeck {
+  public static new(campaignOptions: CampaignOption[]) : CardDeck {
     // get all starship cards
     let pile = shuffle(Cards.getByType(CardType.STARSHIP))
+    // remove blocked cards
+    pile = removeBlockedStarshipCards(pile, campaignOptions)
+    // add additional campaign cards
+    pile = addCampaignStarshipCards(pile, campaignOptions)
     // split into three parts
-    const part1 = pile.slice(0, 21)
-    const part2 = pile.slice(21, 42)
-    let part3 = pile.slice(42, 63)
+    const third = pile.length / 3
+    const part1 = pile.slice(0, third)
+    const part2 = pile.slice(third, third * 2)
+    let part3 = pile.slice(third * 2, third * 3)
     // put astra effect cards into 3rd pile
     part3.push(...Cards.getByType(CardType.ASTRA_EFFECT))
+    // put campaign parts into 3rd pile
+    part3 = addCampaignEventCards(part3, campaignOptions)
+    // shuffle 3rd pile
     part3 = shuffle(part3)
+    // put campaign cards on bottom of 3rd pile
+    part3 = addCampaignEventCardsBottom(part3, campaignOptions)
     // create new deck from all three parts
     pile = [...part1, ...part2, ...part3]
     return new CardDeck(pile, [], [], [], [], 0)
@@ -174,4 +186,66 @@ function isEffectEvent(card: Card) : boolean {
 
 function isStarship(card: Card) : boolean {
   return card.cardType == CardType.STARSHIP || card.cardType == CardType.STARSHIP_CAMPAIGN
+}
+
+/**
+ * Removes cards blocked either by value or action.
+ */
+function removeBlockedStarshipCards(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
+  let result = pile
+  const blockOption = campaignOptions.find(option => option.type == CampaignOptionType.BLOCK_CARDS)
+  if (blockOption) {
+    if (blockOption.blockCardsValue) {
+      result = result.filter(card => (typeof card.value == 'number') && !blockOption.blockCardsValue?.includes(card.value))
+    }
+    if (blockOption.blockCardsAction) {
+      const removeCards : number[] = []
+      for (const blockAction of blockOption.blockCardsAction) {
+        for (let i=0; i<blockAction.count; i++) {
+          const card = result.find(card => card.action == blockAction.action && !removeCards.includes(card.id))
+          if (card) {
+            removeCards.push(card.id)
+          }
+        }
+      }
+      result = result.filter(card => !removeCards.includes(card.id))
+    }
+  }
+  return result
+}
+
+/**
+ * Adds additional campaign starship cards.
+ */
+function addCampaignStarshipCards(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
+  const result = pile
+  const addOption = campaignOptions.find(option => option.type == CampaignOptionType.STARSHIP_CARD)
+  if (addOption) {
+    addOption.starshipCards?.forEach(id => result.push(Cards.get(id)))
+  }
+  return result
+}
+
+/**
+ * Adds campaign event cards.
+ */
+function addCampaignEventCards(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
+  const result = pile
+  const eventOption =  campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
+  if (eventOption) {
+    result.push(...eventOption.deckCards?.map(id => Cards.get(id)) || [])
+  }
+  return result
+}
+
+/**
+ * Adds campaign event cards at bottom of the pile.
+ */
+function addCampaignEventCardsBottom(pile: Card[], campaignOptions: CampaignOption[]) : Card[] {
+  const result = pile
+  const eventOption =  campaignOptions.find(option => option.type == CampaignOptionType.EVENT_CARD)
+  if (eventOption) {
+    result.push(...eventOption.deckBottomCards?.map(id => Cards.get(id)) || [])
+  }
+  return result
 }

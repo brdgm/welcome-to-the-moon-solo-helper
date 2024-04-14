@@ -1,6 +1,6 @@
-import Card from "@/services/Card"
-import Action from "@/services/enum/Action"
-import SpecialValue from "@/services/enum/SpecialValue"
+import Card from '@/services/Card'
+import Action from '@/services/enum/Action'
+import SpecialValue from '@/services/enum/SpecialValue'
 
 /**
  * Sort permutations of cards by a) action and b) card value.

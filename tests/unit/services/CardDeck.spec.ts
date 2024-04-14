@@ -4,7 +4,7 @@ import { expect } from 'chai'
 
 describe('services/CardDeck', () => {
   it('new', () => {
-    const deck = CardDeck.new()
+    const deck = CardDeck.new([])
 
     expect(deck.pile.length, 'pile size').to.eq(66)
     expect(deck.currentCards.length, 'current cards size').to.eq(0)

@@ -9,4 +9,10 @@ export default interface Card {
   value: number|SpecialValue
   sprite: string
   spriteIndex: number
+  eventIndex?: EventIndex[]
+}
+
+export interface EventIndex {
+  mission: number
+  index: number
 }

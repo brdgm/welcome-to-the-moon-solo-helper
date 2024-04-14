@@ -8,7 +8,7 @@
   <template v-else>
     <h1 class="mb-3">{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.title', {turn})}}</h1>
     <template v-if="cardDeck.currentEffects.length > 0">
-      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount"/>
+      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="navigationState.mission.mission"/>
       <hr/>
     </template>
     <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="botCardSelected"/>
