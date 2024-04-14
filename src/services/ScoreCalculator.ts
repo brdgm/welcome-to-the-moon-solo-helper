@@ -16,7 +16,7 @@ export default class ScoreCalculator {
   public constructor(mission : Mission, level : Level, botCards : readonly Card[]) {
     this.actionScores = SCORE_ACTIONS.map(action => {
       const points = getActionPoints(level, action)
-      const count = getActionCards(botCards, action)
+      const count = getActionCards(botCards, level, action)
       const total = points * count
       return {
         action: action,
@@ -67,8 +67,29 @@ function getActionPoints(level: Level, action: Action) : number {
   return level.actions.find(item => item.action == action)?.points ?? 0
 }
 
-function getActionCards(cards: readonly Card[], action: Action) : number {
-  return cards.filter(item => item.action == action || item.action.includes(action)).length
+function getActionCards(cards: readonly Card[], level: Level, action: Action) : number {
+  return cards.filter(card => {
+    if (typeof card.action == 'string') {
+      if (card.action == Action.JOKER) {
+        // for joker, use max points action
+        const maxPoints = level.actions
+            .reduce((max, item) => item.points > max ? item.points : max, 0)
+        const maxPointsAction = level.actions.find(item => item.points == maxPoints)?.action
+        return maxPointsAction == action
+      }
+      else {
+        return card.action == action
+      }
+    }
+    else {
+      // in case of multiple actions on card, use action with highest points
+      const maxPoints = level.actions
+          .filter(item => card.action.includes(item.action))
+          .reduce((max, item) => item.points > max ? item.points : max, 0)
+      const maxPointsAction = level.actions.find(item => item.points == maxPoints)?.action
+      return maxPointsAction == action
+    }
+  }).length
 }
 
 function isLowest(level: Level, action: Action) : boolean {
@@ -104,7 +125,7 @@ function buildMission1Dots(level: Level, botCards : readonly Card[]) : boolean[]
   }
   markDots(dots, initialDots)
   const cardPoints = SCORE_ACTIONS.reduce((total, action) => total
-     + (getActionPoints(level, action) * getActionCards(botCards, action)), 0)
+     + (getActionPoints(level, action) * getActionCards(botCards, level, action)), 0)
   markDots(dots, cardPoints)
   console.log(initialDots + ' + ' + cardPoints + ' = ' + (initialDots+cardPoints))
   return dots
