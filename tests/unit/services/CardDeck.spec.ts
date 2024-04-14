@@ -1,3 +1,4 @@
+import CampaignOptions from '@/services/CampaignOptions'
 import CardDeck from '@/services/CardDeck'
 import CardType from '@/services/enum/CardType'
 import { expect } from 'chai'
@@ -11,6 +12,7 @@ describe('services/CardDeck', () => {
     expect(deck.currentEffects.length, 'current effects size').to.eq(0)
     expect(deck.discard.length, 'discard size').to.eq(0)
     expect(deck.bot.length, 'bot size').to.eq(0)
+    expect(deck.remainingTurns, 'remaining turns').to.eq(35)
 
     expect(deck.pile.findIndex(item => item.cardType==CardType.ASTRA_EFFECT),
         '1st effect card in last third of pile').to.greaterThanOrEqual(42)
@@ -20,6 +22,29 @@ describe('services/CardDeck', () => {
     expect(persistence.current.length, 'current size').to.eq(0)
     expect(persistence.discard.length, 'discard size').to.eq(0)
     expect(persistence.bot.length, 'bot size').to.eq(0)
+  })
+
+  it('new-event-mission-7-event-163-164-165', () => {
+    const deck = CardDeck.new([
+      CampaignOptions.get('mission-7-event-163-164-165'),
+      CampaignOptions.get('starship-152-153-154'),
+      CampaignOptions.get('remove-7')
+    ])
+    const pile = deck.pile
+
+    expect(pile.length).to.eq(66)
+    expect(deck.remainingTurns, 'remaining turns').to.eq(33)
+
+    // event
+    expect(pile[pile.length-1].id).to.eq(165) // event bottom card
+    expect(pile.findIndex(card => card.id==163)).to.greaterThanOrEqual(41)
+    expect(pile.findIndex(card => card.id==164)).to.greaterThanOrEqual(41)
+    // additional starship cards
+    expect(pile.find(card => card.id==152)).to.not.undefined
+    expect(pile.find(card => card.id==153)).to.not.undefined
+    expect(pile.find(card => card.id==154)).to.not.undefined
+    // all 7er cards removed
+    expect(pile.find(card => card.value==7)).to.undefined
   })
 
   it('draw-giveToBot', () => {

@@ -59,7 +59,7 @@ export default class CardDeck {
            + ((this._current.filter(isStarship).length / 3) * 2)
            + this._discard.filter(isStarship).length) / 3
     }
-    return turns
+    return Math.floor(turns)
   }
 
   /**
@@ -67,7 +67,7 @@ export default class CardDeck {
    * @returns true if cards can be drawn
    */
   public get canDraw() : boolean {
-    return this._pile.filter(isStarship).length > 0 || this._exhaustCount == 0
+    return this._pile.filter(isStarship).length >= 3 || this._exhaustCount == 0
   }
 
   /**
@@ -202,10 +202,8 @@ function removeBlockedStarshipCards(pile: Card[], campaignOptions: CampaignOptio
       const removeCards : number[] = []
       for (const blockAction of blockOption.blockCardsAction) {
         for (let i=0; i<blockAction.count; i++) {
-          const card = result.find(card => card.action == blockAction.action && !removeCards.includes(card.id))
-          if (card) {
-            removeCards.push(card.id)
-          }
+          result.filter(card => card.action == blockAction.action && !removeCards.includes(card.id))
+            .forEach(card => removeCards.push(card.id))
         }
       }
       result = result.filter(card => !removeCards.includes(card.id))

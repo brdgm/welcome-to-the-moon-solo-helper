@@ -1,4 +1,4 @@
-import Card from "@/services/Card"
+import Card from '@/services/Card'
 
 /**
  * Gets all permutations (possible order combinations) of the given cards.
