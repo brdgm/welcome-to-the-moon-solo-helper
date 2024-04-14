@@ -16,6 +16,26 @@
       "easy": "Easy",
       "hard": "Hard",
       "level": "Level {level} - {name}"
+    },
+    "campaignOptions": {
+      "title": "Campaign Options",
+      "show": "Show",
+      "intro": "The listed events are exclusively for the selected mission. The other options activated during the campaign may span over multiple missions and are displayed for every mission.",
+      "type": {
+        "event-card": {
+          "title": "Events",
+          "option": "Mission #{mission}: Add event card {value}. | Mission #{mission}: Add event cards {value}."
+        },
+        "starship-card": {
+          "title": "Additional Starship Cards",
+          "option": "Add starship cards {value}."
+        },
+        "block-cards": {
+          "title": "Blocked Starship Cards",
+          "optionBlockValue": "Take 6 starship cards out of the game: Remove all starship cards with value {value}. | Take 6 starship cards out of the game: Remove all starship cards with values {value}.",
+          "optionBlockAction": "Take 6 starship cards out of the game: Randomly remove {count1} {action1} cards and {count2} {action2} cards."
+        }
+      }
     }
   },
   "turn": {
@@ -40,6 +60,14 @@
     "6": "#6 The Virus",
     "7": "#7 The Escape",
     "8": "#8 The Battle"
+  },
+  "starshipAction": {
+    "robot": "robot",
+    "energy": "energy",
+    "plant": "plant",
+    "water": "water",
+    "astronaut": "astronaut",
+    "planning": "planning"
   },
   "action": {
     "playGame": "Play Game",

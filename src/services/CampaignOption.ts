@@ -9,6 +9,11 @@ export default interface CampaignOption {
   starshipCards?: number[]
   deckCards?: number[]
   deckBottomCards?: number[]
-  removeCardsValue?: number[]
-  removeCardsAction?: Action[]
+  blockCardsValue?: number[]
+  blockCardsAction?: BlockCardAction[]
+}
+
+export interface BlockCardAction {
+  action: Action
+  count: number 
 }

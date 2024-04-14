@@ -8,7 +8,8 @@ export const useStateStore = defineStore(`${name}.state`, {
       baseFontSize: 1.0,
       setup: {
         mission: 1,
-        level: 1
+        level: 1,
+        campaignOptions: []
       },
       turns: []
     } as State
@@ -35,6 +36,7 @@ export interface State {
 export interface Setup {
   mission: number
   level: number
+  campaignOptions: string[]
   initialCardDeck?: CardDeckPersistence
   debugMode?: boolean
 }

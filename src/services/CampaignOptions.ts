@@ -168,32 +168,6 @@ const CampaignOptions : CampaignOption[] = [
     deckCards: [162]
   },
 
-  // ### BLOCK CARDS CAMPAIGN OPTIONS ###
-  {
-    name: 'remove-robot-energy',
-    index: 25,
-    type: CampaignOptionType.BLOCK_CARDS,
-    removeCardsAction: [Action.ROBOT,Action.ROBOT,Action.ROBOT,Action.ENERGY,Action.ENERGY,Action.ENERGY]
-  },
-  {
-    name: 'remove-1-14-15',
-    index: 41,
-    type: CampaignOptionType.BLOCK_CARDS,
-    removeCardsValue: [1,14,15]
-  },
-  {
-    name: 'remove-7',
-    index: 77,
-    type: CampaignOptionType.BLOCK_CARDS,
-    removeCardsValue: [7]
-  },
-  {
-    name: 'remove-plant-water',
-    index: 97,
-    type: CampaignOptionType.BLOCK_CARDS,
-    removeCardsAction: [Action.PLANT,Action.PLANT,Action.PLANT,Action.PLANT,Action.WATER,Action.WATER]
-  },
-
   // ### STARSHIP CARDS CAMPAIGN OPTIONS ###
   {
     name: 'starship-152-153-154',
@@ -213,6 +187,38 @@ const CampaignOptions : CampaignOption[] = [
     type: CampaignOptionType.STARSHIP_CARD,
     starshipCards: [155,156,157]
   },
+
+  // ### BLOCK CARDS CAMPAIGN OPTIONS ###
+  {
+    name: 'remove-robot-energy',
+    index: 25,
+    type: CampaignOptionType.BLOCK_CARDS,
+    blockCardsAction: [
+      { action: Action.ROBOT, count: 3 },
+      { action: Action.ENERGY, count: 3 }
+    ]
+  },
+  {
+    name: 'remove-1-14-15',
+    index: 41,
+    type: CampaignOptionType.BLOCK_CARDS,
+    blockCardsValue: [1,14,15]
+  },
+  {
+    name: 'remove-7',
+    index: 77,
+    type: CampaignOptionType.BLOCK_CARDS,
+    blockCardsValue: [7]
+  },
+  {
+    name: 'remove-plant-water',
+    index: 97,
+    type: CampaignOptionType.BLOCK_CARDS,
+    blockCardsAction: [
+      { action: Action.PLANT, count: 4 },
+      { action: Action.WATER, count: 2 }
+    ]
+  }
 
 ]
 
