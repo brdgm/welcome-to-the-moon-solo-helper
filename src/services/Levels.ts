@@ -102,6 +102,18 @@ const levels : Level[] = [
       { action: Action.ASTRONAUT, points: 6 },
       { action: Action.PLANNING,  points: 6 }
     ]
+  },
+  {
+    level: 9,
+    name: 'Welcome Team',
+    actions: [
+      { action: Action.ROBOT,     points: 5 },
+      { action: Action.ENERGY,    points: 4 },
+      { action: Action.PLANT,     points: 6 },
+      { action: Action.WATER,     points: 6 },
+      { action: Action.ASTRONAUT, points: 6 },
+      { action: Action.PLANNING,  points: 3 }
+    ]
   }
 
 ]

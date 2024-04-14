@@ -121,7 +121,7 @@ function buildMission1Dots(level: Level, botCards : readonly Card[]) : boolean[]
   // mark off initial dots based on level
   let initialDots = 0
   for (let i = level.level; i < MISSION1_LEVEL_OFFSET.length; i++) {
-    initialDots += MISSION1_LEVEL_OFFSET[i]
+    initialDots += MISSION1_LEVEL_OFFSET[i] ?? 0
   }
   markDots(dots, initialDots)
   const cardPoints = SCORE_ACTIONS.reduce((total, action) => total
