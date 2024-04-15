@@ -51,6 +51,10 @@
     "gameOver": {
       "title": "Game over",
       "info": "Game over - tally up your points."
+    },
+    "mission8Sheet": {
+      "left": "← Left Sheet",
+      "right": "Right Sheet →"
     }
   },
   "mission": {

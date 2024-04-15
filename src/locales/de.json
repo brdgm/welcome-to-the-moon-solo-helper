@@ -51,6 +51,10 @@
     "gameOver": {
       "title": "Spielende",
       "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
+    },
+    "mission8Sheet": {
+      "left": "← Linkes Blatt",
+      "right": "Rechts Blatt →"
     }
   },
   "mission": {

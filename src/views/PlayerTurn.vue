@@ -7,6 +7,7 @@
   </template>
   <template v-else>
     <h1 class="mb-3">{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.title', {turn})}}</h1>
+    <h3 v-if="mission8LeftRightSheet" class="mb-3">{{t(`turn.mission8Sheet.${mission8LeftRightSheet}`)}}</h3>
     <template v-if="cardDeck.currentEffects.length > 0">
       <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="navigationState.mission.mission"/>
       <hr/>
@@ -59,8 +60,21 @@ export default defineComponent({
         return undefined
       }
     },
+    mission() : number {
+      return this.navigationState.mission.mission
+    },
     cardDeck() : CardDeck {
       return this.navigationState.cardDeck
+    },
+    mission8LeftRightSheet() : string|undefined {
+      if (this.mission == 8) {
+        if (this.turn % 2 == 0) {
+          return 'right'
+        }
+        else {
+          return 'left'
+        }
+      }
     }
   },
   methods: {
