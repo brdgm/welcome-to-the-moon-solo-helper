@@ -52,9 +52,17 @@
       "title": "Game over",
       "info": "Game over - tally up your points."
     },
-    "mission8Sheet": {
-      "left": "← Left Sheet",
-      "right": "Right Sheet →"
+    "mission8": {
+      "sheet": {
+        "left": "← Left Sheet",
+        "right": "Right Sheet →"
+      },
+      "astraTurn": "ASTRA's turn:",
+      "planet": "Planet #{value}",
+      "plantWater": "<b>Plant or Water action</b>: Cross off a corresponding symbol still available on the planet.",
+      "planningAstronaut": "<b>Planning or Astronaut action</b>: Draw the ASTRA insignia in a space still available on the moon.",
+      "robotEnergy": "<b>Robot or Energy action</b>: Draw the ASTRA insignia on an asteroid starting on the opposite side of the sheet.",
+      "robotEnergyNoBenefit": "ASTRA does not benefit from the Bonus symbols of the asteroids."
     }
   },
   "mission": {

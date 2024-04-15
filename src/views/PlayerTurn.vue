@@ -7,12 +7,12 @@
   </template>
   <template v-else>
     <h1 class="mb-3">{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.title', {turn})}}</h1>
-    <h3 v-if="mission8LeftRightSheet" class="mb-3">{{t(`turn.mission8Sheet.${mission8LeftRightSheet}`)}}</h3>
+    <h3 v-if="mission8LeftRightSheet" class="mb-3">{{t(`turn.mission8.sheet.${mission8LeftRightSheet}`)}}</h3>
     <template v-if="cardDeck.currentEffects.length > 0">
-      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="navigationState.mission.mission"/>
+      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="mission"/>
       <hr/>
     </template>
-    <CardSelection :currentCards="[...cardDeck.currentCards]" @botCardSelected="botCardSelected"/>
+    <CardSelection :currentCards="[...cardDeck.currentCards]" :mission="mission" @botCardSelected="botCardSelected"/>
   </template>
 
   <DebugInfo :navigationState="navigationState"/>

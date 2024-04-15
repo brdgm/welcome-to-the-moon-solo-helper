@@ -52,9 +52,17 @@
       "title": "Spielende",
       "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
     },
-    "mission8Sheet": {
-      "left": "← Linkes Blatt",
-      "right": "Rechts Blatt →"
+    "mission8": {
+      "sheet": {
+        "left": "← Linkes Blatt",
+        "right": "Rechtes Blatt →"
+      },
+      "astraTurn": "ASTRAs Zug:",
+      "planet": "Planet #{value}",
+      "plantWater": "<b>Pflanze bzw. Wasser</b>: Streiche 1 entsprechendes, sichtbares Symbol (Pflanze bzw. Wasser) im unteren Bereich des Planeten durch.",
+      "planningAstronaut": "<b>Planung oder Raumanzug</b>: Zeichne das Symbol der ASTRA auf den Mond des Planeten (sofern dort noch Platz ist).",
+      "robotEnergy": "<b>Roboter oder Energie</b>: Zeichne das Symbol der ASTRA auf den nicht beschriebenen Asteroiden, der ihrem Raumschiff am nächsten ist",
+      "robotEnergyNoBenefit": "Die ASTRA nutzt keine Bonussymbole, ignoriere sie für diesen Schritt."
     }
   },
   "mission": {

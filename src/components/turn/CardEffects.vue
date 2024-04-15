@@ -1,7 +1,7 @@
 <template>
   <div v-for="card of currentEffects" :key="card.id" class="mt-2 d-sm-flex">
     <CardDisplay class="card" :card="card" front/>
-    <ul class="mt-3">
+    <ul class="mt-3 pe-2">
       <template v-if="isEvent(card)">
         <li v-html="t('turn.applyEvent', {mission,index:getEventIndex(card)})"></li>
       </template>
@@ -58,8 +58,12 @@ export default defineComponent({
 .card {
   width: 100px;
   margin-right:3px;
+  min-width: 100px;
+  max-height: 150px;
   @media (max-width: 600px) {
     width: 50px;
+    min-width: 50px;
+    max-height: 75px;
   }
 }
 ul {

@@ -1,21 +1,44 @@
 <template>
   <div>
-    <div class="permutation" v-for="(cards,index) of permutations" :key="index">
-      <div class="selection" @click="selectCards(cards)" data-bs-toggle="modal" data-bs-target="#cardSelectionModal">
-        <CardDisplay class="card" :card="cards[0]" back/>
-        <CardDisplay class="card" :card="cards[1]" front/>
-        <button class="btn btn-primary pickButton" @click="selectCards(cards)" data-bs-toggle="modal" data-bs-target="#cardSelectionModal">
-          {{t('turn.select')}}
-        </button>
+    <template v-if="mission == 8 && !mission8AstraTurnCompleted">
+      <div class="mt-2 d-sm-flex">
+        <CardDisplay class="card" :card="permutations[0][0]" back/>
+        <div class="ms-3">
+          <p v-html="t('turn.mission8.astraTurn')"></p>
+          <ul class="mt-3 pe-2">
+            <li class="fw-bold" v-html="t('turn.mission8.planet', {value:permutations[0][0].value})"></li>
+            <li v-if="isPlantOrWater(permutations[0][0])" v-html="t('turn.mission8.plantWater')"></li>
+            <li v-if="isPlaningOrAstronaut(permutations[0][0])" v-html="t('turn.mission8.planningAstronaut')"></li>
+            <template v-if="isRobotOrEnergy(permutations[0][0])">
+              <li v-html="t('turn.mission8.robotEnergy')"></li>
+              <li v-html="t('turn.mission8.robotEnergyNoBenefit')"></li>
+            </template>
+          </ul>
+        </div>
       </div>
-      <div class="bot">
-        <CardDisplay class="card" :card="cards[2]" back/>
-        <svg class="cross-out" version="1.1" viewBox="0 0 449.998 449.998">
-          <polygon style="fill:#a00;" points="449.974,34.855 415.191,0 225.007,190.184 34.839,0 0.024,34.839 190.192,224.999 
-            0.024,415.159 34.839,449.998 225.007,259.797 415.191,449.998 449.974,415.143 259.83,224.999"/>
-        </svg>
+      <button class="btn btn-primary pickButton mt-3" @click="mission8AstraTurnCompleted = true">
+        {{t('action.next')}}
+      </button>
+    </template>
+
+    <template v-else>
+      <div class="permutation" v-for="(cards,index) of sortedPermutations" :key="index">
+        <div class="selection" @click="selectCards(cards)" data-bs-toggle="modal" data-bs-target="#cardSelectionModal">
+          <CardDisplay class="card" :card="cards[0]" back/>
+          <CardDisplay class="card" :card="cards[1]" front/>
+          <button class="btn btn-primary pickButton" @click="selectCards(cards)" data-bs-toggle="modal" data-bs-target="#cardSelectionModal">
+            {{t('turn.select')}}
+          </button>
+        </div>
+        <div class="bot">
+          <CardDisplay class="card" :card="cards[2]" back/>
+          <svg class="cross-out" version="1.1" viewBox="0 0 449.998 449.998">
+            <polygon style="fill:#a00;" points="449.974,34.855 415.191,0 225.007,190.184 34.839,0 0.024,34.839 190.192,224.999 
+              0.024,415.159 34.839,449.998 225.007,259.797 415.191,449.998 449.974,415.143 259.83,224.999"/>
+          </svg>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 
   <ModalDialog id="cardSelectionModal" :sizeLg="true">
@@ -57,6 +80,7 @@ import sortCardPermutations from '@/util/sortCardPermutations'
 import CardDisplay from '../structure/CardDisplay.vue'
 import AppIcon from '../structure/AppIcon.vue'
 import ModalDialog from 'brdgm-commons/src/components/structure/ModalDialog.vue'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'CardSelection',
@@ -76,17 +100,25 @@ export default defineComponent({
     currentCards: {
       type: Array as PropType<Card[]>,
       required: true
+    },
+    mission: {
+      type: Number,
+      required: true
     }
   },
   data() {
     return {
       selectedCards: undefined as Card[]|undefined,
-      removeCard: false
+      removeCard: false,
+      mission8AstraTurnCompleted: false
     }
   },
   computed: {
     permutations() : Card[][] {
-      return sortCardPermutations(getCardPermutations(this.currentCards))
+      return getCardPermutations(this.currentCards)
+    },
+    sortedPermutations() : Card[][] {
+      return sortCardPermutations(this.permutations)
     }
   },
   methods: {
@@ -95,12 +127,35 @@ export default defineComponent({
     },
     pickCard(card: Card) {
       this.$emit('botCardSelected', card, this.removeCard)
+    },
+    isPlantOrWater(card: Card) {
+      return card.action == Action.PLANT || card.action == Action.WATER
+    },
+    isPlaningOrAstronaut(card: Card) {
+      return card.action == Action.PLANNING || card.action == Action.ASTRONAUT
+    },
+    isRobotOrEnergy(card: Card) {
+      return card.action == Action.ROBOT || card.action == Action.ENERGY
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
+.card {
+  width: 100px;
+  min-width: 100px;
+  max-height: 150px;
+  margin-right: 3px;
+  &.disabled {
+    filter: grayscale(1); opacity: 0.5;
+  }
+  @media (max-width: 600px) {
+    width: 50px;
+    min-width: 50px;
+    max-height: 75px;
+  }
+}
 .permutation {
   display: inline-block;
   margin-right: 30px;
@@ -108,16 +163,6 @@ export default defineComponent({
   @media (max-width: 600px) {
     margin-right: 10px;
     margin-bottom: 10px;
-  }
-  .card {
-    width: 100px;
-    margin-right:3px;
-    &.disabled {
-      filter: grayscale(1); opacity: 0.5;
-    }
-    @media (max-width: 600px) {
-      width: 50px;
-    }
   }
   .selection {
     display: inline-block;
@@ -158,8 +203,12 @@ export default defineComponent({
   &.large {
     .card {
       width: 135px;
+      min-width: 135px;
+      max-height: 230px;
       @media (max-width: 600px) {
         width: 100px;
+        min-width: 100px;
+        max-height: 150px;
       }
     }
     .bot .cross-out {
@@ -176,5 +225,10 @@ export default defineComponent({
 }
 .soloBonus {
   width: 1.5rem;
+}
+ul {
+  @media (max-width: 600px) {
+    font-size: small;
+  }
 }
 </style>
