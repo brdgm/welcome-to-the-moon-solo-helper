@@ -68,13 +68,9 @@ export default defineComponent({
     },
     mission8LeftRightSheet() : string|undefined {
       if (this.mission == 8) {
-        if (this.turn % 2 == 0) {
-          return 'right'
-        }
-        else {
-          return 'left'
-        }
+        return (this.turn % 2 == 0) ? 'right' : 'left'
       }
+      return undefined
     }
   },
   methods: {
