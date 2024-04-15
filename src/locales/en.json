@@ -43,6 +43,7 @@
     "select": "Select",
     "applyEffect": "Apply ASTRA effect {value}",
     "applyEvent": "Mission #{mission}: Go to chapter <b>&lt;{index}&gt;</b>",
+    "useSoloBonus": "Use Solo Bonus",
     "accomplishMission": "Flip mission card {value} to accomplished side",
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",
@@ -82,7 +83,8 @@
     "cancel": "Cancel",
     "backToHome": "Back to Home",
     "back": "Back",
-    "close": "Close"
+    "close": "Close",
+    "ok": "OK"
   },
   "footer": {
     "credits": "Credits"
