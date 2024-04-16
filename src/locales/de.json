@@ -44,6 +44,7 @@
     "applyEffect": "Führe ASTRA-Effekt {value} aus",
     "applyEvent": "Mission #{mission}: Lese <b>&lt;{index}&gt;</b>",
     "useSoloBonus": "Solo-Bonus nutzen",
+    "astra": "ASTRA",
     "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
     "mission1Launch": "START!",
     "turnsLeft": "Runden:",

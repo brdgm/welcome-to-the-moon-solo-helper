@@ -44,6 +44,7 @@
     "applyEffect": "Apply ASTRA effect {value}",
     "applyEvent": "Mission #{mission}: Go to chapter <b>&lt;{index}&gt;</b>",
     "useSoloBonus": "Use Solo Bonus",
+    "astra": "ASTRA",
     "accomplishMission": "Flip mission card {value} to accomplished side",
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",

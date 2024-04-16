@@ -12,7 +12,7 @@
       <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="mission"/>
       <hr/>
     </template>
-    <CardSelection :currentCards="[...cardDeck.currentCards]" :mission="mission" @botCardSelected="botCardSelected"/>
+    <CardSelection :navigationState="navigationState" @botCardSelected="botCardSelected"/>
   </template>
 
   <DebugInfo :navigationState="navigationState"/>

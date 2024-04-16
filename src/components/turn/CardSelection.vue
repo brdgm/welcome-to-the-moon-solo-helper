@@ -32,10 +32,7 @@
         </div>
         <div class="bot">
           <CardDisplay class="card" :card="cards[2]" back/>
-          <svg class="cross-out" version="1.1" viewBox="0 0 449.998 449.998">
-            <polygon style="fill:#a00;" points="449.974,34.855 415.191,0 225.007,190.184 34.839,0 0.024,34.839 190.192,224.999 
-              0.024,415.159 34.839,449.998 225.007,259.797 415.191,449.998 449.974,415.143 259.83,224.999"/>
-          </svg>
+          <AppIcon name="cross-out" extension="svg" class="cross-out"/>
         </div>
       </div>
     </template>
@@ -44,16 +41,15 @@
   <ModalDialog id="cardSelectionModal" :sizeLg="true">
     <template #body>
       <div class="permutation large" v-if="selectedCards">
-        <div class="selection">
-          <CardDisplay class="card" :card="selectedCards[0]" back/>
-          <CardDisplay class="card" :card="selectedCards[1]" front/>
-        </div>
-        <div class="bot">
-          <CardDisplay class="card" :class="{disabled:removeCard}" :card="selectedCards[2]" back/>
-          <svg class="cross-out" version="1.1" viewBox="0 0 449.998 449.998">
-            <polygon style="fill:#a00;" points="449.974,34.855 415.191,0 225.007,190.184 34.839,0 0.024,34.839 190.192,224.999 
-              0.024,415.159 34.839,449.998 225.007,259.797 415.191,449.998 449.974,415.143 259.83,224.999"/>
-          </svg>
+        <div v-for="(card,index) of selectedCards" :key="card.id" class="selection" :class="{'me-0': index==0}">
+          <CardDisplay class="card" :class="{disabled:removeCard && giveToBotCardId==card.id}" :card="card" :front="index==1"/>
+          <AppIcon v-if="giveToBotCardId==card.id" name="cross-out" extension="svg" class="cross-out"/>
+          <div class="form-check" v-if="allowGiveBotAnyCard">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="giveToBotCard" v-model="giveToBotCardId" :value="card.id">
+              {{t('turn.astra')}}
+            </label>
+          </div>
         </div>
       </div>
       <div class="form-check">
@@ -65,14 +61,14 @@
       </div>
     </template>
     <template #footer>
-      <button v-if="selectedCards" class="btn btn-primary" data-bs-dismiss="modal" @click="pickCard(selectedCards[2])">{{t('action.ok')}}</button>
+      <button v-if="selectedCards" class="btn btn-primary" data-bs-dismiss="modal" @click="giveCardToBot()">{{t('action.ok')}}</button>
       <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.cancel')}}</button>
     </template>
   </ModalDialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Card from '@/services/Card'
 import getCardPermutations from '@/util/getCardPermutations'
@@ -81,6 +77,8 @@ import CardDisplay from '../structure/CardDisplay.vue'
 import AppIcon from '../structure/AppIcon.vue'
 import ModalDialog from 'brdgm-commons/src/components/structure/ModalDialog.vue'
 import Action from '@/services/enum/Action'
+import NavigationState from '@/util/NavigationState'
+import CardDeck from '@/services/CardDeck'
 
 export default defineComponent({
   name: 'CardSelection',
@@ -97,36 +95,51 @@ export default defineComponent({
     return { t }
   },
   props: {
-    currentCards: {
-      type: Array as PropType<Card[]>,
-      required: true
-    },
-    mission: {
-      type: Number,
+    navigationState: {
+      type: NavigationState,
       required: true
     }
   },
   data() {
     return {
       selectedCards: undefined as Card[]|undefined,
+      giveToBotCardId: undefined as number|undefined,
       removeCard: false,
       mission8AstraTurnCompleted: false
     }
   },
   computed: {
+    mission() : number {
+      return this.navigationState.mission.mission
+    },
+    cardDeck() : CardDeck {
+      return this.navigationState.cardDeck
+    },
     permutations() : Card[][] {
-      return getCardPermutations(this.currentCards)
+      return getCardPermutations([...this.cardDeck.currentCards])
     },
     sortedPermutations() : Card[][] {
       return sortCardPermutations(this.permutations)
+    },
+    /* Mission 6: Allow to give bot any card until event 164/index 170 was drawn */
+    allowGiveBotAnyCard() : boolean {
+      return this.mission == 6
+          && this.navigationState.campaignOptions.find(option => option.name == 'mission-6-event-164') != undefined
+          && this.cardDeck.pile.find(card => card.id == 164) != undefined
     }
   },
   methods: {
     selectCards(selectedCards: Card[]) {
       this.selectedCards = selectedCards
+      this.giveToBotCardId = selectedCards[2].id
     },
-    pickCard(card: Card) {
-      this.$emit('botCardSelected', card, this.removeCard)
+    giveCardToBot() {
+      if (this.giveToBotCardId) {
+        const card = this.cardDeck.currentCards.find(card => card.id == this.giveToBotCardId)
+        if (card) {
+          this.$emit('botCardSelected', card, this.removeCard)
+        }
+      }
     },
     isPlantOrWater(card: Card) {
       return card.action == Action.PLANT || card.action == Action.WATER
@@ -154,6 +167,18 @@ export default defineComponent({
     width: 50px;
     min-width: 50px;
     max-height: 75px;
+  }
+}
+.cross-out {
+  position: absolute;
+  z-index: 100;
+  left: 10px;
+  top: 40px;
+  width: 80px;
+  @media (max-width: 600px) {
+    left: 5px;
+    top: 20px;
+    width: 40px;
   }
 }
 .permutation {
@@ -187,18 +212,6 @@ export default defineComponent({
   .bot {
     display: inline-block;
     position: relative;
-    .cross-out {
-      position: absolute;
-      z-index: 100;
-      left: 10px;
-      top: 40px;
-      width: 80px;
-      @media (max-width: 600px) {
-        left: 5px;
-        top: 20px;
-        width: 40px;
-      }
-    }
   }
   &.large {
     .card {
@@ -211,7 +224,7 @@ export default defineComponent({
         max-height: 150px;
       }
     }
-    .bot .cross-out {
+    .cross-out {
       left: 13px;
       top: 54px;
       width: 108px;
