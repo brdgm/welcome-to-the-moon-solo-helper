@@ -77,7 +77,7 @@ const campaignOptions : CampaignOption[] = [
     deckCards: [159]
   },
   {
-    name: 'mission-6-event-164',
+    name: 'mission-6-event-164',  /* special handling in CardSelection: Allow to give any card to ASTRA until event is drawn */
     index: 86,
     type: CampaignOptionType.EVENT_CARD,
     mission: 6,
@@ -122,7 +122,7 @@ const campaignOptions : CampaignOption[] = [
     deckCards: [158]
   },
   {
-    name: 'mission-4-event-162',
+    name: 'mission-4-event-162',  /* special handling in CardDeck: Only draw 2 cards once event is revealed */
     index: 139,
     type: CampaignOptionType.EVENT_CARD,
     mission: 4,

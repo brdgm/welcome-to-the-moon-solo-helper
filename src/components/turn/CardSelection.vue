@@ -30,7 +30,7 @@
             {{t('turn.select')}}
           </button>
         </div>
-        <div class="bot">
+        <div class="bot" v-if="cards[2]">
           <CardDisplay class="card" :card="cards[2]" back/>
           <AppIcon name="cross-out" extension="svg" class="cross-out"/>
         </div>
@@ -47,8 +47,12 @@
           <div class="form-check" v-if="allowGiveBotAnyCard">
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="giveToBotCard" v-model="giveToBotCardId" :value="card.id">
-              {{t('turn.astra')}}
+              <template v-if="!removeCard">{{t('turn.astra')}}</template>
             </label>
+          </div>
+          <div v-else>
+            <template v-if="index==2 && !removeCard">{{t('turn.astra')}}</template>
+            <template v-else>&nbsp;</template>
           </div>
         </div>
       </div>
@@ -123,15 +127,16 @@ export default defineComponent({
     },
     /* Mission 6: Allow to give bot any card until event 164/index 170 was drawn */
     allowGiveBotAnyCard() : boolean {
-      return this.mission == 6
+      return (this.selectedCards?.length == 2) ||
+          (this.mission == 6
           && this.navigationState.campaignOptions.find(option => option.name == 'mission-6-event-164') != undefined
-          && this.cardDeck.pile.find(card => card.id == 164) != undefined
+          && this.cardDeck.pile.find(card => card.id == 164) != undefined)
     }
   },
   methods: {
     selectCards(selectedCards: Card[]) {
       this.selectedCards = selectedCards
-      this.giveToBotCardId = selectedCards[2].id
+      this.giveToBotCardId = selectedCards[selectedCards.length-1].id
     },
     giveCardToBot() {
       if (this.giveToBotCardId) {

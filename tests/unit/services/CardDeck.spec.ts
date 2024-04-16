@@ -56,7 +56,7 @@ describe('services/CardDeck', () => {
       removed: [],
       exhaustCount: 0,
       shuffleBackInPileOnce: []
-    })
+    }, [])
 
     expect(deck.canDraw).to.true
     expect(deck.remainingTurns).to.eq(5)
@@ -108,7 +108,7 @@ describe('services/CardDeck', () => {
       removed: [],
       exhaustCount: 0,
       shuffleBackInPileOnce: [163]
-    })
+    }, [])
 
     // draw all cards and count how many times each event card was drawn
     const drawn = new Map<number, number>()
@@ -122,5 +122,33 @@ describe('services/CardDeck', () => {
     expect(drawn.get(163) == 2
       || (drawn.get(163) == 1 && deck.pile.find(card => card.id==163) != undefined)).to.true
     expect(drawn.get(164)).to.eq(1)
+  })
+
+  it('mission-4-event-162', () => {
+    const deck = CardDeck.fromPersistence({
+      pile: [1,2,3,4,162,5,6,7,8,9],
+      current: [],
+      discard: [],
+      bot: [],
+      removed: [],
+      exhaustCount: 0,
+      shuffleBackInPileOnce: [163]
+    }, [CampaignOptions.get('mission-4-event-162')])
+
+    deck.draw()
+    expect(deck.currentEffects.length).to.eq(0)
+    expect(deck.currentCards.length).to.eq(3)
+    expect(deck.remainingTurns).to.eq(4)
+
+    // once event 162 is drawn, only draw 2 cards onwards
+    deck.draw()
+    expect(deck.currentEffects.length).to.eq(1)
+    expect(deck.currentCards.length).to.eq(2)
+    expect(deck.remainingTurns).to.eq(5)
+
+    deck.draw()
+    expect(deck.currentEffects.length).to.eq(0)
+    expect(deck.currentCards.length).to.eq(2)
+    expect(deck.remainingTurns).to.eq(4)
   })
 })

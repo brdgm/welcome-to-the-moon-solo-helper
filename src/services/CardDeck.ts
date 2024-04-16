@@ -15,8 +15,10 @@ export default class CardDeck {
   private _removed : Card[]
   private _exhaustCount : number
   private _shuffleBackInPileOnce: number[]
+  private _draw2CardsOnceRevealedEventId : number|undefined
 
-  public constructor(pile: Card[], current: Card[], discard: Card[], bot: Card[], removed: Card[], exhaustCount: number, shuffleBackInPileOnce: number[]) {
+  public constructor(pile: Card[], current: Card[], discard: Card[], bot: Card[], removed: Card[], exhaustCount: number, 
+      shuffleBackInPileOnce: number[], campaignOptions: CampaignOption[]) {
     this._pile = pile
     this._current = current
     this._discard = discard
@@ -24,6 +26,11 @@ export default class CardDeck {
     this._removed = removed
     this._exhaustCount = exhaustCount
     this._shuffleBackInPileOnce = shuffleBackInPileOnce
+
+    // Mission 4: prepare special handling once event 162 is revealed
+    if (campaignOptions.find(option => option.name == 'mission-4-event-162') != undefined) {
+      this._draw2CardsOnceRevealedEventId = 162
+    }
   }
 
   public get pile() : readonly Card[] {
@@ -54,12 +61,32 @@ export default class CardDeck {
     return this._exhaustCount
   }
 
+  private get drawNumberOfCards() : number {
+    if (this._draw2CardsOnceRevealedEventId != undefined
+        && (this._current.find(card => card.id == this._draw2CardsOnceRevealedEventId) != undefined
+        || this._removed.find(card => card.id == this._draw2CardsOnceRevealedEventId) != undefined)) {
+      return 2
+    }
+    return 3
+  }
+
   public get remainingTurns() : number {
-    let turns = this._pile.filter(isStarship).length / 3
-    if (this._exhaustCount == 0) {
-      turns += (((this._pile.filter(isStarship).length / 3) * 2)
-           + ((this._current.filter(isStarship).length / 3) * 2)
-           + this._discard.filter(isStarship).length) / 3
+    let turns
+    if (this.drawNumberOfCards == 2) {
+      turns = this._pile.filter(isStarship).length / 2
+      if (this._exhaustCount == 0) {
+        turns += ((this._pile.filter(isStarship).length / 2)
+            + (this._current.filter(isStarship).length / 2)
+            + this._discard.filter(isStarship).length) / 2
+      }
+    }
+    else {
+      turns = this._pile.filter(isStarship).length / 3
+      if (this._exhaustCount == 0) {
+        turns += (((this._pile.filter(isStarship).length / 3) * 2)
+            + ((this._current.filter(isStarship).length / 3) * 2)
+            + this._discard.filter(isStarship).length) / 3
+      }
     }
     return Math.floor(turns)
   }
@@ -69,7 +96,7 @@ export default class CardDeck {
    * @returns true if cards can be drawn
    */
   public get canDraw() : boolean {
-    return this._pile.filter(isStarship).length >= 3 || this._exhaustCount == 0
+    return this._pile.filter(isStarship).length >= this.drawNumberOfCards || this._exhaustCount == 0
   }
 
   /**
@@ -80,7 +107,7 @@ export default class CardDeck {
     if (this._current.length > 0) {
       this.discardCurrent()
     }
-    while (this.currentCards.length < 3) {
+    while (this.currentCards.length < this.drawNumberOfCards) {
       this.drawSingleCard()
     }
   }
@@ -183,13 +210,14 @@ export default class CardDeck {
     part3 = addCampaignEventCardsBottom(part3, campaignOptions)
     // create new deck from all three parts
     pile = [...part1, ...part2, ...part3]
-    return new CardDeck(pile, [], [], [], [], 0, getCampaignEventCardsShuffleBackInPileOnce(campaignOptions))
+    return new CardDeck(pile, [], [], [], [], 0,
+        getCampaignEventCardsShuffleBackInPileOnce(campaignOptions), campaignOptions)
   }
 
   /**
    * Re-creates card deck from persistence.
    */
-  public static fromPersistence(persistence : CardDeckPersistence) : CardDeck {
+  public static fromPersistence(persistence : CardDeckPersistence, campaignOptions: CampaignOption[]) : CardDeck {
     return new CardDeck(
       persistence.pile.map(Cards.get),
       persistence.current.map(Cards.get),
@@ -197,7 +225,8 @@ export default class CardDeck {
       persistence.bot.map(Cards.get),
       persistence.removed.map(Cards.get),
       persistence.exhaustCount,
-      [...persistence.shuffleBackInPileOnce]
+      [...persistence.shuffleBackInPileOnce],
+      campaignOptions
     )
   }
 

@@ -38,12 +38,12 @@ function getCardDeck(turn: number, state: State, campaignOptions: CampaignOption
   if (turn > 0) {
     const turnData = state.turns.find(item => item.turn == turn)
     if (turnData) {
-      return CardDeck.fromPersistence(turnData.cardDeck)
+      return CardDeck.fromPersistence(turnData.cardDeck, campaignOptions)
     }
     return getCardDeck(turn - 1, state, campaignOptions)
   }
   if (state.setup.initialCardDeck) {
-    return CardDeck.fromPersistence(state.setup.initialCardDeck)
+    return CardDeck.fromPersistence(state.setup.initialCardDeck, campaignOptions)
   }
   // should never happen
   return CardDeck.new(campaignOptions)
