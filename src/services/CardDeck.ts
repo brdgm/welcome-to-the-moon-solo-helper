@@ -167,6 +167,7 @@ export default class CardDeck {
     pile = removeBlockedStarshipCards(pile, campaignOptions)
     // add additional campaign cards
     pile = addCampaignStarshipCards(pile, campaignOptions)
+    pile = shuffle(pile)
     // split into three parts
     const third = pile.length / 3
     const part1 = pile.slice(0, third)
