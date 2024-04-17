@@ -140,7 +140,7 @@ export default defineComponent({
     },
     giveCardToBot() {
       if (this.giveToBotCardId) {
-        const card = this.cardDeck.currentCards.find(card => card.id == this.giveToBotCardId)
+        const card = this.cardDeck.currentCards.find(item => item.id == this.giveToBotCardId)
         if (card) {
           this.$emit('botCardSelected', card, this.removeCard)
         }

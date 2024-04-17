@@ -3,7 +3,7 @@
   "home": {
     "title": "Welcome to the Moon Solo Helper",
     "play1": "Spiele <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> gegen ASTRA, den Solo-Gegner.",
-    "play2": "Diese Applikation ersetzt den Raumschiff-Kartenstapel und zählt die Punkte von ASTRA zusammen.",
+    "play2": "Diese Applikation ersetzt den Raumschiff-Kartenstapel und zählt die Punkte von ASTRA zusammen. Die Sonderregeln für die Kampagne(n) werden unterstützt.",
     "feedback": "Discussion and Feedback:"
   },
   "setup": {
