@@ -11,6 +11,6 @@ describe('services/Levels', () => {
 
   it('getAll', () => {
     const levels = Levels.getAll()
-    expect(levels.length).eq(8);
+    expect(levels.length).eq(9);
   })
 })

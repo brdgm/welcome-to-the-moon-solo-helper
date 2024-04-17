@@ -3,7 +3,7 @@
   "home": {
     "title": "Welcome to the Moon Solo Helper",
     "play1": "Play <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> against ASTRA, the Solo opponent.",
-    "play2": "This application simulates the starship deck and counts ASTRAs points depending on mission and level.",
+    "play2": "This application simulates the starship deck and counts ASTRAs points depending on mission and level. The special rules for the campaign(s) are supported.",
     "feedback": "Discussion and Feedback:"
   },
   "setup": {
@@ -16,12 +16,35 @@
       "easy": "Easy",
       "hard": "Hard",
       "level": "Level {level} - {name}"
+    },
+    "campaignOptions": {
+      "title": "Campaign Options",
+      "show": "Show",
+      "intro": "The listed events are exclusively for the selected mission. The other options activated during the campaign may span over multiple missions and are displayed for every mission.",
+      "type": {
+        "event-card": {
+          "title": "Events",
+          "option": "Mission #{mission}: Add event card {value}. | Mission #{mission}: Add event cards {value}."
+        },
+        "starship-card": {
+          "title": "Additional Starship Cards",
+          "option": "Add starship cards {value}."
+        },
+        "block-cards": {
+          "title": "Blocked Starship Cards",
+          "optionBlockValue": "Take 6 starship cards out of the game: Remove all starship cards with value {value}. | Take 6 starship cards out of the game: Remove all starship cards with values {value}.",
+          "optionBlockAction": "Take 6 starship cards out of the game: Randomly remove {count1} {action1} cards and {count2} {action2} cards."
+        }
+      }
     }
   },
   "turn": {
     "title": "Turn {turn}",
     "select": "Select",
     "applyEffect": "Apply ASTRA effect {value}",
+    "applyEvent": "Mission #{mission}: Go to chapter <b>&lt;{index}&gt;</b>",
+    "useSoloBonus": "Use Solo Bonus",
+    "astra": "ASTRA",
     "accomplishMission": "Flip mission card {value} to accomplished side",
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",
@@ -29,6 +52,18 @@
     "gameOver": {
       "title": "Game over",
       "info": "Game over - tally up your points."
+    },
+    "mission8": {
+      "sheet": {
+        "left": "← Left Sheet",
+        "right": "Right Sheet →"
+      },
+      "astraTurn": "ASTRA's turn:",
+      "planet": "Planet #{value}",
+      "plantWater": "<b>Plant or Water action</b>: Cross off a corresponding symbol still available on the planet.",
+      "planningAstronaut": "<b>Planning or Astronaut action</b>: Draw the ASTRA insignia in a space still available on the moon.",
+      "robotEnergy": "<b>Robot or Energy action</b>: Draw the ASTRA insignia on an asteroid starting on the opposite side of the sheet.",
+      "robotEnergyNoBenefit": "ASTRA does not benefit from the Bonus symbols of the asteroids."
     }
   },
   "mission": {
@@ -40,6 +75,14 @@
     "6": "#6 The Virus",
     "7": "#7 The Escape",
     "8": "#8 The Battle"
+  },
+  "starshipAction": {
+    "robot": "robot",
+    "energy": "energy",
+    "plant": "plant",
+    "water": "water",
+    "astronaut": "astronaut",
+    "planning": "planning"
   },
   "action": {
     "playGame": "Play Game",
@@ -53,7 +96,8 @@
     "cancel": "Cancel",
     "backToHome": "Back to Home",
     "back": "Back",
-    "close": "Close"
+    "close": "Close",
+    "ok": "OK"
   },
   "footer": {
     "credits": "Credits"

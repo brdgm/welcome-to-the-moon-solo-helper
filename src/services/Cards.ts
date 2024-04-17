@@ -622,7 +622,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 6
+    spriteIndex: 6,
+    eventIndex: [{mission:2,index:57}, {mission:5,index:66}, {mission:7,index:105}]
   },
   {
     id: 159,
@@ -630,7 +631,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 7
+    spriteIndex: 7,
+    eventIndex: [{mission:2,index:106}, {mission:5,index:85}, {mission:7,index:105}]
   },
   {
     id: 160,
@@ -638,7 +640,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 8
+    spriteIndex: 8,
+    eventIndex: [{mission:2,index:34}, {mission:5,index:26}, {mission:7,index:153}]
   },
   {
     id: 161,
@@ -646,7 +649,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 9
+    spriteIndex: 9,
+    eventIndex: [{mission:3,index:84}, {mission:7,index:165}]
   },
   {
     id: 162,
@@ -654,7 +658,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 10
+    spriteIndex: 10,
+    eventIndex: [{mission:1,index:65}, {mission:4,index:80}, {mission:7,index:5}]
   },
   {
     id: 163,
@@ -662,7 +667,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 11
+    spriteIndex: 11,
+    eventIndex: [{mission:2,index:20}, {mission:5,index:17}, {mission:7,index:31}]
   },
   {
     id: 164,
@@ -670,7 +676,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 12
+    spriteIndex: 12,
+    eventIndex: [{mission:2,index:183}, {mission:6,index:170}, {mission:7,index:137}]
   },
   {
     id: 165,
@@ -678,7 +685,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 13
+    spriteIndex: 13,
+    eventIndex: [{mission:3,index:71}, {mission:6,index:90}, {mission:7,index:63}]
   },
   {
     id: 166,
@@ -686,7 +694,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 14
+    spriteIndex: 14,
+    eventIndex: [{mission:3,index:11}, {mission:6,index:90}]
   },
   {
     id: 167,
@@ -694,7 +703,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 15
+    spriteIndex: 15,
+    eventIndex: [{mission:4,index:101}, {mission:6,index:102}]
   },
   {
     id: 168,
@@ -702,7 +712,8 @@ const cards : Card[] = [
     action: Action.NONE,
     value: -1,
     sprite: 'campaign',
-    spriteIndex: 16
+    spriteIndex: 16,
+    eventIndex: [{mission:4,index:51}, {mission:8,index:38}]
   },
 
 ]

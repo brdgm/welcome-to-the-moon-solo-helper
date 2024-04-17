@@ -34,4 +34,16 @@ describe('services/ScoreCalculator', () => {
 
     expect(score.totalPoints).to.eq(60)
   })
+
+  it('mission1-level7', () => {
+    const score = new ScoreCalculator(Missions.get(1), Levels.get(3),
+      // 152=ENERGY/WATER = ENERGY (4), 155=JOKER = ROBOT (5)
+      [152,155].map(item => Cards.get(item)))
+
+    const actionScores = score.actionScores
+    expect(actionScores[0]).to.eql({ action: Action.ROBOT, points: 5, count: 1, total: 5, lowest: false, highest: true })
+    expect(actionScores[1]).to.eql({ action: Action.ENERGY, points: 4, count: 1, total: 4, lowest: false, highest: false })
+  
+    expect(score.totalPoints).to.eq(20)
+  })
 })
