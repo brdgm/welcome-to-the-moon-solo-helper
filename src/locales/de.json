@@ -1,0 +1,109 @@
+{
+  "gameTitle": "Welcome to the Moon",
+  "home": {
+    "title": "Welcome to the Moon Solo Helper",
+    "play1": "Spiele <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> gegen ASTRA, den Solo-Gegner.",
+    "play2": "Diese Applikation ersetzt den Raumschiff-Kartenstapel und zählt die Punkte von ASTRA zusammen. Die Sonderregeln für die Kampagne(n) werden unterstützt.",
+    "feedback": "Discussion and Feedback:"
+  },
+  "setup": {
+    "title": "Spielaufbau",
+    "missionSelection": {
+      "title": "Mission"
+    },
+    "difficultyLevel": {
+      "title": "ASTRA Level",
+      "easy": "Leicht",
+      "hard": "Schwer",
+      "level": "Level {level} - {name}"
+    },
+    "campaignOptions": {
+      "title": "Kampagnen-Optionen",
+      "show": "Anzeigen",
+      "intro": "Die angezeigten Ereignis-Optionen beziehen sich nur auf die aktuell gewählte Mission. Die anderen können während der Kampagne aktiv werden und sind ggf. über mehrere Missionen hinweg aktiv, sie werden immer angeboten.",
+      "type": {
+        "event-card": {
+          "title": "Ereignisse",
+          "option": "Mission #{mission}: Füge Ereignis-Karte {value} hinzu. | Mission #{mission}: Füge Ereignis-Karten {value} hinzu."
+        },
+        "starship-card": {
+          "title": "Zusätzliche Raumschiffkarten",
+          "option": "Füge Raumschiffkarten {value} hinzu."
+        },
+        "block-cards": {
+          "title": "Blockierte Raumschiffkarten",
+          "optionBlockValue": "Entferne 6 Raumschiffkarten aus dem Spiel: Entferne alle Raumschiffkarten mit dem Wert {value}. | Entferne 6 Raumschiffkarten aus dem Spiel: Entferne alle Raumschiffkarten mit den Werten {value}.",
+          "optionBlockAction": "Entferne 6 Raumschiffkarten aus dem Spiel: Entferne zufällig {count1} {action1}-Raumschiffkarten und {count2} {action2}-Raumschiffkarten."
+        }
+      }
+    }
+  },
+  "turn": {
+    "title": "Runde {turn}",
+    "select": "Wählen",
+    "applyEffect": "Führe ASTRA-Effekt {value} aus",
+    "applyEvent": "Mission #{mission}: Lese <b>&lt;{index}&gt;</b>",
+    "useSoloBonus": "Solo-Bonus nutzen",
+    "astra": "ASTRA",
+    "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
+    "mission1Launch": "START!",
+    "turnsLeft": "Runden:",
+    "cardsLeft": "Karten:",
+    "gameOver": {
+      "title": "Spielende",
+      "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
+    },
+    "mission8": {
+      "sheet": {
+        "left": "← Linkes Blatt",
+        "right": "Rechtes Blatt →"
+      },
+      "astraTurn": "ASTRAs Zug:",
+      "planet": "Planet #{value}",
+      "plantWater": "<b>Pflanze bzw. Wasser</b>: Streiche 1 entsprechendes, sichtbares Symbol (Pflanze bzw. Wasser) im unteren Bereich des Planeten durch.",
+      "planningAstronaut": "<b>Planung oder Raumanzug</b>: Zeichne das Symbol der ASTRA auf den Mond des Planeten (sofern dort noch Platz ist).",
+      "robotEnergy": "<b>Roboter oder Energie</b>: Zeichne das Symbol der ASTRA auf den nicht beschriebenen Asteroiden, der ihrem Raumschiff am nächsten ist",
+      "robotEnergyNoBenefit": "Die ASTRA nutzt keine Bonussymbole, ignoriere sie für diesen Schritt."
+    }
+  },
+  "mission": {
+    "1": "#1 Der Start",
+    "2": "#2 Der Flug",
+    "3": "#3 Die Siedlung",
+    "4": "#4 Die Mine",
+    "5": "#5 Die Kuppel",
+    "6": "#6 Das Virus",
+    "7": "#7 Die Flucht",
+    "8": "#8 Der Konflikt"
+  },
+  "starshipAction": {
+    "robot": "Roboter",
+    "energy": "Energie",
+    "plant": "Pflanze",
+    "water": "Wasser",
+    "astronaut": "Raumanzug",
+    "planning": "Planung"
+  },
+  "action": {
+    "playGame": "Spielen",
+    "startGame": "Spiel starten",
+    "next": "Weiter",
+    "nextRound": "Nächste Runde",
+    "abortGame": "Spiel abbrechen",
+    "abortGameConfirm": "Das aktuelle Spiel wird abgebrochen - bist du sicher?",
+    "endGame": "Spiel beenden",
+    "endGameConfirm": "Dieses Spiel wird beendet - bist du sicher?",
+    "cancel": "Abbrechen",
+    "backToHome": "Zurück zum Anfang",
+    "back": "Zurück",
+    "close": "Schließen",
+    "ok": "OK"
+  },
+  "footer": {
+    "credits": "Credits"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "Applikation neu laden",
+    "notice": "Die Applikation wurde aktualisiert - möchtest du die Seite neu laden um die neueste Version zu nutzen?"
+  }
+}
