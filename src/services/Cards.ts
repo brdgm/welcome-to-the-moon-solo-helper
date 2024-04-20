@@ -623,7 +623,7 @@ const cards : Card[] = [
     value: -1,
     sprite: 'campaign',
     spriteIndex: 6,
-    eventIndex: [{mission:2,index:57}, {mission:5,index:66}, {mission:7,index:105}]
+    eventIndex: [{mission:2,index:157}, {mission:5,index:66}, {mission:7,index:105}]
   },
   {
     id: 159,
