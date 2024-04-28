@@ -109,7 +109,7 @@ export default defineComponent({
   },
   methods: {
     setLocale(lang: string) {
-      this.locale = lang;
+      this.locale = lang
       this.state.language = lang
     },
     zoomFontSize(payload: { baseFontSize: number }) {

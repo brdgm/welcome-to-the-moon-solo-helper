@@ -11,6 +11,6 @@ describe('services/Levels', () => {
 
   it('getAll', () => {
     const options = CampaignOptions.getAll()
-    expect(options.length).eq(29);
+    expect(options.length).eq(29)
   })
 })

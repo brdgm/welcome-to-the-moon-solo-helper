@@ -11,6 +11,6 @@ describe('services/Missions', () => {
 
   it('getAll', () => {
     const missions = Missions.getAll()
-    expect(missions.length).eq(8);
+    expect(missions.length).eq(8)
   })
 })
