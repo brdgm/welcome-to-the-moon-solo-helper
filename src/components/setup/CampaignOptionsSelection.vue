@@ -27,7 +27,7 @@
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useStateStore } from '@/store/state'
-import toggleArrayItem from 'brdgm-commons/src/util/array/toggleArrayItem'
+import toggleArrayItem from '@brdgm/brdgm-commons/src/util/array/toggleArrayItem'
 import CampaignOption from '@/services/CampaignOption'
 import CampaignOptions from '@/services/CampaignOptions'
 import CampaignOptionType from '@/services/enum/CampaignOptionType'

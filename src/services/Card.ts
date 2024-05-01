@@ -1,6 +1,6 @@
-import Action from "./enum/Action"
-import CardType from "./enum/CardType"
-import SpecialValue from "./enum/SpecialValue"
+import Action from './enum/Action'
+import CardType from './enum/CardType'
+import SpecialValue from './enum/SpecialValue'
 
 export default interface Card {
   id: number
