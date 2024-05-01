@@ -1,4 +1,4 @@
-import findMandatory from 'brdgm-commons/src/util/map/findMandatory'
+import findMandatory from '@brdgm/brdgm-commons/src/util/map/findMandatory'
 import CampaignOption from './CampaignOption'
 import CampaignOptionType from './enum/CampaignOptionType'
 import Action from './enum/Action'

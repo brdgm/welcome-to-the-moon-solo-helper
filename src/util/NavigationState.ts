@@ -1,5 +1,5 @@
 import { RouteLocation } from 'vue-router'
-import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
+import getIntRouteParam from '@brdgm/brdgm-commons/src/util/router/getIntRouteParam'
 import { State } from '@/store/state'
 import Mission from '@/services/Mission'
 import Level from '@/services/Level'
