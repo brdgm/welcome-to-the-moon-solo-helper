@@ -2,7 +2,7 @@
   "gameTitle": "Welcome to the Moon",
   "home": {
     "title": "Welcome to the Moon Solo Helper",
-    "play1": "Jouer à <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> contre ASTRA, l'adversaire solo.",
+    "play1": "Jouez à <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> contre ASTRA, l'adversaire solo.",
     "play2": "Cette application gère le paquet de cartes Vaisseau et calcule les points d'ASTRA en fonction de l'aventure et du niveau désirés. Les règles spéciales de campagne sont prises en charge.",
     "feedback": "Discussions et remarques :"
   },
@@ -24,7 +24,7 @@
       "type": {
         "event-card": {
           "title": "Evénements",
-          "option": "Aventure #{mission} : Ajoutez la carte Evénement {value}. | Aventure #{mission}: Ajoutez les cartes Evénement {value}."
+          "option": "Aventure #{mission} : ajoutez la carte Evénement {value}. | Aventure #{mission} : ajoutez les cartes Evénement {value}."
         },
         "starship-card": {
           "title": "Cartes Vaisseau additionnelles",
@@ -32,8 +32,8 @@
         },
         "block-cards": {
           "title": "Cartes Vaisseau bloquées",
-          "optionBlockValue": "Retirez 6 cartes Vaisseau de la partie : Retirez toutes les cartes Vaisseau ayant la valeur {valeur}. | Retirez 6 cartes Vaisseau de la partie : Retirez toutes les cartes Vaisseau ayant les valeurs {value}.",
-          "optionBlockAction": "Retirez 6 cartes Vaisseau de la partie : Retirez aléatoirement {count1} cartes {action1} et {count2} cartes {action2}."
+          "optionBlockValue": "Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant la valeur {valeur}. | Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant les valeurs {value}.",
+          "optionBlockAction": "Retirez 6 cartes Vaisseau de la partie : retirez aléatoirement {count1} cartes {action1} et {count2} cartes {action2}."
         }
       }
     }
@@ -42,10 +42,10 @@
     "title": "Tour {turn}",
     "select": "Choisir",
     "applyEffect": "Appliquez l'effet ASTRA {value}",
-    "applyEvent": "Aventure #{mission}: Allez au chapitre <b>&lt;{index}&gt;</b>",
+    "applyEvent": "Aventure #{mission} : allez au chapitre <b>&lt;{index}&gt;</b>",
     "useSoloBonus": "Utiliser le bonus Solo",
     "astra": "ASTRA",
-    "accomplishMission": "Retournez la carte Mission {value} du côté mission accomplie",
+    "accomplishMission": "Retournez la carte Mission {value} du côté Mission Accomplie",
     "mission1Launch": "DECOLLAGE !",
     "turnsLeft": "Tours :",
     "cardsLeft": "Cartes :",
@@ -61,7 +61,7 @@
       "astraTurn": "Tour d'ASTRA :",
       "planet": "Planète #{value}",
       "plantWater": "<b>Action Plante ou Eau</b> : rayez un symbole correspondant encore disponible sur la planète.",
-      "planningAstronaut": "<b>Action Planning ou Astronaute</b> : inscrivez l’insigne d’ASTRA dans un cratère encore disponible de la lune..",
+      "planningAstronaut": "<b>Action Planning ou Astronaute</b> : inscrivez l’insigne d’ASTRA dans un cratère encore disponible de la lune.",
       "robotEnergy": "<b>Action Robot ou Energie</b> : inscrivez l’insigne d’ASTRA sur un astéroïde en commençant du côté opposé de la feuille.",
       "robotEnergyNoBenefit": "ASTRA ne bénéficie pas des symboles Bonus des astéroïdes."
     }
@@ -77,22 +77,22 @@
     "8": "#8 L'Affrontement"
   },
   "starshipAction": {
-    "robot": "robot",
-    "energy": "énergie",
-    "plant": "plante",
-    "water": "eau",
-    "astronaut": "astronaute",
-    "planning": "planning"
+    "robot": "Robot",
+    "energy": "Energie",
+    "plant": "Plante",
+    "water": "Eau",
+    "astronaut": "Astronaute",
+    "planning": "Planning"
   },
   "action": {
     "playGame": "Jouer",
     "startGame": "Commencer",
     "next": "Suivant",
-    "nextRound": "Tour Suivant",
+    "nextRound": "Tour suivant",
     "abortGame": "Abandonner la partie",
     "abortGameConfirm": "Abandonner la partie en cours - êtes-vous sûr(e) ?",
     "endGame": "Terminer la partie",
-    "endGameConfirm": "Termine la partie et retourne à l'écran d'accueil - êtes-vous sûr(e) ?",
+    "endGameConfirm": "Terminer la partie et retourner à l'écran d'accueil - êtes-vous sûr(e) ?",
     "cancel": "Annuler",
     "backToHome": "Retour à l'accueil",
     "back": "Retour",
@@ -103,7 +103,7 @@
     "credits": "Crédits"
   },
   "serviceWorkerUpdatedRefresh": {
-    "title": "Mettre à jour l'Application",
+    "title": "Mettre à jour l'application",
     "notice": "L'application a été mise à jour - voulez-vous rafraîchir pour utiliser la dernière version ?"
   }
 }
