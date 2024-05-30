@@ -1,0 +1,110 @@
+{
+    "gameTitle": "Welcome to the Moon",
+    "home": {
+      "title": "Welcome to the Moon Solo Helper",
+      "play1": "Juega <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>Welcome to the Moon</b></a> contra ASTRA, tu contrincante en Solitario.",
+      "play2": "Esta aplicación simula la baraja de cartas de Nave Espacial, y lleva la cuenta de la puntuación de ASTRA dependiendo de la misión y su nivel. Se tienen en cuenta las reglas especiales de la campaña.",
+      "feedback": "Comentarios:"
+    },
+    "setup": {
+      "title": "Configurar Juego",
+      "missionSelection": {
+        "title": "Misión"
+      },
+      "difficultyLevel": {
+        "title": "Nivel de ASTRA",
+        "easy": "Fácil",
+        "hard": "Difícil",
+        "level": "Nivel {level} - {name}"
+      },
+      "campaignOptions": {
+        "title": "Opciones de Campaña",
+        "show": "Mostrar",
+        "intro": "Los eventos que se muestran se usan en exclusiva en la misión seleccionada. El resto de opciones activadas durante la campaña se usarán en múltiples misiones y se mostrarán para cada misión.",
+        "type": {
+          "event-card": {
+            "title": "Eventos",
+            "option": "Misión #{mission}: Añadir la carta de evento {value}. | Misión #{mission}: Añadir cartas de evento {value}."
+          },
+          "starship-card": {
+            "title": "Cartas Adicionales de Nave Espacial",
+            "option": "Añadir cartas de Nave Espacial {value}."
+          },
+          "block-cards": {
+            "title": "Cartas de Nave Espacial Bloqueadas",
+            "optionBlockValue": "Retira 6 cartas de Nave Espacial del juego: Quita todas las cartas de Nave Espacial de valor {value}. | Retira 6 cartas de Nave Espacial del juego: Quita todas las cartas de Nave Espacial con los valores {value}.",
+            "optionBlockAction": "Retira 6 cartas de Nave Espacial del juego: Quita al azar {count1} cartas de {action1} y {count2} cartas de {action2}."
+          }
+        }
+      }
+    },
+    "turn": {
+      "title": "Turno {turn}",
+      "select": "Elige",
+      "applyEffect": "Aplicar efecto ASTRA {value}",
+      "applyEvent": "Misión #{mission}: Ir al capítulo <b>&lt;{index}&gt;</b>",
+      "useSoloBonus": "Usar Bonificación ASTRA",
+      "astra": "ASTRA",
+      "accomplishMission": "Voltea la carta de misión {value} a su lado de cumplida",
+      "mission1Launch": "¡LANZAMIENTO!",
+      "turnsLeft": "Turnos:",
+      "cardsLeft": "Cartas:",
+      "gameOver": {
+        "title": "Fin del juego",
+        "info": "Fin del juego - suma tus puntos."
+      },
+      "mission8": {
+        "sheet": {
+          "left": "← Hoja izquierda",
+          "right": "Hoja derecha →"
+        },
+        "astraTurn": "Turno de ASTRA:",
+        "planet": "Planeta #{value}",
+        "plantWater": "<b>Acción de Planta o Agua</b>: Tacha el símbolo correspondiente aún disponible en el planeta..",
+        "planningAstronaut": "<b>Acción de Planificación o Astronauta</b>: Dibuja la insignia de ASTRA en una casilla aún disponible de la luna.",
+        "robotEnergy": "<b>Acción de Robot o Energía</b>: Dibuja la insignia de ASTRA en un asteroide empezando por el lado opuesto de la hoja.",
+        "robotEnergyNoBenefit": "ASTRA no se beneficiará de los símbolos de Bonificación de los asteroides."
+      }
+    },
+    "mission": {
+      "1": "#1 El Despegue",
+      "2": "#2 El Viaje",
+      "3": "#3 La Colonia",
+      "4": "#4 La Mina",
+      "5": "#5 La Cúpula",
+      "6": "#6 El Virus",
+      "7": "#7 La Fuga",
+      "8": "#8 La Batalla"
+    },
+    "starshipAction": {
+      "robot": "robot",
+      "energy": "energía",
+      "plant": "planta",
+      "water": "agua",
+      "astronaut": "astronauta",
+      "planning": "planificación"
+    },
+    "action": {
+      "playGame": "Jugar",
+      "startGame": "Iniciar el Juego",
+      "next": "Siguiente",
+      "nextRound": "Siguiente Turno",
+      "abortGame": "Salir del Juego",
+      "abortGameConfirm": "Se va a salir del juego en curso - ¿estás seguro?",
+      "endGame": "Fin del Juego",
+      "endGameConfirm": "Finalizar el juego y volver a la pantalla de inicio - ¿estás seguro?",
+      "cancel": "Cancelar",
+      "backToHome": "Volver al Inicio",
+      "back": "Volver",
+      "close": "Cerrar",
+      "ok": "OK"
+    },
+    "footer": {
+      "credits": "Créditos"
+    },
+    "serviceWorkerUpdatedRefresh": {
+      "title": "Actualizar Aplicación",
+      "notice": "La aplicación se ha actualizado - ¿quieres recargar para usar la última versión?"
+    }
+  }
+  
