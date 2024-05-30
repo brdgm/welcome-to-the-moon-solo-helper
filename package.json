@@ -1,6 +1,6 @@
 {
   "name": "@brdgm/welcome-to-the-moon-solo-helper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "description": "Welcome to the Moon Solo Helper",
   "appDeployName": "welcome-to-the-moon",
