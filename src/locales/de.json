@@ -84,6 +84,9 @@
     "astronaut": "Raumanzug",
     "planning": "Planung"
   },
+  "notfound": {
+    "title": "Nicht Gefunden"
+  },
   "action": {
     "playGame": "Spielen",
     "startGame": "Spiel starten",
