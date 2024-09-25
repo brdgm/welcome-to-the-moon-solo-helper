@@ -84,6 +84,9 @@
     "astronaut": "astronaut",
     "planning": "planning"
   },
+  "notfound": {
+    "title": "Not Found"
+  },
   "action": {
     "playGame": "Play Game",
     "startGame": "Start Game",
