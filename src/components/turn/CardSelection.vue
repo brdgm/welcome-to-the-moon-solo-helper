@@ -22,7 +22,7 @@
     </template>
 
     <template v-else>
-      <div class="permutation" v-for="(cards,index) of sortedPermutations" :key="index">
+      <div class="permutation" v-for="(cards,index) of sortedPermutations" :key="index" :data-testid="`card-permutation-${index}`">
         <div class="selection" @click="selectCards(cards)" data-bs-toggle="modal" data-bs-target="#cardSelectionModal">
           <CardDisplay class="card" :card="cards[0]" back/>
           <CardDisplay class="card" :card="cards[1]" front/>
