@@ -32,7 +32,7 @@
         },
         "block-cards": {
           "title": "Cartes Vaisseau bloquées",
-          "optionBlockValue": "Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant la valeur {valeur}. | Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant les valeurs {value}.",
+          "optionBlockValue": "Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant la valeur {value}. | Retirez 6 cartes Vaisseau de la partie : retirez toutes les cartes Vaisseau ayant les valeurs {value}.",
           "optionBlockAction": "Retirez 6 cartes Vaisseau de la partie : retirez aléatoirement {count1} cartes {action1} et {count2} cartes {action2}."
         }
       }
