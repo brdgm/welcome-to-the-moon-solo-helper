@@ -41,7 +41,7 @@ describe('services/Cards', () => {
     });
     [8].forEach(value => {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(7)
-    });
+    })
   })
 
   it('starship-campaign-cards', () => {
