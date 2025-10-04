@@ -226,7 +226,9 @@ const campaignOptions : CampaignOption[] = [
 ]
 
 const campaignOptionsMap = new Map<string,CampaignOption>()
-campaignOptions.forEach(campaignOption => campaignOptionsMap.set(campaignOption.name, campaignOption))
+for (const campaignOption of campaignOptions) {
+  campaignOptionsMap.set(campaignOption.name, campaignOption)
+}
 
 export default {
 
