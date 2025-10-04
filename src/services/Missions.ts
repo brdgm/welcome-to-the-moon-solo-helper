@@ -50,7 +50,9 @@ const missions : Mission[] = [
 ]
 
 const missionsMap = new Map<number,Mission>()
-missions.forEach(mission => missionsMap.set(mission.mission, mission))
+for (const mission of missions) {
+  missionsMap.set(mission.mission, mission)
+}
 
 export default {
 

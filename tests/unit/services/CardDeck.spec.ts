@@ -114,9 +114,9 @@ describe('services/CardDeck', () => {
     const drawn = new Map<number, number>()
     while (deck.canDraw) {
       deck.draw()
-      deck.currentEffects
-        .filter(card => card.cardType==CardType.CAMPAIGN_EVENT)
-        .forEach(card => drawn.set(card.id, (drawn.get(card.id) ?? 0) + 1))
+      for (const card of deck.currentEffects.filter(card => card.cardType==CardType.CAMPAIGN_EVENT)) {
+        drawn.set(card.id, (drawn.get(card.id) ?? 0) + 1)
+      }
     }
 
     expect(drawn.get(163) == 2

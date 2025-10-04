@@ -119,7 +119,9 @@ const levels : Level[] = [
 ]
 
 const levelsMap = new Map<number,Level>()
-levels.forEach(level => levelsMap.set(level.level, level))
+for (const level of levels) {
+  levelsMap.set(level.level, level)
+}
 
 export default {
 
