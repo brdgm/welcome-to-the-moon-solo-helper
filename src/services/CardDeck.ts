@@ -262,7 +262,7 @@ function removeBlockedStarshipCards(pile: Card[], campaignOptions: CampaignOptio
       const removeCards : number[] = []
       for (const blockAction of blockOption.blockCardsAction) {
         for (let i=0; i<blockAction.count; i++) {
-          for (const card of result.filter(card => card.action == blockAction.action && !removeCards.includes(card.id))) {
+          for (const card of result.filter(item => item.action == blockAction.action && !removeCards.includes(item.id))) {
             removeCards.push(card.id)
           }
         }
