@@ -9,6 +9,7 @@ export const useStateStore = defineStore(`${name}.state`, {
       setup: {
         mission: 1,
         level: 1,
+        missionCards: undefined,
         campaignOptions: []
       },
       turns: []
@@ -17,6 +18,7 @@ export const useStateStore = defineStore(`${name}.state`, {
   actions: {
     resetGame() {
       this.turns = []
+      this.setup.missionCards = undefined
       this.setup.initialCardDeck = undefined
     },
     storeTurn(turn : Turn) {
@@ -36,6 +38,7 @@ export interface State {
 export interface Setup {
   mission: number
   level: number
+  missionCards?: MissionCardPersistence[]
   campaignOptions: string[]
   initialCardDeck?: CardDeckPersistence
   debugMode?: boolean
@@ -44,6 +47,7 @@ export interface Setup {
 export interface Turn {
   turn: number
   cardDeck: CardDeckPersistence
+  missionCards?: MissionCardPersistence[]
 }
 export interface CardDeckPersistence {
   pile: number[]
@@ -53,4 +57,8 @@ export interface CardDeckPersistence {
   removed: number[]
   exhaustCount: number
   shuffleBackInPileOnce: number[]
+}
+export interface MissionCardPersistence {
+  card: number
+  flipped: boolean
 }

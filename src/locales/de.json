@@ -17,6 +17,10 @@
       "hard": "Schwer",
       "level": "Level {level} - {name}"
     },
+    "missionCardSetup": {
+      "title": "Missionskarten",
+      "randomize": "Neu wählen"
+    },
     "campaignOptions": {
       "title": "Kampagnen-Optionen",
       "show": "Anzeigen",
