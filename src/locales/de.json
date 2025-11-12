@@ -17,6 +17,10 @@
       "hard": "Schwer",
       "level": "Level {level} - {name}"
     },
+    "missionCardSetup": {
+      "title": "Missionskarten",
+      "randomize": "Neu wählen"
+    },
     "campaignOptions": {
       "title": "Kampagnen-Optionen",
       "show": "Anzeigen",
@@ -49,6 +53,12 @@
     "mission1Launch": "START!",
     "turnsLeft": "Runden:",
     "cardsLeft": "Karten:",
+    "missionCard": {
+      "title": "Missionskarte",
+      "flip": "Umdrehen",
+      "accomplish": "Erledigen",
+      "reset": "Zurücksetzen"
+    },
     "gameOver": {
       "title": "Spielende",
       "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."

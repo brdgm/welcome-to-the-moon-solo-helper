@@ -3,6 +3,7 @@
 
   <MissionSelection/>
   <DifficultyLevel/>
+  <MissionCardSetup/>
   <CampaignOptionsSelection/>
 
   <button class="btn btn-primary btn-lg mt-4" @click="startGame()">
@@ -22,6 +23,7 @@ import MissionSelection from '@/components/setup/MissionSelection.vue'
 import CardDeck from '@/services/CardDeck'
 import CampaignOptionsSelection from '@/components/setup/CampaignOptionsSelection.vue'
 import getCampaignOptions from '@/util/getCampaignOptions'
+import MissionCardSetup from '@/components/setup/MissionCardSetup.vue'
 
 export default defineComponent({
   name: 'SetupGame',
@@ -29,6 +31,7 @@ export default defineComponent({
     FooterButtons,
     MissionSelection,
     DifficultyLevel,
+    MissionCardSetup,
     CampaignOptionsSelection
   },
   setup() {

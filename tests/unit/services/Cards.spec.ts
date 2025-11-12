@@ -1,6 +1,7 @@
 import Cards from '@/services/Cards'
 import Action from '@/services/enum/Action'
 import CardType from '@/services/enum/CardType'
+import SpecialValue from '@/services/enum/SpecialValue'
 import { expect } from 'chai'
 
 describe('services/Cards', () => {
@@ -13,35 +14,35 @@ describe('services/Cards', () => {
 
   it('starship-cards', () => {
     const cards = Cards.getByType(CardType.STARSHIP)
-    expect(cards.length, 'total').eq(63);
+    expect(cards.length, 'total').eq(63)
 
     // actions
-    [Action.ROBOT,Action.ENERGY,Action.PLANT].forEach(action => {
+    for (const action of [Action.ROBOT,Action.ENERGY,Action.PLANT]) {
       expect(cards.filter(card => card.action==action).length, `action: ${action}`).eq(14)
-    });
-    [Action.WATER,Action.ASTRONAUT,Action.PLANNING].forEach(action => {
+    }
+    for (const action of [Action.WATER,Action.ASTRONAUT,Action.PLANNING]) {
       expect(cards.filter(card => card.action==action).length, `action: ${action}`).eq(7)
-    });
+    }
 
     // numbers
-    [1,2,14,15].forEach(value => {
+    for (const value of [1,2,14,15]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(2)
-    });
-    [3,13].forEach(value => {
+    }
+    for (const value of [3,13]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(3)
-    });
-    [4,12].forEach(value => {
+    }
+    for (const value of [4,12]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(4)
-    });
-    [5,11].forEach(value => {
+    }
+    for (const value of [5,11]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(5)
-    });
-    [6,7,9,10].forEach(value => {
+    }
+    for (const value of [6,7,9,10]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(6)
-    });
-    [8].forEach(value => {
+    }
+    for (const value of [8]) {
       expect(cards.filter(card => card.value==value).length, `number: ${value}`).eq(7)
-    });
+    }
   })
 
   it('starship-campaign-cards', () => {
@@ -52,12 +53,22 @@ describe('services/Cards', () => {
     expect(Cards.getByType(CardType.ASTRA_EFFECT).length).eq(3)
   })
 
+  it('mission-cards', () => {
+    for (let mission=1; mission<=8; mission++) {
+      expect(Cards.getMissionCards(mission, SpecialValue.A).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.B).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.C).length).eq(2)
+    }
+  })
+
   it('spriteIndex', () => {
     // ensure all cards have a unique sprite index
     const indexes = new Set<string>()
-    Object.values(CardType).forEach(cardType => 
-      Cards.getByType(cardType).forEach(card => indexes.add(`${card.sprite}-${card.spriteIndex}`))
-    )
-    expect(indexes.size).eq(63+9+3+11)
+    for (const cardType of Object.values(CardType)) {
+      for (const card of Cards.getByType(cardType)) {
+        indexes.add(`${card.sprite}-${card.spriteIndex}`)
+      }
+    }
+    expect(indexes.size).eq(63+9+3+11+48)
   })
 })

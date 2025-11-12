@@ -9,7 +9,7 @@
     <h1 class="mb-3">{{t(`mission.${navigationState.mission.mission}`)}} - {{t('turn.title', {turn})}}</h1>
     <h3 v-if="mission8LeftRightSheet" class="mb-3">{{t(`turn.mission8.sheet.${mission8LeftRightSheet}`)}}</h3>
     <template v-if="cardDeck.currentEffects.length > 0">
-      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="mission"/>
+      <CardEffects :currentEffects="[...cardDeck.currentEffects]" :exhaustCount="navigationState.exhaustCount" :mission="mission" :navigationState="navigationState"/>
       <hr/>
     </template>
     <CardSelection :navigationState="navigationState" @botCardSelected="botCardSelected"/>
@@ -86,7 +86,8 @@ export default defineComponent({
     next() : void {
       const turn : Turn = {
         turn: this.turn,
-        cardDeck: this.cardDeck.toPersistence()
+        cardDeck: this.cardDeck.toPersistence(),
+        missionCards: this.navigationState.missionCards.toPersistence()
       }
       this.state.storeTurn(turn)
       this.$router.push(`/turn/${this.turn+1}`)

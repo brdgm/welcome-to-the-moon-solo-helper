@@ -154,7 +154,7 @@ export default class CardDeck {
   private discardCurrent() {    
     // separate event cards
     const eventCards = this._current.filter(isEvent)
-    eventCards.forEach(card => {
+    for (const card of eventCards) {
       if (this._shuffleBackInPileOnce.includes(card.id)) {
         this._discard.push(card)
         this._shuffleBackInPileOnce = this._shuffleBackInPileOnce.filter(id => id != card.id)
@@ -162,7 +162,7 @@ export default class CardDeck {
       else {
         this._removed.push(card)
       }    
-    })
+    }
     // discard all other cards
     this._discard.push(...this._current.filter(card => !isEvent(card)))
     this._current = []
@@ -262,8 +262,9 @@ function removeBlockedStarshipCards(pile: Card[], campaignOptions: CampaignOptio
       const removeCards : number[] = []
       for (const blockAction of blockOption.blockCardsAction) {
         for (let i=0; i<blockAction.count; i++) {
-          result.filter(card => card.action == blockAction.action && !removeCards.includes(card.id))
-            .forEach(card => removeCards.push(card.id))
+          for (const card of result.filter(item => item.action == blockAction.action && !removeCards.includes(item.id))) {
+            removeCards.push(card.id)
+          }
         }
       }
       result = result.filter(card => !removeCards.includes(card.id))
@@ -279,7 +280,11 @@ function addCampaignStarshipCards(pile: Card[], campaignOptions: CampaignOption[
   const result = pile
   const addOption = campaignOptions.find(option => option.type == CampaignOptionType.STARSHIP_CARD)
   if (addOption) {
-    addOption.starshipCards?.forEach(id => result.push(Cards.get(id)))
+    if (addOption.starshipCards) {
+      for (const id of addOption.starshipCards) {
+        result.push(Cards.get(id))
+      }
+    }
   }
   return result
 }

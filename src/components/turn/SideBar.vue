@@ -75,7 +75,26 @@
         </tr>
       </tbody>
     </table>
+    <div class="missionCards">
+      <template v-for="card of missionCards.cards" :key="card.id">
+        <a href="#" data-bs-toggle="modal" :data-bs-target="`#missionCardModal-${card.id}`">
+          <CardDisplay :card="card" :front="!(missionCards.isFlipped(card) || missionCards.isAccomplished(card))" class="card" :class="{accomplished:missionCards.isAccomplished(card)}"/>
+        </a>
+      </template>
+    </div>
   </div>
+
+  <ModalDialog v-for="card of missionCards.cards" :key="card.id" :id="`missionCardModal-${card.id}`" :title="t('turn.missionCard.title')">
+    <template #body>
+      <CardDisplay :card="card" :front="!(missionCards.isFlipped(card) || missionCards.isAccomplished(card))" class="card"/>
+    </template>
+    <template #footer>
+      <button v-if="!missionCards.isAccomplished(card)" class="btn btn-success" data-bs-dismiss="modal" @click="missionCards.accomplish(card)">{{t('turn.missionCard.accomplish')}}</button>
+      <button v-if="!missionCards.isFlipped(card) && !missionCards.isAccomplished(card)" class="btn btn-secondary" data-bs-dismiss="modal" @click="missionCards.flip(card)">{{t('turn.missionCard.flip')}}</button>
+      <button v-if="missionCards.isFlipped(card) || missionCards.isAccomplished(card)" class="btn btn-danger" data-bs-dismiss="modal" @click="missionCards.reset(card)">{{t('turn.missionCard.reset')}}</button>
+      <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.close')}}</button>
+    </template>
+  </ModalDialog>
 </template>
 
 <script lang="ts">
@@ -84,11 +103,16 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import ScoreCalculator from '@/services/ScoreCalculator'
+import MissionCards from '@/services/MissionCards'
+import CardDisplay from '../structure/CardDisplay.vue'
+import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDialog.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
-    AppIcon
+    AppIcon,
+    CardDisplay,
+    ModalDialog
   },
   setup() {
     const { t } = useI18n()
@@ -107,6 +131,9 @@ export default defineComponent({
     score() : ScoreCalculator {
       return new ScoreCalculator(this.navigationState.mission, this.navigationState.level,
           this.navigationState.cardDeck.bot)
+    },
+    missionCards() : MissionCards {
+      return this.navigationState.missionCards
     }
   }
 })
@@ -150,5 +177,21 @@ table {
 .shuffle {
   width: 1.2rem;
   margin-top: -0.1rem;
+}
+.missionCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  .card {
+    width: 80px;
+    cursor: pointer;
+    &.accomplished {
+      opacity: 0.3;
+    }
+    @media (max-width: 600px) {
+      width: 45px;
+    }
+  }
 }
 </style>
