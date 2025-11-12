@@ -1,4 +1,4 @@
-import MissionCardType from '@/services/enum/MissionCardType'
+import SpecialValue from '@/services/enum/SpecialValue'
 import MissionCards from '@/services/MissionCards'
 import { expect } from 'chai'
 
@@ -6,7 +6,7 @@ describe('services/MissionCards', () => {
   it('new', () => {
     const missionCards = MissionCards.new(1)
     expect(missionCards.cards.length).to.eq(3)
-    expect(missionCards.cards.map(card => card.missionCardType)).to.eql([MissionCardType.A,MissionCardType.B,MissionCardType.C])
+    expect(missionCards.cards.map(card => card.value)).to.eql([SpecialValue.A,SpecialValue.B,SpecialValue.C])
     expect(missionCards.cards.map(card => card.mission)).to.eql([1,1,1])
     expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([false,false,false])
 
