@@ -32,6 +32,13 @@ export default class MissionCards {
     }
   }
 
+  public unflip(card: Card) : void {
+    const index = this._cards.value.indexOf(card)
+    if (index>=0) {
+      this._flipped.value[index] = false
+    }
+  }
+
   /**
    * Gets persistence view of mission cards.
    */

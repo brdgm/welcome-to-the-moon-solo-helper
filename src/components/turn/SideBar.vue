@@ -75,6 +75,9 @@
         </tr>
       </tbody>
     </table>
+    <div class="missionCards">
+      <CardDisplay v-for="card of missionCards.cards" :key="card.id" :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+    </div>
   </div>
 </template>
 
@@ -84,15 +87,20 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import ScoreCalculator from '@/services/ScoreCalculator'
+import MissionCards from '@/services/MissionCards'
+import { useStateStore } from '@/store/state'
+import CardDisplay from '../structure/CardDisplay.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
-    AppIcon
+    AppIcon,
+    CardDisplay
   },
   setup() {
     const { t } = useI18n()
-    return { t }
+    const state = useStateStore()
+    return { t, state }
   },
   props: {
     navigationState: {
@@ -107,6 +115,9 @@ export default defineComponent({
     score() : ScoreCalculator {
       return new ScoreCalculator(this.navigationState.mission, this.navigationState.level,
           this.navigationState.cardDeck.bot)
+    },
+    missionCards() : MissionCards {
+      return this.navigationState.missionCards
     }
   }
 })
@@ -150,5 +161,17 @@ table {
 .shuffle {
   width: 1.2rem;
   margin-top: -0.1rem;
+}
+.missionCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  .card {
+    width: 80px;
+    @media (max-width: 600px) {
+      width: 45px;
+    }
+  }
 }
 </style>

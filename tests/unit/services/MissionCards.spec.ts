@@ -32,7 +32,10 @@ describe('services/MissionCards', () => {
     missionCards.flip(missionCards.cards[0])
     expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,true,true])
 
+    missionCards.unflip(missionCards.cards[2])
+    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,true,false])
+
     const persistence = missionCards.toPersistence()
-    expect(persistence.map(item => item.flipped)).to.eql([true,true,true])
+    expect(persistence.map(item => item.flipped)).to.eql([true,true,false])
   })
 })

@@ -9,7 +9,6 @@ export const useStateStore = defineStore(`${name}.state`, {
       setup: {
         mission: 1,
         level: 1,
-        missionCards: undefined,
         campaignOptions: []
       },
       turns: []
@@ -18,7 +17,6 @@ export const useStateStore = defineStore(`${name}.state`, {
   actions: {
     resetGame() {
       this.turns = []
-      this.setup.missionCards = undefined
       this.setup.initialCardDeck = undefined
     },
     storeTurn(turn : Turn) {
