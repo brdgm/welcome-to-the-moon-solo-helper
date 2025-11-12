@@ -86,7 +86,7 @@
 
   <ModalDialog v-for="card of missionCards.cards" :key="card.id" :id="`missionCardModal-${card.id}`" :title="t('turn.missionCard.title')">
     <template #body>
-      <CardDisplay :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+      <CardDisplay :card="card" :front="!(missionCards.isFlipped(card) || missionCards.isAccomplished(card))" class="card"/>
     </template>
     <template #footer>
       <button v-if="!missionCards.isAccomplished(card)" class="btn btn-success" data-bs-dismiss="modal" @click="missionCards.accomplish(card)">{{t('turn.missionCard.accomplish')}}</button>
