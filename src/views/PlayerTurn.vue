@@ -86,7 +86,8 @@ export default defineComponent({
     next() : void {
       const turn : Turn = {
         turn: this.turn,
-        cardDeck: this.cardDeck.toPersistence()
+        cardDeck: this.cardDeck.toPersistence(),
+        missionCards: this.navigationState.missionCards.toPersistence()
       }
       this.state.storeTurn(turn)
       this.$router.push(`/turn/${this.turn+1}`)

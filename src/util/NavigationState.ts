@@ -24,7 +24,7 @@ export default class NavigationState {
     this.mission = Missions.get(state.setup.mission)
     this.level = Levels.get(state.setup.level)
     this.turn = getIntRouteParam(route, 'turn')
-    this.missionCards = getMissionCards(state.setup.mission, state)
+    this.missionCards = getMissionCards(this.turn - 1, state)
     this.campaignOptions = getCampaignOptions(this.mission.mission, state)
     this.cardDeck = getCardDeck(this.turn - 1, state, this.campaignOptions)
     // store exhaust count before drawing cards, in case only effect cards are left in pile
@@ -37,13 +37,19 @@ export default class NavigationState {
 
 }
 
-function getMissionCards(mission: number, state: State) : MissionCards {
+function getMissionCards(turn: number, state: State) : MissionCards {
+  if (turn > 0) {
+    const turnData = state.turns.find(item => item.turn == turn)
+    if (turnData?.missionCards) {
+      return MissionCards.fromPersistence(turnData.missionCards)
+    }
+    return getMissionCards(turn - 1, state)
+  }
   if (state.setup.missionCards) {
     return MissionCards.fromPersistence(state.setup.missionCards)
   }
-  else {
-    return MissionCards.new(state.setup.mission)
-  }
+  // should never happen
+  return MissionCards.new(state.setup.mission)
 }
 
 function getCardDeck(turn: number, state: State, campaignOptions: CampaignOption[]) : CardDeck {
