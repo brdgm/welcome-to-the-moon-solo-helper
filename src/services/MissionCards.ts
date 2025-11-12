@@ -4,30 +4,31 @@ import Cards from './Cards'
 import { MissionCardPersistence } from '@/store/state'
 import MissionCardType from './enum/MissionCardType'
 import getAllEnumValues from '@brdgm/brdgm-commons/src/util/enum/getAllEnumValues'
+import { ref } from 'vue'
 
 export default class MissionCards {
 
-  private _cards : Card[]
-  private _flipped : boolean[]
+  private readonly _cards
+  private readonly _flipped
 
   public constructor(cards: Card[], flipped: boolean[]) {
-    this._cards = cards
-    this._flipped = flipped
+    this._cards = ref(cards)
+    this._flipped = ref(flipped)
   }
 
   public get cards() : readonly Card[] {
-    return this._cards
+    return this._cards.value
   }
 
   public isFlipped(card: Card) : boolean {
-    const index = this._cards.indexOf(card)
-    return this._flipped[index] ?? false
+    const index = this._cards.value.indexOf(card)
+    return this._flipped.value[index] ?? false
   }
 
   public flip(card: Card) : void {
-    const index = this._cards.indexOf(card)
+    const index = this._cards.value.indexOf(card)
     if (index>=0) {
-      this._flipped[index] = true
+      this._flipped.value[index] = true
     }
   }
 
@@ -36,10 +37,10 @@ export default class MissionCards {
    */
   public toPersistence() : MissionCardPersistence[] {
     const result : MissionCardPersistence[] = []
-    this._cards.forEach((card, index) => {
+    this._cards.value.forEach((card, index) => {
       result.push({
         card: card.id,
-        flipped: this._flipped[index] ?? false
+        flipped: this._flipped.value[index] ?? false
       })
     })
     return result
