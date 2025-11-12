@@ -37,12 +37,12 @@ export default class MissionCards {
    */
   public toPersistence() : MissionCardPersistence[] {
     const result : MissionCardPersistence[] = []
-    this._cards.value.forEach((card, index) => {
+    for (const [index, card] of this._cards.value.entries()) {
       result.push({
         card: card.id,
         flipped: this._flipped.value[index] ?? false
       })
-    })
+    }
     return result
   }
 
@@ -63,10 +63,10 @@ export default class MissionCards {
   public static fromPersistence(persistence : MissionCardPersistence[]) : MissionCards {
     const cards : Card[] = []
     const flipped : boolean[] = []
-    persistence.forEach(item => {
+    for (const item of persistence) {
       cards.push(Cards.get(item.card))
       flipped.push(item.flipped)
-    })
+    }
     return new MissionCards(cards, flipped)
   }
 
