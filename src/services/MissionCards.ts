@@ -2,9 +2,8 @@ import { shuffle } from 'lodash'
 import Card from './Card'
 import Cards from './Cards'
 import { MissionCardPersistence } from '@/store/state'
-import MissionCardType from './enum/MissionCardType'
-import getAllEnumValues from '@brdgm/brdgm-commons/src/util/enum/getAllEnumValues'
 import { ref } from 'vue'
+import SpecialValue from './enum/SpecialValue'
 
 export default class MissionCards {
 
@@ -58,7 +57,7 @@ export default class MissionCards {
    * @param mission Mission number.
    */
   public static new(mission: number) : MissionCards {
-    const cards = getAllEnumValues(MissionCardType)
+    const cards = [SpecialValue.A, SpecialValue.B, SpecialValue.C]
       .map(type => shuffle(Cards.getMissionCards(mission, type)))
       .map(cardArray => cardArray[0]) // take first from each type
     return new MissionCards(cards, [])
