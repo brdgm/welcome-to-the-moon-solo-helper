@@ -3,7 +3,7 @@ import Card from './Card'
 import CardType from './enum/CardType'
 import Action from './enum/Action'
 import SpecialValue from './enum/SpecialValue'
-import MissionType from './enum/MissionType'
+import MissionCardType from './enum/MissionCardType'
 
 /**
  * Starship and ASTRA effect cards.
@@ -726,7 +726,7 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 0,
     mission: 1,
-    missionType: MissionType.A
+    missionCardType: MissionCardType.A
   },
   {
     id: 65,
@@ -736,7 +736,7 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 1,
     mission: 1,
-    missionType: MissionType.A
+    missionCardType: MissionCardType.A
   },
   {
     id: 66,
@@ -746,7 +746,7 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 2,
     mission: 1,
-    missionType: MissionType.B
+    missionCardType: MissionCardType.B
   },
   {
     id: 67,
@@ -756,7 +756,7 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 3,
     mission: 1,
-    missionType: MissionType.B
+    missionCardType: MissionCardType.B
   },
   {
     id: 68,
@@ -766,7 +766,7 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 4,
     mission: 1,
-    missionType: MissionType.C
+    missionCardType: MissionCardType.C
   },
   {
     id: 69,
@@ -776,8 +776,428 @@ const cards : Card[] = [
     sprite: 'mission',
     spriteIndex: 5,
     mission: 1,
-    missionType: MissionType.C
+    missionCardType: MissionCardType.C
   },
+  {
+    id: 70,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 6,
+    mission: 2,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 71,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 7,
+    mission: 2,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 72,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 8,
+    mission: 2,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 73,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 9,
+    mission: 2,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 74,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 10,
+    mission: 2,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 75,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 11,
+    mission: 2,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 76,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 12,
+    mission: 3,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 77,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 13,
+    mission: 3,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 78,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 14,
+    mission: 3,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 79,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 15,
+    mission: 3,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 80,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 16,
+    mission: 3,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 81,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 17,
+    mission: 3,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 82,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 18,
+    mission: 4,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 83,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 19,
+    mission: 4,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 84,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 20,
+    mission: 4,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 85,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 21,
+    mission: 4,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 86,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 22,
+    mission: 4,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 87,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 23,
+    mission: 4,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 88,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 24,
+    mission: 5,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 89,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 25,
+    mission: 5,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 90,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 26,
+    mission: 5,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 91,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 27,
+    mission: 5,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 92,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 28,
+    mission: 5,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 93,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 29,
+    mission: 5,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 94,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 30,
+    mission: 6,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 95,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 31,
+    mission: 6,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 96,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 32,
+    mission: 6,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 97,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 33,
+    mission: 6,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 98,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 34,
+    mission: 6,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 99,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 35,
+    mission: 6,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 100,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 36,
+    mission: 7,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 101,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 37,
+    mission: 7,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 102,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 38,
+    mission: 7,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 103,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 39,
+    mission: 7,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 104,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 40,
+    mission: 7,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 105,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 41,
+    mission: 7,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 106,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 42,
+    mission: 8,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 107,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 43,
+    mission: 8,
+    missionCardType: MissionCardType.A
+  },
+  {
+    id: 108,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 44,
+    mission: 8,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 109,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 45,
+    mission: 8,
+    missionCardType: MissionCardType.B
+  },
+  {
+    id: 110,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 46,
+    mission: 8,
+    missionCardType: MissionCardType.C
+  },
+  {
+    id: 111,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 47,
+    mission: 8,
+    missionCardType: MissionCardType.C
+  }
 
 ]
 
@@ -804,6 +1224,16 @@ export default {
    */
   getByType(cardType : CardType) : Card[] {
     return cards.filter(card => card.cardType === cardType)
+  },
+
+  /**
+   * Get mission cards by mission and type
+   * @param mission Mission number
+   * @param missionCardType Mission card type
+   * @returns cards
+   */
+  getMissionCards(mission: number, missionCardType: MissionCardType) : Card[] {
+    return cards.filter(card => card.cardType === CardType.MISSION && card.mission === mission && card.missionCardType === missionCardType)
   }
 
 }
