@@ -101,7 +101,6 @@ import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import ScoreCalculator from '@/services/ScoreCalculator'
 import MissionCards from '@/services/MissionCards'
-import { useStateStore } from '@/store/state'
 import CardDisplay from '../structure/CardDisplay.vue'
 import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDialog.vue'
 import Card from '@/services/Card'
@@ -115,8 +114,7 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()
-    const state = useStateStore()
-    return { t, state }
+    return { t }
   },
   props: {
     navigationState: {

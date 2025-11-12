@@ -1,7 +1,7 @@
 import Cards from '@/services/Cards'
 import Action from '@/services/enum/Action'
 import CardType from '@/services/enum/CardType'
-import MissionCardType from '@/services/enum/MissionCardType'
+import SpecialValue from '@/services/enum/SpecialValue'
 import { expect } from 'chai'
 
 describe('services/Cards', () => {
@@ -55,9 +55,9 @@ describe('services/Cards', () => {
 
   it('mission-cards', () => {
     for (let mission=1; mission<=8; mission++) {
-      expect(Cards.getMissionCards(mission, MissionCardType.A).length).eq(2)
-      expect(Cards.getMissionCards(mission, MissionCardType.B).length).eq(2)
-      expect(Cards.getMissionCards(mission, MissionCardType.C).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.A).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.B).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.C).length).eq(2)
     }
   })
 
