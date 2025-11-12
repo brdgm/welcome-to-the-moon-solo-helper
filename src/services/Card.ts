@@ -10,6 +10,7 @@ export default interface Card {
   sprite: string
   spriteIndex: number
   eventIndex?: EventIndex[]
+  mission?: number
 }
 
 export interface EventIndex {

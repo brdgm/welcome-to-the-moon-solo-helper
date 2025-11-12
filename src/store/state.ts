@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { name } from '@/../package.json'
+import MissionCardStatus from '@/services/enum/MissionCardStatus'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -36,6 +37,7 @@ export interface State {
 export interface Setup {
   mission: number
   level: number
+  missionCards?: MissionCardPersistence[]
   campaignOptions: string[]
   initialCardDeck?: CardDeckPersistence
   debugMode?: boolean
@@ -44,6 +46,7 @@ export interface Setup {
 export interface Turn {
   turn: number
   cardDeck: CardDeckPersistence
+  missionCards?: MissionCardPersistence[]
 }
 export interface CardDeckPersistence {
   pile: number[]
@@ -53,4 +56,8 @@ export interface CardDeckPersistence {
   removed: number[]
   exhaustCount: number
   shuffleBackInPileOnce: number[]
+}
+export interface MissionCardPersistence {
+  card: number
+  status: MissionCardStatus
 }

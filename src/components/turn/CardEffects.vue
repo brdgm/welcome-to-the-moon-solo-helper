@@ -19,6 +19,7 @@ import { useI18n } from 'vue-i18n'
 import Card from '@/services/Card'
 import CardDisplay from '../structure/CardDisplay.vue'
 import CardType from '@/services/enum/CardType'
+import NavigationState from '@/util/NavigationState'
 
 export default defineComponent({
   name: 'CardEffects',
@@ -41,6 +42,10 @@ export default defineComponent({
     mission: {
       type: Number,
       required: true
+    },
+    navigationState: {
+      type: Object as PropType<NavigationState>,
+      required: true
     }
   },
   methods: {
@@ -49,6 +54,16 @@ export default defineComponent({
     },
     getEventIndex(card: Card) : number|undefined {
       return card.eventIndex?.find(item => item.mission == this.mission)?.index
+    }
+  },
+  mounted() {
+    for (const card of this.currentEffects) {
+      if (!this.isEvent(card) && this.exhaustCount > 0) {
+        const missionCard = this.navigationState.missionCards.cards.find(c => c.value == card.value)
+        if (missionCard) {
+          this.navigationState.missionCards.flip(missionCard)
+        }
+      }
     }
   }
 })

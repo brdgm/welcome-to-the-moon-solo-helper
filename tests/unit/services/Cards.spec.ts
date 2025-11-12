@@ -1,6 +1,7 @@
 import Cards from '@/services/Cards'
 import Action from '@/services/enum/Action'
 import CardType from '@/services/enum/CardType'
+import SpecialValue from '@/services/enum/SpecialValue'
 import { expect } from 'chai'
 
 describe('services/Cards', () => {
@@ -13,7 +14,7 @@ describe('services/Cards', () => {
 
   it('starship-cards', () => {
     const cards = Cards.getByType(CardType.STARSHIP)
-    expect(cards.length, 'total').eq(63);
+    expect(cards.length, 'total').eq(63)
 
     // actions
     for (const action of [Action.ROBOT,Action.ENERGY,Action.PLANT]) {
@@ -52,6 +53,14 @@ describe('services/Cards', () => {
     expect(Cards.getByType(CardType.ASTRA_EFFECT).length).eq(3)
   })
 
+  it('mission-cards', () => {
+    for (let mission=1; mission<=8; mission++) {
+      expect(Cards.getMissionCards(mission, SpecialValue.A).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.B).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.C).length).eq(2)
+    }
+  })
+
   it('spriteIndex', () => {
     // ensure all cards have a unique sprite index
     const indexes = new Set<string>()
@@ -60,6 +69,6 @@ describe('services/Cards', () => {
         indexes.add(`${card.sprite}-${card.spriteIndex}`)
       }
     }
-    expect(indexes.size).eq(63+9+3+11)
+    expect(indexes.size).eq(63+9+3+11+48)
   })
 })

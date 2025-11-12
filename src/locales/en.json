@@ -17,6 +17,10 @@
       "hard": "Hard",
       "level": "Level {level} - {name}"
     },
+    "missionCardSetup": {
+      "title": "Mission Cards",
+      "randomize": "Randomize"
+    },
     "campaignOptions": {
       "title": "Campaign Options",
       "show": "Show",
@@ -49,6 +53,12 @@
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",
     "cardsLeft": "Cards:",
+    "missionCard": {
+      "title": "Mission Card",
+      "flip": "Flip",
+      "accomplish": "Accomplish",
+      "reset": "Reset"
+    },
     "gameOver": {
       "title": "Game over",
       "info": "Game over - tally up your points."
