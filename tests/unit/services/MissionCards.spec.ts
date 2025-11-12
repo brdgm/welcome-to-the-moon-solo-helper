@@ -1,3 +1,4 @@
+import MissionCardStatus from '@/services/enum/MissionCardStatus'
 import SpecialValue from '@/services/enum/SpecialValue'
 import MissionCards from '@/services/MissionCards'
 import { expect } from 'chai'
@@ -12,30 +13,35 @@ describe('services/MissionCards', () => {
 
     const persistence = missionCards.toPersistence()
     expect(persistence.length).to.eq(3)
-    expect(persistence.map(item => item.flipped)).to.eql([false,false,false])
+    expect(persistence.map(item => item.status)).to.eql([MissionCardStatus.OPEN, MissionCardStatus.OPEN, MissionCardStatus.OPEN])
   })
 
-  it('flip', () => {
+  it('status', () => {
     const missionCards = MissionCards.fromPersistence([
-      { card: 64, flipped: false },
-      { card: 66, flipped: false },
-      { card: 68, flipped: true }
+      { card: 64, status: MissionCardStatus.OPEN },
+      { card: 66, status: MissionCardStatus.OPEN },
+      { card: 68, status: MissionCardStatus.FLIPPED }
     ])
     expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([false,false,true])
+    expect(missionCards.cards.map(card => missionCards.isAccomplished(card))).to.eql([false,false,false])
 
     missionCards.flip(missionCards.cards[1])
     expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([false,true,true])
+    expect(missionCards.cards.map(card => missionCards.isAccomplished(card))).to.eql([false,false,false])
 
-    missionCards.flip(missionCards.cards[1])
-    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([false,true,true])
+    missionCards.accomplish(missionCards.cards[1])
+    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([false,false,true])
+    expect(missionCards.cards.map(card => missionCards.isAccomplished(card))).to.eql([false,true,false])
 
     missionCards.flip(missionCards.cards[0])
-    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,true,true])
+    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,false,true])
+    expect(missionCards.cards.map(card => missionCards.isAccomplished(card))).to.eql([false,true,false])
 
-    missionCards.unflip(missionCards.cards[2])
-    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,true,false])
+    missionCards.reset(missionCards.cards[2])
+    expect(missionCards.cards.map(card => missionCards.isFlipped(card))).to.eql([true,false,false])
+    expect(missionCards.cards.map(card => missionCards.isAccomplished(card))).to.eql([false,true,false])
 
     const persistence = missionCards.toPersistence()
-    expect(persistence.map(item => item.flipped)).to.eql([true,true,false])
+    expect(persistence.map(item => item.status)).to.eql([MissionCardStatus.FLIPPED, MissionCardStatus.ACCOMPLISHED, MissionCardStatus.OPEN])
   })
 })

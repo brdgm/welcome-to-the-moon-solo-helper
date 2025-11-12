@@ -76,9 +76,11 @@
       </tbody>
     </table>
     <div class="missionCards">
-      <a v-for="card of missionCards.cards" :key="card.id" href="#" data-bs-toggle="modal" :data-bs-target="`#missionCardModal-${card.id}`">
-        <CardDisplay :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
-      </a>
+      <template v-for="card of missionCards.cards" :key="card.id">
+        <a href="#" data-bs-toggle="modal" :data-bs-target="`#missionCardModal-${card.id}`">
+          <CardDisplay :card="card" :front="!(missionCards.isFlipped(card) || missionCards.isAccomplished(card))" class="card" :class="{accomplished:missionCards.isAccomplished(card)}"/>
+        </a>
+      </template>
     </div>
   </div>
 
@@ -87,8 +89,9 @@
       <CardDisplay :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
     </template>
     <template #footer>
-      <button v-if="!missionCards.isFlipped(card)" class="btn btn-success" data-bs-dismiss="modal" @click="flipMissionCard(card)">{{t('turn.missionCard.flip')}}</button>
-      <button v-if="missionCards.isFlipped(card)" class="btn btn-danger" data-bs-dismiss="modal" @click="unflipMissionCard(card)">{{t('turn.missionCard.unflip')}}</button>
+      <button v-if="!missionCards.isAccomplished(card)" class="btn btn-success" data-bs-dismiss="modal" @click="missionCards.accomplish(card)">{{t('turn.missionCard.accomplish')}}</button>
+      <button v-if="!missionCards.isFlipped(card) && !missionCards.isAccomplished(card)" class="btn btn-secondary" data-bs-dismiss="modal" @click="missionCards.flip(card)">{{t('turn.missionCard.flip')}}</button>
+      <button v-if="missionCards.isFlipped(card) || missionCards.isAccomplished(card)" class="btn btn-danger" data-bs-dismiss="modal" @click="missionCards.reset(card)">{{t('turn.missionCard.reset')}}</button>
       <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.close')}}</button>
     </template>
   </ModalDialog>
@@ -103,7 +106,6 @@ import ScoreCalculator from '@/services/ScoreCalculator'
 import MissionCards from '@/services/MissionCards'
 import CardDisplay from '../structure/CardDisplay.vue'
 import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDialog.vue'
-import Card from '@/services/Card'
 
 export default defineComponent({
   name: 'SideBar',
@@ -132,14 +134,6 @@ export default defineComponent({
     },
     missionCards() : MissionCards {
       return this.navigationState.missionCards
-    }
-  },
-  methods: {
-    flipMissionCard(card: Card) {
-      this.missionCards.flip(card)
-    },
-    unflipMissionCard(card: Card) {
-      this.missionCards.unflip(card)
     }
   }
 })
@@ -192,6 +186,9 @@ table {
   .card {
     width: 80px;
     cursor: pointer;
+    &.accomplished {
+      opacity: 0.3;
+    }
     @media (max-width: 600px) {
       width: 45px;
     }

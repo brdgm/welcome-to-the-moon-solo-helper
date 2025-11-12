@@ -1,7 +1,7 @@
 <template>
   <h3 class="mt-4 mb-3">{{t('setup.missionCardSetup.title')}}</h3>
   <div class="cards">
-    <CardDisplay v-for="card of missionCards.cards" :key="card.id" :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+    <CardDisplay v-for="card of missionCards.cards" :key="card.id" :card="card" front class="card"/>
   </div>
   <button class="btn btn-outline-secondary btn-sm mt-2" @click="randomizeCards">{{t('setup.missionCardSetup.randomize')}}</button>
 </template>

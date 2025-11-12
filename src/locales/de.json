@@ -55,8 +55,9 @@
     "cardsLeft": "Karten:",
     "missionCard": {
       "title": "Missionskarte",
-      "flip": "Erledigen",
-      "unflip": "Zurücksetzen"
+      "flip": "Umdrehen",
+      "accomplish": "Erledigen",
+      "reset": "Zurücksetzen"
     },
     "gameOver": {
       "title": "Spielende",

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { name } from '@/../package.json'
+import MissionCardStatus from '@/services/enum/MissionCardStatus'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -58,5 +59,5 @@ export interface CardDeckPersistence {
 }
 export interface MissionCardPersistence {
   card: number
-  flipped: boolean
+  status: MissionCardStatus
 }

@@ -55,8 +55,9 @@
     "cardsLeft": "Cards:",
     "missionCard": {
       "title": "Mission Card",
-      "flip": "Flip Card",
-      "unflip": "Unflip Card"
+      "flip": "Flip",
+      "accomplish": "Accomplish",
+      "reset": "Reset"
     },
     "gameOver": {
       "title": "Game over",

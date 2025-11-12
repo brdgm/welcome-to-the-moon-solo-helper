@@ -4,15 +4,16 @@ import Cards from './Cards'
 import { MissionCardPersistence } from '@/store/state'
 import { ref } from 'vue'
 import SpecialValue from './enum/SpecialValue'
+import MissionCardStatus from './enum/MissionCardStatus'
 
 export default class MissionCards {
 
   private readonly _cards
-  private readonly _flipped
+  private readonly _status
 
-  public constructor(cards: Card[], flipped: boolean[]) {
+  public constructor(cards: Card[], status: MissionCardStatus[]) {
     this._cards = ref(cards)
-    this._flipped = ref(flipped)
+    this._status = ref(status)
   }
 
   public get cards() : readonly Card[] {
@@ -21,20 +22,32 @@ export default class MissionCards {
 
   public isFlipped(card: Card) : boolean {
     const index = this._cards.value.indexOf(card)
-    return this._flipped.value[index] ?? false
+    return this._status.value[index] === MissionCardStatus.FLIPPED
+  }
+
+  public isAccomplished(card: Card) : boolean {
+    const index = this._cards.value.indexOf(card)
+    return this._status.value[index] === MissionCardStatus.ACCOMPLISHED
   }
 
   public flip(card: Card) : void {
     const index = this._cards.value.indexOf(card)
-    if (index>=0) {
-      this._flipped.value[index] = true
+    if (index>=0 && this._status.value[index] == MissionCardStatus.OPEN) {
+      this._status.value[index] = MissionCardStatus.FLIPPED
     }
   }
 
-  public unflip(card: Card) : void {
+  public accomplish(card: Card) : void {
     const index = this._cards.value.indexOf(card)
     if (index>=0) {
-      this._flipped.value[index] = false
+      this._status.value[index] = MissionCardStatus.ACCOMPLISHED
+    }
+  }
+
+  public reset(card: Card) : void {
+    const index = this._cards.value.indexOf(card)
+    if (index>=0) {
+      this._status.value[index] = MissionCardStatus.OPEN
     }
   }
 
@@ -46,7 +59,7 @@ export default class MissionCards {
     for (const [index, card] of this._cards.value.entries()) {
       result.push({
         card: card.id,
-        flipped: this._flipped.value[index] ?? false
+        status: this._status.value[index] ?? MissionCardStatus.OPEN
       })
     }
     return result
@@ -68,12 +81,12 @@ export default class MissionCards {
    */
   public static fromPersistence(persistence : MissionCardPersistence[]) : MissionCards {
     const cards : Card[] = []
-    const flipped : boolean[] = []
+    const status : MissionCardStatus[] = []
     for (const item of persistence) {
       cards.push(Cards.get(item.card))
-      flipped.push(item.flipped)
+      status.push(item.status)
     }
-    return new MissionCards(cards, flipped)
+    return new MissionCards(cards, status)
   }
 
 }
