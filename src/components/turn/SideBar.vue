@@ -76,9 +76,22 @@
       </tbody>
     </table>
     <div class="missionCards">
-      <CardDisplay v-for="card of missionCards.cards" :key="card.id" :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+      <a v-for="card of missionCards.cards" :key="card.id" href="#" data-bs-toggle="modal" :data-bs-target="`#missionCardModal-${card.id}`">
+        <CardDisplay :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+      </a>
     </div>
   </div>
+
+  <ModalDialog v-for="card of missionCards.cards" :key="card.id" :id="`missionCardModal-${card.id}`" :title="t('turn.missionCard.title')">
+    <template #body>
+      <CardDisplay :card="card" :front="!missionCards.isFlipped(card)" class="card"/>
+    </template>
+    <template #footer>
+      <button v-if="!missionCards.isFlipped(card)" class="btn btn-success" data-bs-dismiss="modal" @click="flipMissionCard(card)">{{t('turn.missionCard.flip')}}</button>
+      <button v-if="missionCards.isFlipped(card)" class="btn btn-danger" data-bs-dismiss="modal" @click="unflipMissionCard(card)">{{t('turn.missionCard.unflip')}}</button>
+      <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.close')}}</button>
+    </template>
+  </ModalDialog>
 </template>
 
 <script lang="ts">
@@ -90,12 +103,15 @@ import ScoreCalculator from '@/services/ScoreCalculator'
 import MissionCards from '@/services/MissionCards'
 import { useStateStore } from '@/store/state'
 import CardDisplay from '../structure/CardDisplay.vue'
+import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDialog.vue'
+import Card from '@/services/Card'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
     AppIcon,
-    CardDisplay
+    CardDisplay,
+    ModalDialog
   },
   setup() {
     const { t } = useI18n()
@@ -118,6 +134,14 @@ export default defineComponent({
     },
     missionCards() : MissionCards {
       return this.navigationState.missionCards
+    }
+  },
+  methods: {
+    flipMissionCard(card: Card) {
+      this.missionCards.flip(card)
+    },
+    unflipMissionCard(card: Card) {
+      this.missionCards.unflip(card)
     }
   }
 })
@@ -165,10 +189,11 @@ table {
 .missionCards {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.25rem;
   margin-top: 0.5rem;
   .card {
     width: 80px;
+    cursor: pointer;
     @media (max-width: 600px) {
       width: 45px;
     }

@@ -53,6 +53,11 @@
     "mission1Launch": "LAUNCH!",
     "turnsLeft": "Turns:",
     "cardsLeft": "Cards:",
+    "missionCard": {
+      "title": "Mission Card",
+      "flip": "Flip Card",
+      "unflip": "Unflip Card"
+    },
     "gameOver": {
       "title": "Game over",
       "info": "Game over - tally up your points."
