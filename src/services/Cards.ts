@@ -3,6 +3,7 @@ import Card from './Card'
 import CardType from './enum/CardType'
 import Action from './enum/Action'
 import SpecialValue from './enum/SpecialValue'
+import MissionType from './enum/MissionType'
 
 /**
  * Starship and ASTRA effect cards.
@@ -714,6 +715,68 @@ const cards : Card[] = [
     sprite: 'campaign',
     spriteIndex: 16,
     eventIndex: [{mission:4,index:51}, {mission:8,index:38}]
+  },
+
+  // ### MISSION CARDS ###
+  {
+    id: 64,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 0,
+    mission: 1,
+    missionType: MissionType.A
+  },
+  {
+    id: 65,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 1,
+    mission: 1,
+    missionType: MissionType.A
+  },
+  {
+    id: 66,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 2,
+    mission: 1,
+    missionType: MissionType.B
+  },
+  {
+    id: 67,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 3,
+    mission: 1,
+    missionType: MissionType.B
+  },
+  {
+    id: 68,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 4,
+    mission: 1,
+    missionType: MissionType.C
+  },
+  {
+    id: 69,
+    cardType: CardType.MISSION,
+    action: Action.NONE,
+    value: -1,
+    sprite: 'mission',
+    spriteIndex: 5,
+    mission: 1,
+    missionType: MissionType.C
   },
 
 ]

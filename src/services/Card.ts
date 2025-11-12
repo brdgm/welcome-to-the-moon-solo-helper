@@ -1,5 +1,6 @@
 import Action from './enum/Action'
 import CardType from './enum/CardType'
+import MissionType from './enum/MissionType'
 import SpecialValue from './enum/SpecialValue'
 
 export default interface Card {
@@ -10,6 +11,8 @@ export default interface Card {
   sprite: string
   spriteIndex: number
   eventIndex?: EventIndex[]
+  mission?: number
+  missionType?: MissionType
 }
 
 export interface EventIndex {
