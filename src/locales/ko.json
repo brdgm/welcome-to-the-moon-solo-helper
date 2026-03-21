@@ -1,0 +1,122 @@
+{
+  "gameTitle": "웰컴 투 더 문",
+  "home": {
+    "title": "웰컴 투 더 문 솔로 헬퍼",
+    "play1": "솔로 상대 ASTRA와 함께 <a href='https://boardgamegeek.com/boardgame/339789/welcome-to-the-moon' target='_blank' rel='noopener'><b>웰컴 투 더 문</b></a>을 플레이하세요.",
+    "play2": "이 애플리케이션은 우주선 덱을 시뮬레이션하고 미션과 레벨에 따라 ASTRA의 점수를 계산합니다. 캠페인의 특수 규칙도 지원됩니다.",
+    "feedback": "토론 및 피드백:"
+  },
+  "setup": {
+    "title": "게임 설정",
+    "missionSelection": {
+      "title": "미션"
+    },
+    "difficultyLevel": {
+      "title": "ASTRA 레벨",
+      "easy": "쉬움",
+      "hard": "어려움",
+      "level": "레벨 {level} - {name}"
+    },
+    "missionCardSetup": {
+      "title": "미션 카드",
+      "randomize": "랜덤 배치"
+    },
+    "campaignOptions": {
+      "title": "캠페인 옵션",
+      "show": "보기",
+      "intro": "나열된 이벤트는 선택된 미션에만 해당됩니다. 캠페인 중 활성화된 다른 옵션은 여러 미션에 걸쳐 적용될 수 있으며 모든 미션에 표시됩니다.",
+      "type": {
+        "event-card": {
+          "title": "이벤트",
+          "option": "미션 #{mission}: 이벤트 카드 {value} 추가 | 미션 #{mission}: 이벤트 카드 {value} 추가"
+        },
+        "starship-card": {
+          "title": "추가 우주선 카드",
+          "option": "우주선 카드 {value} 추가"
+        },
+        "block-cards": {
+          "title": "차단된 우주선 카드",
+          "optionBlockValue": "게임에서 우주선 카드 6장 제거: 값이 {value}인 우주선 카드를 모두 제거하세요. | 게임에서 우주선 카드 6장 제거: 값이 {value}인 우주선 카드를 모두 제거하세요.",
+          "optionBlockAction": "게임에서 우주선 카드 6장 제거: {action1} 카드 {count1}장과 {action2} 카드 {count2}장을 무작위로 제거하세요."
+        }
+      }
+    }
+  },
+  "turn": {
+    "title": "턴 {turn}",
+    "select": "선택",
+    "applyEffect": "ASTRA 효과 {value} 적용",
+    "applyEvent": "미션 #{mission}: <b>&lt;{index}&gt;</b> 챕터로 가세요",
+    "useSoloBonus": "솔로 보너스 사용",
+    "astra": "ASTRA",
+    "accomplishMission": "미션 카드 {value}를 완수 면으로 뒤집기",
+    "mission1Launch": "발사!",
+    "turnsLeft": "턴:",
+    "cardsLeft": "카드:",
+    "missionCard": {
+      "title": "미션 카드",
+      "flip": "뒤집기",
+      "accomplish": "완수",
+      "reset": "초기화"
+    },
+    "gameOver": {
+      "title": "게임 종료",
+      "info": "게임 종료 - 점수를 계산하세요."
+    },
+    "mission8": {
+      "sheet": {
+        "left": "← 왼쪽 시트",
+        "right": "오른쪽 시트 →"
+      },
+      "astraTurn": "ASTRA의 턴:",
+      "planet": "행성 #{value}",
+      "plantWater": "<b>식물 또는 물 행동</b>: 해당 행성에서 아직 사용 가능한 해당 기호를 지우세요.",
+      "planningAstronaut": "<b>계획 또는 우주비행사 행동</b>: 달에서 아직 사용 가능한 공간에 ASTRA 휘장을 그리세요.",
+      "robotEnergy": "<b>로봇 또는 에너지 행동</b>: 시트 반대편부터 시작하여 소행성에 ASTRA 휘장을 그리세요.",
+      "robotEnergyNoBenefit": "ASTRA는 소행성의 보너스 기호로부터 혜택을 받지 않습니다."
+    }
+  },
+  "mission": {
+    "1": "#1 발사",
+    "2": "#2 여정",
+    "3": "#3 식민지",
+    "4": "#4 광산",
+    "5": "#5 돔",
+    "6": "#6 바이러스",
+    "7": "#7 탈출",
+    "8": "#8 전투"
+  },
+  "starshipAction": {
+    "robot": "로봇",
+    "energy": "에너지",
+    "plant": "식물",
+    "water": "물",
+    "astronaut": "우주비행사",
+    "planning": "계획"
+  },
+  "notfound": {
+    "title": "찾을 수 없음"
+  },
+  "action": {
+    "playGame": "게임 플레이",
+    "startGame": "게임 시작",
+    "next": "다음",
+    "nextRound": "다음 라운드",
+    "abortGame": "게임 중단",
+    "abortGameConfirm": "실행 중인 게임을 중단합니다 - 확실한가요?",
+    "endGame": "게임 종료",
+    "endGameConfirm": "이 게임을 종료하고 홈 화면으로 돌아갑니다 - 확실한가요?",
+    "cancel": "취소",
+    "backToHome": "홈으로 돌아가기",
+    "back": "뒤로",
+    "close": "닫기",
+    "ok": "확인"
+  },
+  "footer": {
+    "credits": "크레딧"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "앱 새로고침",
+    "notice": "애플리케이션이 업데이트되었습니다 - 최신 버전을 사용하려면 새로고침하시겠습니까?"
+  }
+}
