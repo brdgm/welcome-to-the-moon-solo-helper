@@ -46,7 +46,7 @@
     "title": "Runde {turn}",
     "select": "Wählen",
     "applyEffect": "Führe ASTRA-Effekt {value} aus",
-    "applyEvent": "Mission #{mission}: Lese <b>&lt;{index}&gt;</b>",
+    "applyEvent": "Mission #{mission}: Lies <b>&lt;{index}&gt;</b>",
     "useSoloBonus": "Solo-Bonus nutzen",
     "astra": "ASTRA",
     "accomplishMission": "Drehe Missionskarte {value} auf die Seite \"Mission abgeschlossen\".",
@@ -61,7 +61,7 @@
     },
     "gameOver": {
       "title": "Spielende",
-      "info": "Das Spiel ist zuende - zähle deine Punkte zusammen."
+      "info": "Das Spiel ist zu Ende - zähle deine Punkte zusammen."
     },
     "mission8": {
       "sheet": {
@@ -72,7 +72,7 @@
       "planet": "Planet #{value}",
       "plantWater": "<b>Pflanze bzw. Wasser</b>: Streiche 1 entsprechendes, sichtbares Symbol (Pflanze bzw. Wasser) im unteren Bereich des Planeten durch.",
       "planningAstronaut": "<b>Planung oder Raumanzug</b>: Zeichne das Symbol der ASTRA auf den Mond des Planeten (sofern dort noch Platz ist).",
-      "robotEnergy": "<b>Roboter oder Energie</b>: Zeichne das Symbol der ASTRA auf den nicht beschriebenen Asteroiden, der ihrem Raumschiff am nächsten ist",
+      "robotEnergy": "<b>Roboter oder Energie</b>: Zeichne das Symbol der ASTRA auf den nicht beschriebenen Asteroiden, der ihrem Raumschiff am nächsten ist.",
       "robotEnergyNoBenefit": "Die ASTRA nutzt keine Bonussymbole, ignoriere sie für diesen Schritt."
     }
   },
