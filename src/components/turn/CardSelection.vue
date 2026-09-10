@@ -35,6 +35,10 @@
           <AppIcon name="cross-out" extension="svg" class="cross-out"/>
         </div>
       </div>
+      <hr/>
+      <div>
+        <CardDisplay v-for="card of currentCardsSorted" :key="card.id" class="card" :card="card" front/>
+      </div>
     </template>
   </div>
 
@@ -83,6 +87,7 @@ import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDial
 import Action from '@/services/enum/Action'
 import NavigationState from '@/util/NavigationState'
 import CardDeck from '@/services/CardDeck'
+import valueToNumber from '@/util/valueToNumber.js'
 
 export default defineComponent({
   name: 'CardSelection',
@@ -131,6 +136,9 @@ export default defineComponent({
           (this.mission == 6
           && this.navigationState.campaignOptions.find(option => option.name == 'mission-6-event-164') != undefined
           && this.cardDeck.pile.find(card => card.id == 164) != undefined)
+    },
+    currentCardsSorted() : Card[] {
+      return [...this.cardDeck.currentCards].sort((a, b) => (valueToNumber(a.value)) - (valueToNumber(b.value) ?? 0))
     }
   },
   methods: {
