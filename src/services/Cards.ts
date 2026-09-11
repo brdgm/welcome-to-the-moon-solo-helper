@@ -1426,7 +1426,17 @@ export default {
    * @returns cards
    */
   getMissionCards(mission: number, value: SpecialValue) : Card[] {
-    return cards.filter(card => card.cardType === CardType.MISSION && card.mission === mission && card.value === value)
+    return cards.filter(card => card.cardType === CardType.MISSION && card.mission === mission && card.value === value && !card.campaign)
+  },
+
+  /**
+   * Get campaign-specific mission cards by mission and type
+   * @param mission Mission number
+   * @param value Mission card type
+   * @returns cards
+   */
+  getCampaignMissionCards(mission: number, value: SpecialValue) : Card[] {
+    return cards.filter(card => card.cardType === CardType.MISSION && card.mission === mission && card.value === value && card.campaign)
   }
 
 }

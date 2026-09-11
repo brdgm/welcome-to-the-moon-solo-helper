@@ -61,6 +61,14 @@ describe('services/Cards', () => {
     }
   })
 
+  it('campaign-mission-cards', () => {
+    for (let mission=1; mission<=8; mission++) {
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.A).length).eq(1)
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.B).length).eq(1)
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.C).length).eq(1)
+    }
+  })
+
   it('spriteIndex', () => {
     // ensure all cards have a unique sprite index
     const indexes = new Set<string>()
@@ -69,6 +77,6 @@ describe('services/Cards', () => {
         indexes.add(`${card.sprite}-${card.spriteIndex}`)
       }
     }
-    expect(indexes.size).eq(63+9+3+11+48)
+    expect(indexes.size).eq(63+9+3+11+48+24)
   })
 })
