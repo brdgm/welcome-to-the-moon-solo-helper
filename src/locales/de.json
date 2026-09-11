@@ -56,7 +56,7 @@
     "turnsLeft": "Runden:",
     "cardsLeft": "Karten:",
     "missionCard": {
-      "title": "Missionskarte",
+      "title": "Missionskarte #{id}",
       "flip": "Umdrehen",
       "accomplish": "Erledigen",
       "reset": "Zurücksetzen"

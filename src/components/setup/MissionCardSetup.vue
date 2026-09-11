@@ -11,12 +11,9 @@
       <div v-for="type of missionTypes" :key="type" class="mb-4">
         <div class="cards">
           <h5>{{type}}</h5>
-          <div v-for="card of availableCards(type)" :key="card.id"
+          <button v-for="card of availableCards(type)" :key="card.id" type="button"
               class="cardOption" :class="{selected: handPickSelection[type] === card.id}"
-              role="button" tabindex="0"
-              @click="handPickSelection[type] = card.id"
-              @keydown.enter.prevent="handPickSelection[type] = card.id"
-              @keydown.space.prevent="handPickSelection[type] = card.id">
+              @click="handPickSelection[type] = card.id">
             <div class="cardId">
               <span>#{{card.id}}</span>
             </div>
@@ -24,7 +21,7 @@
             <div class="cardId">
               <span v-if="card.campaign" class="campaign">{{t('setup.missionCardSetup.campaign')}}</span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </template>
@@ -139,6 +136,7 @@ export default defineComponent({
   border: 2px solid transparent;
   border-radius: 0.35rem;
   padding: 0.2rem;
+  background: none;
   &.selected {
     border-color: var(--bs-primary);
     background-color: rgba(var(--bs-primary-rgb), 0.1);
