@@ -19,7 +19,9 @@
     },
     "missionCardSetup": {
       "title": "Mission Cards",
-      "randomize": "Randomize"
+      "randomize": "Randomize",
+      "choose": "Choose",
+      "campaign": "Campaign"
     },
     "campaignOptions": {
       "title": "Campaign Options",
