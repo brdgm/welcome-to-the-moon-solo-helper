@@ -13,7 +13,10 @@
           <h5>{{type}}</h5>
           <div v-for="card of availableCards(type)" :key="card.id"
               class="cardOption" :class="{selected: handPickSelection[type] === card.id}"
-              @click="handPickSelection[type] = card.id">
+              role="button" tabindex="0"
+              @click="handPickSelection[type] = card.id"
+              @keydown.enter.prevent="handPickSelection[type] = card.id"
+              @keydown.space.prevent="handPickSelection[type] = card.id">
             <div class="cardId">
               <span>#{{card.id}}</span>
             </div>

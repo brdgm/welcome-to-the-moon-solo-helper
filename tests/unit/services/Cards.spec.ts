@@ -55,17 +55,17 @@ describe('services/Cards', () => {
 
   it('mission-cards', () => {
     for (let mission=1; mission<=8; mission++) {
-      expect(Cards.getMissionCards(mission, SpecialValue.A).length).eq(2)
-      expect(Cards.getMissionCards(mission, SpecialValue.B).length).eq(2)
-      expect(Cards.getMissionCards(mission, SpecialValue.C).length).eq(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.A)).to.have.lengthOf(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.B)).to.have.lengthOf(2)
+      expect(Cards.getMissionCards(mission, SpecialValue.C)).to.have.lengthOf(2)
     }
   })
 
   it('campaign-mission-cards', () => {
     for (let mission=1; mission<=8; mission++) {
-      expect(Cards.getCampaignMissionCards(mission, SpecialValue.A).length).eq(1)
-      expect(Cards.getCampaignMissionCards(mission, SpecialValue.B).length).eq(1)
-      expect(Cards.getCampaignMissionCards(mission, SpecialValue.C).length).eq(1)
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.A)).to.have.lengthOf(1)
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.B)).to.have.lengthOf(1)
+      expect(Cards.getCampaignMissionCards(mission, SpecialValue.C)).to.have.lengthOf(1)
     }
   })
 
