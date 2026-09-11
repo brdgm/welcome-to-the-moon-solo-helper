@@ -54,7 +54,7 @@
     "turnsLeft": "턴:",
     "cardsLeft": "카드:",
     "missionCard": {
-      "title": "미션 카드",
+      "title": "미션 카드 #{id}",
       "flip": "뒤집기",
       "accomplish": "완수",
       "reset": "초기화"

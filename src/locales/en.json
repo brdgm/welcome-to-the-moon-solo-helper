@@ -19,7 +19,9 @@
     },
     "missionCardSetup": {
       "title": "Mission Cards",
-      "randomize": "Randomize"
+      "randomize": "Randomize",
+      "choose": "Choose",
+      "campaign": "Campaign"
     },
     "campaignOptions": {
       "title": "Campaign Options",
@@ -54,7 +56,7 @@
     "turnsLeft": "Turns:",
     "cardsLeft": "Cards:",
     "missionCard": {
-      "title": "Mission Card",
+      "title": "Mission Card #{id}",
       "flip": "Flip",
       "accomplish": "Accomplish",
       "reset": "Reset"

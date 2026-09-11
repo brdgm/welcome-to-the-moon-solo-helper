@@ -11,6 +11,7 @@ export default interface Card {
   spriteIndex: number
   eventIndex?: EventIndex[]
   mission?: number
+  campaign?: boolean
 }
 
 export interface EventIndex {
