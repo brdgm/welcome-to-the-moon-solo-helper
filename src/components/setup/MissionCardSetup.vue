@@ -132,11 +132,14 @@ export default defineComponent({
   }
 }
 .cardOption {
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 2px solid transparent;
   border-radius: 0.35rem;
   padding: 0.2rem;
   background: none;
+  cursor: pointer;
   &.selected {
     border-color: var(--bs-primary);
     background-color: rgba(var(--bs-primary-rgb), 0.1);
